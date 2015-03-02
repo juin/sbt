@@ -41,6 +41,7 @@ public class SBT {
         config.inserir(c);
         
         connection.close();
+        //Teste44
     }
     
 }

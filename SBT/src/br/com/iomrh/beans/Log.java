@@ -2,10 +2,7 @@ package br.com.iomrh.beans;
 
 import java.util.Date;
 
-/**
- *
- * @author Cremildo Lima
- */
+
 public class Log {
 
     private Long codigoLog;

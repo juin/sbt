@@ -24,7 +24,7 @@ public class SBT {
      */
     public static void main(String[] args) throws SQLException{
         
-        //Teste
+        //Teste2
         Connection connection = new Conexao().getConexao();
         Profissao p = new Profissao();
         p.setCodigoProfissao(9878);

@@ -7,7 +7,7 @@ package br.com.iomrh.beans;
 
 /**
  *
- * @author Cremildo Lima
+ * @author Cremildo Lima, Joabe Pinheiro
  */
 public class Estado{
     

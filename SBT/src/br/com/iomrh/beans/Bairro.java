@@ -1,5 +1,7 @@
 package br.com.iomrh.beans;
 
+import java.util.List;
+
 /**
  *
  * @author Cremildo Lima
@@ -9,6 +11,7 @@ public class Bairro {
     private Integer codigoCidade;
     private Integer codigoBairro;
     private String nome;
+    private List<Logradouro> logradouroList;
 
     public Bairro() {
     }
@@ -37,6 +40,12 @@ public class Bairro {
         this.codigoBairro = codigoBairro;
     }
     
-    
+    public List<Logradouro> getLogradouroList() {
+        return logradouroList;
+    }
+
+    public void setLogradouros(List<Logradouro> logradouroList) {
+        this.logradouroList = logradouroList;
+    }
     
 }

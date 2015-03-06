@@ -33,6 +33,17 @@ public class Candidato{
     private String gerencia;
     private int codProfissao;
 
+    private List<CurriculoInformatica> curriculoInformaticaList;
+    private List<CurriculoIdioma> curriculoIdiomaList;
+    private List<HistoricoCandidato> historicoCandidatoList;
+    private List<Endereco> enderecoList;
+    private List<CaracteristicasCandidato> caracteristicasCandidatoList;
+    private List<Telefone> telefoneList;
+    private List<RedeSocial> redeSocialList;
+    private List<Formacao> formacaoList;
+    private List<IndisponibilidadeCandidato> indisponibilidadeCandidatoList;
+    private List<ExperienciaProfissional> experienciaProfissionalList;
+    
     public Candidato() {
     }
 
@@ -188,5 +199,84 @@ public class Candidato{
         this.codProfissao = codProfissao;
     }
     
+    public List<CurriculoInformatica> getCurriculoInformaticaList() {
+        return curriculoInformaticaList;
+    }
+
+    public void setCurriculoInformaticaList(List<CurriculoInformatica> curriculoInformaticaList) {
+        this.curriculoInformaticaList = curriculoInformaticaList;
+    }
+
+    public List<CurriculoIdioma> getCurriculoIdiomaList() {
+        return curriculoIdiomaList;
+    }
+
+    public void setCurriculoIdiomaList(List<CurriculoIdioma> curriculoIdiomaList) {
+        this.curriculoIdiomaList = curriculoIdiomaList;
+    }
     
+    public List<HistoricoCandidato> getHistoricoCandidatoList() {
+        return historicoCandidatoList;
+    }
+
+    public void setHistoricoCandidatoList(List<HistoricoCandidato> historicoCandidatoList) {
+        this.historicoCandidatoList = historicoCandidatoList;
+    }
+
+    public List<Endereco> getEnderecoList() {
+        return enderecoList;
+    }
+
+    public void setEnderecoList(List<Endereco> enderecoList) {
+        this.enderecoList = enderecoList;
+    }
+
+    public List<CaracteristicasCandidato> getCaracteristicasCandidatoList() {
+        return caracteristicasCandidatoList;
+    }
+
+    public void setCaracteristicasCandidatoList(List<CaracteristicasCandidato> caracteristicasCandidatoList) {
+        this.caracteristicasCandidatoList = caracteristicasCandidatoList;
+    }
+
+    public List<Telefone> getTelefoneList() {
+        return telefoneList;
+    }
+
+    public void setTelefoneList(List<Telefone> telefoneList) {
+        this.telefoneList = telefoneList;
+    }
+
+    public List<RedeSocial> getRedeSocialList() {
+        return redeSocialList;
+    }
+
+    public void setRedeSocialList(List<RedeSocial> redeSocialList) {
+        this.redeSocialList = redeSocialList;
+    }
+
+    public List<Formacao> getFormacaoList() {
+        return formacaoList;
+    }
+
+    public void setFormacaoList(List<Formacao> formacaoList) {
+        this.formacaoList = formacaoList;
+    }
+
+    public List<IndisponibilidadeCandidato> getIndisponibilidadeCandidatoList() {
+        return indisponibilidadeCandidatoList;
+    }
+
+    public void setIndisponibilidadeCandidatoList(List<IndisponibilidadeCandidato> indisponibilidadeCandidatoList) {
+        this.indisponibilidadeCandidatoList = indisponibilidadeCandidatoList;
+    }
+
+    public List<ExperienciaProfissional> getExperienciaProfissionalList() {
+        return experienciaProfissionalList;
+    }
+
+    public void setExperienciaProfissionalList(List<ExperienciaProfissional> experienciaProfissionalList) {
+        this.experienciaProfissionalList = experienciaProfissionalList;
+    }
+
 }

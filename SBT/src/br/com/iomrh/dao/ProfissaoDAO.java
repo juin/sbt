@@ -97,24 +97,24 @@ public class ProfissaoDAO {
             if(p.getCodigoProfissao() != null)
                 stmt.setInt(1, p.getCodigoProfissao());
             else
-                stmt.setInt(1, '%');
+                stmt.setString(1, "%");
             
-            if(p.getNome() != null)
-                stmt.setString(2, p.getNome());
-            else
+            if(p.getNome() == null)
                 stmt.setString(2, "%");
+            else
+                stmt.setString(2, p.getNome());
             
-            // executa
+            //executa
             ResultSet resultado = stmt.executeQuery();
             
             while (resultado.next()) {
                 
                 Profissao profissao = new Profissao();
                 
-                 profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
-                 profissao.setNome(resultado.getString("nome"));
+                profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
+                profissao.setNome(resultado.getString("nome"));
                  
-                 profissoes.add(profissao);
+                profissoes.add(profissao);
             }
             stmt.close();
             resultado.close();

@@ -38,7 +38,7 @@ public class SBT {
 //        p = null;
         Profissao prof = new Profissao();
         //prof.setCodigoProfissao(9878);
-        prof.setNome("Miseravão da Bahia");
+        prof.setNome("Miseravao da Bahia");
         
         List<Profissao> p = pd.buscaProfissao(prof);
         

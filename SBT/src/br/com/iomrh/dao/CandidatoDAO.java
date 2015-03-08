@@ -6,11 +6,14 @@
 package br.com.iomrh.dao;
 
 import br.com.iomrh.beans.Candidato;
+import br.com.iomrh.exception.CandidadoException;
 import br.com.iomrh.jdbc.Conexao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -63,6 +66,32 @@ public class CandidatoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    public Candidato buscaCandidatoPorCodigo(int codigoCandidato){
+        
+        Candidato candidato = new Candidato();
+        String sql = "SELECT * FROM Candidato WHERE codigoCandidato = ?";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setInt(1, codigoCandidato);
+            
+            // executa
+            ResultSet resultado = stmt.executeQuery();
+            stmt.close();
+            while (resultado.next()) {
+                 candidato.setCodigoCandidato(resultado.getInt("codigoCandidato"));
+                 candidato.setPrenome(resultado.getString("prenome"));
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidato;
     }
     
     

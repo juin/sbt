@@ -5,11 +5,16 @@
  */
 package br.com.iomrh.dao;
 
+import br.com.iomrh.beans.Candidato;
 import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.jdbc.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -43,5 +48,80 @@ public class ProfissaoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    public List<Profissao> buscaProfissaoPorCodigo(int codigoProfissao){
+        
+        List<Profissao> profissoes = new ArrayList<Profissao>();
+        String sql = "SELECT * FROM Profissao WHERE codigoProfissao LIKE ?";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setInt(1, codigoProfissao);
+            
+            
+            // executa
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()) {
+                
+                Profissao profissao = new Profissao();
+                
+                 profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
+                 profissao.setNome(resultado.getString("nome"));
+                 
+                 profissoes.add(profissao);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return profissoes;
+    }
+    
+    public List<Profissao> buscaProfissao(Profissao p){
+        
+        List<Profissao> profissoes = new ArrayList<Profissao>();
+        String sql = "SELECT * FROM Profissao WHERE codigoProfissao LIKE ? AND nome LIKE ?";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            if(p.getCodigoProfissao() != null)
+                stmt.setInt(1, p.getCodigoProfissao());
+            else
+                stmt.setInt(1, '%');
+            
+            if(p.getNome() != null)
+                stmt.setString(2, p.getNome());
+            else
+                stmt.setString(2, "%");
+            
+            // executa
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()) {
+                
+                Profissao profissao = new Profissao();
+                
+                 profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
+                 profissao.setNome(resultado.getString("nome"));
+                 
+                 profissoes.add(profissao);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return profissoes;
     }
 }

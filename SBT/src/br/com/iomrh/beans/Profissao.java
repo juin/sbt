@@ -16,7 +16,9 @@ public class Profissao{
 
     private Integer codigoProfissao;
     private String nome;
-
+    private List<Candidato> candidatoList;
+    private List<ExperienciaProfissional> experienciaProfissionalList;
+    
     public Profissao() {
     }
 
@@ -34,6 +36,22 @@ public class Profissao{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Candidato> getCandidatoList() {
+        return candidatoList;
+    }
+
+    public void setCandidatoList(List<Candidato> candidatoList) {
+        this.candidatoList = candidatoList;
+    }
+
+    public List<ExperienciaProfissional> getExperienciaProfissionalList() {
+        return experienciaProfissionalList;
+    }
+
+    public void setExperienciaProfissionalList(List<ExperienciaProfissional> experienciaProfissionalList) {
+        this.experienciaProfissionalList = experienciaProfissionalList;
     }
 
     @Override

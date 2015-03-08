@@ -5,6 +5,8 @@
  */
 package br.com.iomrh.beans;
 
+import java.util.List;
+
 /**
  *
  * @author Cremildo Lima
@@ -15,6 +17,7 @@ public class Logradouro{
     private Integer codigoLogradouro;
     private String cep;
     private String nome;
+    private List<Endereco> enderecoList;
     private Integer codigoBairro;
 
     public Logradouro() {
@@ -42,6 +45,14 @@ public class Logradouro{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Endereco> getEnderecoList() {
+        return enderecoList;
+    }
+
+    public void setEnderecoList(List<Endereco> enderecoList) {
+        this.enderecoList = enderecoList;
     }
 
     public Integer getCodigoBairro() {

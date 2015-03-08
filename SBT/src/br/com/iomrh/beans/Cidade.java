@@ -5,6 +5,8 @@
  */
 package br.com.iomrh.beans;
 
+import java.util.List;
+
 /**
  *
  * @author Cremildo Lima
@@ -14,7 +16,8 @@ public class Cidade{
     private Integer codigoCidade;
     private String nome;
     private Integer codigoEstado;
-
+    private List<Bairro> bairroList;
+    
     public Cidade() {
     }
 
@@ -41,5 +44,14 @@ public class Cidade{
     public void setCodigoEstado(Integer codigoEstado) {
         this.codigoEstado = codigoEstado;
     }
-   
+
+    public List<Bairro> getBairroList() {
+        return bairroList;
+    }
+
+    public void setBairroList(List<Bairro> bairroList) {
+        this.bairroList = bairroList;
+    }
+
+    
 }

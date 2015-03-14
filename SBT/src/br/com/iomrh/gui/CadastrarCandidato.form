@@ -89,7 +89,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="Field__Candidato__nome" min="-2" pref="459" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Field__Candidato__sobrenome" pref="297" max="32767" attributes="0"/>
+                              <Component id="Field__Candidato__sobrenome" pref="346" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="Button__Candidato__portadorNecessidadesEspeciais__sim" min="-2" max="-2" attributes="0"/>
@@ -206,7 +206,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__nome">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nome"/>
               </Properties>
@@ -217,7 +217,7 @@
             <Component class="javax.swing.JTextField" name="Field__Candidato__nome">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Tahoma" size="12" style="0"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -228,6 +228,9 @@
               <AccessibilityProperties>
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="TField__Candidato__prenome"/>
               </AccessibilityProperties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Field__Candidato__nomeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="Field__Candidato__sobrenome">
               <Properties>
@@ -247,7 +250,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__sexo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sexo"/>
               </Properties>
@@ -258,7 +261,7 @@
             <Component class="javax.swing.JRadioButton" name="Button__Candidato__masculino">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Masculino"/>
               </Properties>
@@ -269,7 +272,7 @@
             <Component class="javax.swing.JRadioButton" name="Button__Candidato__feminino">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Feminino"/>
               </Properties>
@@ -281,7 +284,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__CPF">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CPF"/>
               </Properties>
@@ -292,7 +295,7 @@
             <Component class="javax.swing.JTextField" name="Field__Candidato__CPF">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -310,7 +313,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__RG">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="RG"/>
               </Properties>
@@ -321,7 +324,7 @@
             <Component class="javax.swing.JTextField" name="Field__Candidato__RG">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -336,7 +339,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__dataNascimento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
               </Properties>
@@ -347,7 +350,7 @@
             <Component class="javax.swing.JTextField" name="Field__Candidato__dataNascimento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -362,7 +365,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__estadoCivil">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estado Civil"/>
               </Properties>
@@ -374,7 +377,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
@@ -398,7 +401,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__quantFilhos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Quant. de Filhos"/>
               </Properties>
@@ -409,7 +412,7 @@
             <Component class="javax.swing.JTextField" name="Field__Candidato__quantFilhos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -424,7 +427,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__portadorNecessidadesEspeciais">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="PNE"/>
               </Properties>
@@ -435,7 +438,7 @@
             <Component class="javax.swing.JTextField" name="Field__Candidato__portadorNecessidadesEspeciais">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -450,7 +453,7 @@
             <Component class="javax.swing.JRadioButton" name="Button__Candidato__portadorNecessidadesEspeciais__sim">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sim"/>
               </Properties>
@@ -461,7 +464,7 @@
             <Component class="javax.swing.JRadioButton" name="Button__Candidato__portadorNecessidadesEspeciais__nao">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nao"/>
               </Properties>
@@ -472,7 +475,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__dispisponibilidadeViajar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Disp. Viajar"/>
               </Properties>
@@ -484,7 +487,7 @@
             <Component class="javax.swing.JRadioButton" name="Button__Candidato__disponibilidadeViajar__sim">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sim"/>
               </Properties>
@@ -495,7 +498,7 @@
             <Component class="javax.swing.JRadioButton" name="Button__Candidato__disponibilidadeViajar__nao">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nao"/>
               </Properties>
@@ -507,7 +510,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato_cnhPossui">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CNH"/>
               </Properties>
@@ -520,7 +523,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -545,7 +548,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__veiculo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Veiculo"/>
               </Properties>
@@ -557,7 +560,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -579,7 +582,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__caracteristica">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="18" style="0"/>
+                  <Font name="Arial" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Caracteristica"/>
               </Properties>
@@ -601,6 +604,9 @@
                 <Component class="javax.swing.JTextArea" name="Area__Candidato__caracteristica">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="0"/>
+                    </Property>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -870,7 +876,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="211" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="256" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -904,7 +910,7 @@
                           <Component id="CheckBox__Candidato__primeiroEmprego" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CheckBox__Candidato__gerencia" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="207" max="32767" attributes="0"/>
+                      <EmptySpace pref="211" max="32767" attributes="0"/>
                       <Component id="Button__Candidato__cadastrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
@@ -955,7 +961,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__pretencaoSalarial">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="20" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Preten&#xe7;&#xe3;o Salarial"/>
               </Properties>
@@ -968,7 +974,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
@@ -987,7 +993,7 @@
             <Component class="javax.swing.JLabel" name="Label__Candidato__profissao">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="20" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Profiss&#xe3;o"/>
               </Properties>
@@ -1000,7 +1006,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>

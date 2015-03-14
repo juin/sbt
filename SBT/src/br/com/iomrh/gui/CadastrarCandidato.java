@@ -79,28 +79,33 @@ public class CadastrarCandidato extends javax.swing.JFrame {
         jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 204), null, null));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        Label__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Label__Candidato__nome.setText("Nome");
 
-        Field__Candidato__nome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Field__Candidato__nome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Field__Candidato__nome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        Field__Candidato__nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Field__Candidato__nomeActionPerformed(evt);
+            }
+        });
 
         Field__Candidato__sobrenome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Field__Candidato__sobrenome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Label__Candidato__sexo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__sexo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__sexo.setText("Sexo");
 
-        Button__Candidato__masculino.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Button__Candidato__masculino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__masculino.setText("Masculino");
 
-        Button__Candidato__feminino.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Button__Candidato__feminino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__feminino.setText("Feminino");
 
-        Label__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__CPF.setText("CPF");
 
-        Field__Candidato__CPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Field__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__CPF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         Field__Candidato__CPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,58 +113,58 @@ public class CadastrarCandidato extends javax.swing.JFrame {
             }
         });
 
-        Label__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__RG.setText("RG");
 
-        Field__Candidato__RG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Field__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__RG.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Label__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__dataNascimento.setText("Data de Nascimento");
 
-        Field__Candidato__dataNascimento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Field__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__dataNascimento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Label__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__estadoCivil.setText("Estado Civil");
 
         ComboBox__Candidato__estadoCivil.setEditable(true);
-        ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)", "Outros" }));
         ComboBox__Candidato__estadoCivil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Label__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__quantFilhos.setText("Quant. de Filhos");
 
-        Field__Candidato__quantFilhos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Field__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__quantFilhos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Label__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__portadorNecessidadesEspeciais.setText("PNE");
 
-        Field__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Field__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__portadorNecessidadesEspeciais.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Button__Candidato__portadorNecessidadesEspeciais__sim.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button__Candidato__portadorNecessidadesEspeciais__sim.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__portadorNecessidadesEspeciais__sim.setText("Sim");
 
-        Button__Candidato__portadorNecessidadesEspeciais__nao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button__Candidato__portadorNecessidadesEspeciais__nao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__portadorNecessidadesEspeciais__nao.setText("Nao");
 
-        Label__Candidato__dispisponibilidadeViajar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__dispisponibilidadeViajar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__dispisponibilidadeViajar.setText("Disp. Viajar");
 
-        Button__Candidato__disponibilidadeViajar__sim.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button__Candidato__disponibilidadeViajar__sim.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__disponibilidadeViajar__sim.setText("Sim");
 
-        Button__Candidato__disponibilidadeViajar__nao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Button__Candidato__disponibilidadeViajar__nao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__disponibilidadeViajar__nao.setText("Nao");
 
-        Label__Candidato_cnhPossui.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato_cnhPossui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato_cnhPossui.setText("CNH");
 
         ComboBox__Candidato__cnhPossui.setEditable(true);
-        ComboBox__Candidato__cnhPossui.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ComboBox__Candidato__cnhPossui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__cnhPossui.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Possuo", "Nao Possuo" }));
         ComboBox__Candidato__cnhPossui.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         ComboBox__Candidato__cnhPossui.addActionListener(new java.awt.event.ActionListener() {
@@ -168,18 +173,19 @@ public class CadastrarCandidato extends javax.swing.JFrame {
             }
         });
 
-        Label__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__veiculo.setText("Veiculo");
 
         ComboBox__Candidato__veiculo.setEditable(true);
-        ComboBox__Candidato__veiculo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ComboBox__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__veiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Possuo", "Nao Possuo" }));
         ComboBox__Candidato__veiculo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        Label__Candidato__caracteristica.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label__Candidato__caracteristica.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__caracteristica.setText("Caracteristica");
 
         Area__Candidato__caracteristica.setColumns(20);
+        Area__Candidato__caracteristica.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Area__Candidato__caracteristica.setRows(5);
         Area__Candidato__caracteristica.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         ScrollPane__Candidato__caracteristica.setViewportView(Area__Candidato__caracteristica);
@@ -213,7 +219,7 @@ public class CadastrarCandidato extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Field__Candidato__nome, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Field__Candidato__sobrenome, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
+                        .addComponent(Field__Candidato__sobrenome, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Button__Candidato__portadorNecessidadesEspeciais__sim)
                         .addGap(18, 18, 18)
@@ -467,11 +473,11 @@ public class CadastrarCandidato extends javax.swing.JFrame {
         ));
         ScrollPane__Candidato__experienciaProfissional.setViewportView(Table__Candidato__experienciaProfissional);
 
-        Label__Candidato__pretencaoSalarial.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        Label__Candidato__pretencaoSalarial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Label__Candidato__pretencaoSalarial.setText("Pretenção Salarial");
 
         ComboBox__Candidato__pretencaoSalarial.setEditable(true);
-        ComboBox__Candidato__pretencaoSalarial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ComboBox__Candidato__pretencaoSalarial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ComboBox__Candidato__pretencaoSalarial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Á Combinar", "Até Um salário Mínimo", "Entre Um e Dois salários", "Acima de 3", "" }));
         ComboBox__Candidato__pretencaoSalarial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,11 +485,11 @@ public class CadastrarCandidato extends javax.swing.JFrame {
             }
         });
 
-        Label__Candidato__profissao.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        Label__Candidato__profissao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Label__Candidato__profissao.setText("Profissão");
 
         ComboBox__Candidato__profissao.setEditable(true);
-        ComboBox__Candidato__profissao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ComboBox__Candidato__profissao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ComboBox__Candidato__profissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBox__Candidato__profissaoActionPerformed(evt);
@@ -524,7 +530,7 @@ public class CadastrarCandidato extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(ComboBox__Candidato__pretencaoSalarial, 0, 550, Short.MAX_VALUE)
                                         .addComponent(ComboBox__Candidato__profissao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(0, 211, Short.MAX_VALUE)))
+                        .addGap(0, 256, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -550,7 +556,7 @@ public class CadastrarCandidato extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckBox__Candidato__primeiroEmprego)
                     .addComponent(CheckBox__Candidato__gerencia))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                 .addComponent(Button__Candidato__cadastrar)
                 .addGap(77, 77, 77))
         );
@@ -603,6 +609,10 @@ public class CadastrarCandidato extends javax.swing.JFrame {
     private void ComboBox__Candidato__profissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox__Candidato__profissaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBox__Candidato__profissaoActionPerformed
+
+    private void Field__Candidato__nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__Candidato__nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Field__Candidato__nomeActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,7 +7,7 @@ package br.com.iomrh.gui;
 
 /**
  *
- * @author rpa
+ * @author rpa teste
  */
 public class CadastrarCandidato extends javax.swing.JFrame {
   //lulu esteve aqui

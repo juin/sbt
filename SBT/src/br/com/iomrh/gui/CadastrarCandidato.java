@@ -80,7 +80,7 @@ public class CadastrarCandidato extends javax.swing.JFrame {
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         Label__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        Label__Candidato__nome.setText("Nome");
+        Label__Candidato__nome.setText("Nome ");
 
         Field__Candidato__nome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Field__Candidato__nome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));

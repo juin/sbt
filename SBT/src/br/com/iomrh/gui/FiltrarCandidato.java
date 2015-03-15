@@ -115,7 +115,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa = new javax.swing.JComboBox();
@@ -125,7 +124,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         Button__Desfazer__ExperienciaProfissional = new javax.swing.JButton();
         Area__ExperienciaProfissional__CargoExercido = new javax.swing.JTextField();
         Button__ExperienciaProfissional__InserirExperiencia = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableResultadoFiltragem = new javax.swing.JTable();
         Filtrar = new javax.swing.JButton();
@@ -686,19 +684,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jTPResultado.addTab("Indisponiblidade do candidato", jPanel23);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 959, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
-        );
-
-        jTPResultado.addTab("tab8", jPanel1);
-
         ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setText("Cargo");
@@ -769,7 +754,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         );
 
         jTPResultado.addTab("Experiência profissional", jPanel15);
-        jTPResultado.addTab("Resultado Filtragem", null, jTabbedPane1, "Veja a lista de Candidatos encontrados após o filtro.");
 
         tableResultadoFiltragem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -796,7 +780,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableResultadoFiltragem);
 
-        jTPResultado.addTab("tab1", jScrollPane3);
+        jTPResultado.addTab("Resultado Filtragem", jScrollPane3);
 
         Filtrar.setText("Filtrar");
         Filtrar.addActionListener(new java.awt.event.ActionListener() {
@@ -993,7 +977,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
@@ -1016,7 +999,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTPResultado;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;

@@ -84,6 +84,35 @@ public class ProfissaoDAO {
         return profissoes;
     }
     
+    public Profissao buscaProfissaoPorNome(String nome){
+        
+        String sql = "SELECT * FROM Profissao WHERE nome = ?";
+        Profissao profissao = new Profissao();
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setString(1, nome);
+            
+            
+            // executa
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()) {                
+                 profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
+                 profissao.setNome(resultado.getString("nome"));
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return profissao;
+    }
+    
     public List<Profissao> buscaProfissao(Profissao p){
         
         List<Profissao> profissoes = new ArrayList<Profissao>();
@@ -116,6 +145,37 @@ public class ProfissaoDAO {
                  
                 profissoes.add(profissao);
             }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return profissoes;
+    }
+    
+    public List<Profissao> listarProfissoes(){
+        
+        List<Profissao> profissoes = new ArrayList<Profissao>();
+        String sql = "SELECT * FROM Profissao";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            //executa
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()) {
+                
+                Profissao profissao = new Profissao();
+                
+                profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
+                profissao.setNome(resultado.getString("nome"));
+                 
+                profissoes.add(profissao);
+            }
+            
             stmt.close();
             resultado.close();
         } catch (SQLException e) {

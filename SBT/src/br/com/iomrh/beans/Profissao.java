@@ -56,7 +56,7 @@ public class Profissao{
 
     @Override
     public String toString() {
-        return "bancodetalentos.Profissao[ codigoProfissao=" + codigoProfissao + " ]";
+        return nome;
     }
     
 }

@@ -13,7 +13,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -92,6 +94,45 @@ public class CandidatoDAO {
         }
         
         return candidato;
+    }
+    
+    public List<Candidato> buscaCandidato(Candidato candidato){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND "
+                + "codigoProfissao LIKE ?";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            if(candidato.getCodigoCandidato() != null)
+                stmt.setInt(1, candidato.getCodigoCandidato());
+            else
+                stmt.setString(1, "%");
+            
+            if(candidato.getCodProfissao() != null)
+                stmt.setInt(2, candidato.getCodProfissao());
+            else
+                stmt.setString(2, "%");
+            
+            // executa
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codigoCandidato"));
+                can.setPrenome(resultado.getString("prenome"));
+                can.setSobrenome(resultado.getString("sobrenome"));
+                can.setCodProfissao(resultado.getInt("codigoProfissao"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
     }
     
     

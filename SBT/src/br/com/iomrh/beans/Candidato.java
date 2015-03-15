@@ -31,7 +31,7 @@ public class Candidato{
     private String veiculo;
     private String primeiroEmprego;
     private String gerencia;
-    private int codProfissao;
+    private Integer codProfissao;
 
     private List<CurriculoInformatica> curriculoInformaticaList;
     private List<CurriculoIdioma> curriculoIdiomaList;
@@ -191,7 +191,7 @@ public class Candidato{
         this.gerencia = gerencia;
     }
 
-    public int getCodProfissao() {
+    public Integer getCodProfissao() {
         return codProfissao;
     }
 

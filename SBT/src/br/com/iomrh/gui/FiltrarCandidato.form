@@ -990,8 +990,8 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Button__ExperienciaProfissional__InserirExperiencia" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="24" max="32767" attributes="0"/>
-                              <Component id="jScrollPane8" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
+                              <Component id="jScrollPane8" min="-2" pref="179" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="259" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1043,13 +1043,11 @@
                         <Component class="javax.swing.JTable" name="Table__ExperienciaProfissional">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="1">
-                                <Column editable="true" title="Cargo" type="java.lang.Object"/>
+                              <Table columnCount="4" rowCount="0">
+                                <Column editable="true" title="Cargo" type="java.lang.Integer"/>
                                 <Column editable="true" title="Dura&#xe7;&#xe3;o" type="java.lang.Integer"/>
                                 <Column editable="false" title="Gerente" type="java.lang.Boolean"/>
-                                <Column editable="true" title="Remover" type="java.lang.Object">
-                                  <Data value="COLOCAR BOT&#xc3;O"/>
-                                </Column>
+                                <Column editable="true" title="Remover" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

@@ -2,6 +2,7 @@ package br.com.iomrh.beans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class Candidato{
     private List<ExperienciaProfissional> experienciaProfissionalList;
     
     public Candidato() {
+        experienciaProfissionalList = new ArrayList<>();
     }
 
     public Integer getCodigoCandidato() {
@@ -277,6 +279,38 @@ public class Candidato{
 
     public void setExperienciaProfissionalList(List<ExperienciaProfissional> experienciaProfissionalList) {
         this.experienciaProfissionalList = experienciaProfissionalList;
+    }
+    
+    public void addExperienciaProfissionalList(ExperienciaProfissional expPro){
+        this.experienciaProfissionalList.add(expPro);
+    }
+    
+    public boolean buscaExperienciaProfissionalList(Integer expPro){
+        for(ExperienciaProfissional ep : experienciaProfissionalList){
+            if(expPro == ep.getCodigoProfissao()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Integer buscaDuracaoExperienciaProfissionalList(Integer expPro){
+        Integer duracao = 0;
+        for(ExperienciaProfissional ep : experienciaProfissionalList){
+            if(expPro == ep.getCodigoProfissao()){
+                duracao = duracao + ep.getDuracao();
+            }
+        }
+        return duracao;
+    }
+    
+    public List<Integer> listaExperienciasProfissionais(){
+        List<Integer> expPro = new ArrayList<Integer>();
+        for(ExperienciaProfissional ep : experienciaProfissionalList){
+            expPro.add(ep.getCodigoProfissao());
+        }
+        
+       return expPro;     
     }
 
 }

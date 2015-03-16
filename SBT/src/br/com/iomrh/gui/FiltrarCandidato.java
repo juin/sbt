@@ -7,6 +7,7 @@
 package br.com.iomrh.gui;
 
 import br.com.iomrh.beans.Candidato;
+import br.com.iomrh.beans.ExperienciaProfissional;
 import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
@@ -585,14 +586,14 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         Table__ExperienciaProfissional.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, "COLOCAR BOTÃO"}
+
             },
             new String [] {
                 "Cargo", "Duração", "Gerente", "Remover"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 true, true, false, true
@@ -658,8 +659,8 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Button__ExperienciaProfissional__InserirExperiencia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(395, 395, 395))
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(259, 259, 259))
         );
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -886,37 +887,53 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
     private void FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarActionPerformed
         
-//        //Faz a busca pelos códigos das profissões selecionadas pelo usuário
-//        int tamanhoLista = jList2.getModel().getSize();
-//        List<String> listaPalavras = new ArrayList<String>();
-//        for (int i=0; i < tamanhoLista; i++){
-//            listaPalavras.add((String) jList2.getModel().getElementAt(i));
-//        }
-//        
-//        ProfissaoDAO profDao = new ProfissaoDAO();
-//        List<Profissao> profissoes = new ArrayList<Profissao>();    
-//        for(String profTemp : listaPalavras){
-//            profissoes.add(profDao.buscaProfissaoPorNome(profTemp));
-//        }
-        
+        //Pega tamanho da lista de profissões selecionadas pelo usuário
         int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
+        //Cria arrayList de profissões selecionadas pelo usuário
         List<Profissao> profissoes = new ArrayList<>();
+        //Adiciona as profissões selecionadas pelo usuário ao arrayList
         for (int i=0; i < tamanhoLista; i++){
             profissoes.add((Profissao) List__Profissao__Nome__Selecionados.getModel().getElementAt(i));
         }
-        //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatos = new ArrayList<Candidato>();
-        CandidatoDAO candidadoDao = new CandidatoDAO();
         
+        //Busca todos os candidatos que possuem uma das profissões acima
+        List<Candidato> candidatosProfissoes = new ArrayList<Candidato>();
+        CandidatoDAO candidadoProfissoesDao = new CandidatoDAO();
         for(Profissao prof : profissoes){
             Candidato canTemp = new Candidato();
             canTemp.setCodProfissao(prof.getCodigoProfissao());
-            candidatos.addAll(candidadoDao.buscaCandidato(canTemp));
+            candidatosProfissoes.addAll(candidadoProfissoesDao.buscaCandidato(canTemp));
         }
-          
+       
+        
+        
+        //Pega tamanho da lista de Experiências profissionais selecionadas pelo usuário
+        int tamanhoListaExperienciaProfissional = Table__ExperienciaProfissional.getRowCount();
+        //Cria arrayList de Experiências profissionais selecionadas pelo usuário
+        List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
+        //Adiciona as Experiências profissionais selecionadas pelo usuário
+        for (int i=0; i < tamanhoListaExperienciaProfissional; i++){
+            ExperienciaProfissional expProTemp = new ExperienciaProfissional();
+            expProTemp.setCodigoProfissao((Integer) Table__ExperienciaProfissional.getValueAt(i, 0));
+            expProTemp.setDuracao((Integer) Table__ExperienciaProfissional.getValueAt(i, 1));
+            //expProTemp.setGerencia((String) dtm.getValueAt(i,2));
+            experienciasProfissionais.add(expProTemp);
+        }
+        //Busca todos os candidatos que possuem uma das profissões acima
+        List<Candidato> candidatosExpProfissional = new ArrayList<Candidato>();     
+        CandidatoDAO candidadoDaoExpPro = new CandidatoDAO();
+        if(!experienciasProfissionais.isEmpty()){
+            for(ExperienciaProfissional expPro : experienciasProfissionais){
+                Candidato canTemp = new Candidato();
+                canTemp.addExperienciaProfissionalList(expPro);
+                candidatosExpProfissional.addAll(candidadoDaoExpPro.buscaCandidato(canTemp));
+            }
+        }
+        
+        
         //Cria objeto do tipo DefaultTableModel
         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) Table__ResultadoFiltragem.getModel();
-        for(Candidato c : candidatos){
+        for(Candidato c : candidatosProfissoes){
                 dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getPrenome(), 1, false});
         }
         

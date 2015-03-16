@@ -99,8 +99,14 @@ public class CandidatoDAO {
     public List<Candidato> buscaCandidato(Candidato candidato){
         
         List<Candidato> candidatos = new ArrayList<Candidato>();
-        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND "
-                + "codigoProfissao LIKE ?";
+//        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND "
+//                + "codigoProfissao LIKE ?";
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.prenome as prenomeCandidato,c.sobrenome as sobrenomeCandidato,c.codigoProfissao as codigoProfissaoCandidato,exp.gerencia "
+                + "FROM Candidato c JOIN ExperienciaProfissional exp ON c.codigoCandidato = exp.codigoCandidato "
+                + "WHERE c.codigoCandidato LIKE ? AND c.codigoProfissao LIKE ? "
+                + "AND exp.codigoProfissao LIKE ? "
+                + "GROUP BY (c.codigoCandidato) HAVING (SUM(exp.duracao) > ?)";
+        
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -110,20 +116,36 @@ public class CandidatoDAO {
                 stmt.setInt(1, candidato.getCodigoCandidato());
             else
                 stmt.setString(1, "%");
-            
+
             if(candidato.getCodProfissao() != null)
                 stmt.setInt(2, candidato.getCodProfissao());
             else
                 stmt.setString(2, "%");
             
+            if(!candidato.getExperienciaProfissionalList().isEmpty())
+                    stmt.setInt(3, candidato.getExperienciaProfissionalList().get(0).getCodigoProfissao());
+            else
+                stmt.setString(3, "%");
+            
+//            if(candidato.getGerencia()!= null)
+//                stmt.setString(4, candidato.getGerencia());
+//            else
+//                stmt.setString(4, "%");
+            
+            if(!candidato.getExperienciaProfissionalList().isEmpty())
+                    stmt.setInt(4, candidato.getExperienciaProfissionalList().get(0).getDuracao());
+            else
+                stmt.setString(4, "%");
+            
             // executa
+            System.out.println(stmt);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Candidato can = new Candidato();
-                can.setCodigoCandidato(resultado.getInt("codigoCandidato"));
-                can.setPrenome(resultado.getString("prenome"));
-                can.setSobrenome(resultado.getString("sobrenome"));
-                can.setCodProfissao(resultado.getInt("codigoProfissao"));
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setCodProfissao(resultado.getInt("codigoProfissaoCandidato"));
                 candidatos.add(can);
             }
             stmt.close();

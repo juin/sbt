@@ -22,6 +22,8 @@ public class Cidade{
     }
 
     public Integer getCodigoCidade() {
+        if(this.codigoCidade == null)
+            return 0;
         return codigoCidade;
     }
 

@@ -33,6 +33,8 @@ public class Bairro {
     }
 
     public Integer getCodigoBairro() {
+        if(this.codigoBairro == null)
+            return 0;
         return codigoBairro;
     }
 

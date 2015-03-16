@@ -27,6 +27,8 @@ public class ExperienciaProfissional{
     }
 
     public Integer getCodigoExperienciaProfissional() {
+        if(this.codigoExperienciaProfissional == null)
+            return 0;
         return codigoExperienciaProfissional;
     }
 

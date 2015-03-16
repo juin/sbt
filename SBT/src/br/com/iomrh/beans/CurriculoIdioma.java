@@ -21,6 +21,8 @@ public class CurriculoIdioma{
     }
 
     public Integer getCodigoCurriculoIdioma() {
+        if(this.codigoCurriculoIdioma == null)
+            return 0;
         return codigoCurriculoIdioma;
     }
 

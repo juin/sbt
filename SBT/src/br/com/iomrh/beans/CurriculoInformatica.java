@@ -29,6 +29,8 @@ public class CurriculoInformatica{
     }
 
     public Integer getCodigoCurriculoInformatica() {
+        if(this.codigoCurriculoInformatica == null)
+            return 0;
         return codigoCurriculoInformatica;
     }
 

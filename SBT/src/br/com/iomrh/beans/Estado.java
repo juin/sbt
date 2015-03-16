@@ -18,6 +18,8 @@ public class Estado{
     }
 
     public Integer getCodigoEstado() {
+        if(this.codigoEstado == null)
+            return 0;
         return codigoEstado;
     }
 

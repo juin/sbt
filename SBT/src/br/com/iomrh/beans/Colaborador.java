@@ -37,6 +37,8 @@ public class Colaborador{
     }
 
     public Integer getCodigoColaborador() {
+        if(this.codigoColaborador == null)
+            return 0;
         return codigoColaborador;
     }
 

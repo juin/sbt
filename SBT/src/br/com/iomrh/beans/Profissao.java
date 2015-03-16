@@ -23,6 +23,8 @@ public class Profissao{
     }
 
     public Integer getCodigoProfissao() {
+        if(this.codigoProfissao == null)
+            return 0;
         return codigoProfissao;
     }
 

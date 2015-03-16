@@ -23,6 +23,8 @@ public class Formacao{
     }
 
     public Integer getCodigoFormacao() {
+        if(this.codigoFormacao == null)
+            return 0;
         return codigoFormacao;
     }
 

@@ -24,6 +24,8 @@ public class Logradouro{
     }
 
     public Integer getCodigoLogradouro() {
+        if(this.codigoLogradouro == null)
+            return 0;
         return codigoLogradouro;
     }
 

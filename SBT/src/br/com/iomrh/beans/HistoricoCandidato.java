@@ -23,6 +23,8 @@ public class HistoricoCandidato{
     }
 
     public Integer getCodigoHistoricoCandidato() {
+        if(this.codigoHistoricoCandidato == null)
+            return 0;
         return codigoHistoricoCandidato;
     }
 

@@ -32,6 +32,8 @@ public class IndisponibilidadeCandidato {
     }
 
     public Integer getCodigoIndisponibilidadeCandidato() {
+        if(this.codigoIndisponibilidadeCandidato == null)
+            return 0;
         return codigoIndisponibilidadeCandidato;
     }
 

@@ -32,6 +32,8 @@ public class Endereco{
     }
 
     public Integer getCodigoEndereco() {
+        if(this.codigoEndereco == null)
+            return 0;
         return codigoEndereco;
     }
 

@@ -23,6 +23,8 @@ public class Telefone{
     }
 
     public Integer getCodigoTelefone() {
+        if(this.codigoTelefone == null)
+            return 0;
         return codigoTelefone;
     }
 

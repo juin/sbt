@@ -3,6 +3,7 @@ package br.com.iomrh.beans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Cremildo Lima
  */
 
-public class Candidato{
+public class Candidato implements Comparable<Candidato>{
 
     private Integer codigoCandidato;
     private String prenome;
@@ -273,6 +274,10 @@ public class Candidato{
         this.indisponibilidadeCandidatoList = indisponibilidadeCandidatoList;
     }
 
+    public void addIndisponibilidadeCandidatoList(IndisponibilidadeCandidato ind){
+        this.indisponibilidadeCandidatoList.add(ind);
+    }
+    
     public List<ExperienciaProfissional> getExperienciaProfissionalList() {
         return experienciaProfissionalList;
     }
@@ -313,4 +318,15 @@ public class Candidato{
        return expPro;     
     }
 
+    @Override
+    public int compareTo(Candidato c) {
+        Candidato can = (Candidato) c;
+        		
+	if(getCodigoCandidato() == can.getCodigoCandidato()){
+            return 1;
+	}else{
+           return 0;
+        }
+    }
+    
 }

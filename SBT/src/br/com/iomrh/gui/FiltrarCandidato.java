@@ -8,6 +8,7 @@ package br.com.iomrh.gui;
 
 import br.com.iomrh.beans.Candidato;
 import br.com.iomrh.beans.ExperienciaProfissional;
+import br.com.iomrh.beans.IndisponibilidadeCandidato;
 import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
@@ -105,6 +106,11 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         Table__IndisponibilidadeCandidato = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa = new javax.swing.JComboBox();
@@ -536,6 +542,14 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(Table__IndisponibilidadeCandidato);
 
+        jButton1.setText("Horário Comercial");
+
+        jButton2.setText("Semana - Manhã");
+
+        jButton3.setText("Semana - Tarde");
+
+        jButton5.setText("Semana - Noite");
+
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
@@ -543,8 +557,16 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel56)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,8 +574,15 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addComponent(jLabel56)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5)))
         );
+
+        jButton6.setText("Horário Comercial - Seg a Sex");
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -561,7 +590,11 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
@@ -569,7 +602,9 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         jTPResultado.addTab("Indisponiblidade do candidato", jPanel23);
@@ -586,7 +621,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         Table__ExperienciaProfissional.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                { new Integer(382),  new Integer(10), null, null}
             },
             new String [] {
                 "Cargo", "Duração", "Gerente", "Remover"
@@ -687,14 +722,14 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome Completo", "Profissão", "Marcar"
+                "Código", "CPF", "Nome Completo", "E-mail", "Telefone", "Selecionar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, true, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -705,7 +740,22 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Table__ResultadoFiltragem.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(Table__ResultadoFiltragem);
+        if (Table__ResultadoFiltragem.getColumnModel().getColumnCount() > 0) {
+            Table__ResultadoFiltragem.getColumnModel().getColumn(0).setResizable(false);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(0).setPreferredWidth(3);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(1).setResizable(false);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(1).setPreferredWidth(12);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(2).setResizable(false);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(2).setPreferredWidth(55);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(3).setResizable(false);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(3).setPreferredWidth(15);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(4).setResizable(false);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(4).setPreferredWidth(10);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(5).setResizable(false);
+            Table__ResultadoFiltragem.getColumnModel().getColumn(5).setPreferredWidth(5);
+        }
 
         jTPResultado.addTab("Resultado Filtragem", jScrollPane3);
 
@@ -887,6 +937,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
     private void FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarActionPerformed
         
+        //Dados Pessoais
         //Pega tamanho da lista de profissões selecionadas pelo usuário
         int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
         //Cria arrayList de profissões selecionadas pelo usuário
@@ -895,18 +946,17 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         for (int i=0; i < tamanhoLista; i++){
             profissoes.add((Profissao) List__Profissao__Nome__Selecionados.getModel().getElementAt(i));
         }
-        
         //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatosProfissoes = new ArrayList<Candidato>();
+        List<Candidato> candidatosPorDadosPessoais = new ArrayList<Candidato>();
         CandidatoDAO candidadoProfissoesDao = new CandidatoDAO();
         for(Profissao prof : profissoes){
             Candidato canTemp = new Candidato();
             canTemp.setCodProfissao(prof.getCodigoProfissao());
-            candidatosProfissoes.addAll(candidadoProfissoesDao.buscaCandidato(canTemp));
+            candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
         }
        
         
-        
+        //ExperienciasProfissionais
         //Pega tamanho da lista de Experiências profissionais selecionadas pelo usuário
         int tamanhoListaExperienciaProfissional = Table__ExperienciaProfissional.getRowCount();
         //Cria arrayList de Experiências profissionais selecionadas pelo usuário
@@ -920,21 +970,117 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             experienciasProfissionais.add(expProTemp);
         }
         //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatosExpProfissional = new ArrayList<Candidato>();     
+        List<Candidato> candidatosPorExperienciaProfissional = new ArrayList<>();     
         CandidatoDAO candidadoDaoExpPro = new CandidatoDAO();
         if(!experienciasProfissionais.isEmpty()){
             for(ExperienciaProfissional expPro : experienciasProfissionais){
                 Candidato canTemp = new Candidato();
                 canTemp.addExperienciaProfissionalList(expPro);
-                candidatosExpProfissional.addAll(candidadoDaoExpPro.buscaCandidato(canTemp));
+                candidatosPorExperienciaProfissional.addAll(candidadoDaoExpPro.buscaCandidatoPorExperienciasProfissionais(canTemp));
             }
         }
         
         
-        //Cria objeto do tipo DefaultTableModel
+        //Indisponibilidade Candidato        
+        //Cria arrayList de Experiências profissionais selecionadas pelo usuário
+        List<IndisponibilidadeCandidato> disponibilidades = new ArrayList<>();
+        //Adiciona os dias que o Candidato deve ter disponiveis, selecionadas pelo usuário
+        for (int l=0; l < 3; l++){
+            int col = 1;
+            IndisponibilidadeCandidato dispTemp = new IndisponibilidadeCandidato();
+            Object objLinha = new Object();
+            Object objColuna = new Object();
+            objLinha = Table__IndisponibilidadeCandidato.getValueAt(l, col);
+            System.out.println("objLinha: "+objLinha);
+            if(objLinha instanceof Boolean){
+                boolean tableTurno = (boolean) objLinha;
+                for(int c=1;c<8;c++){
+                    if(tableTurno){
+                        switch (l){
+                            case 0:
+                                dispTemp.setTurno("Matutino");
+                                break;
+                            case 1:
+                                dispTemp.setTurno("Vespertino");
+                                break;
+                            case 2:
+                                dispTemp.setTurno("Noturno");
+                                break;
+                        }
+                    }
+                    System.out.println("linha: "+l+" Coluna: "+c+"Valor: "+Table__IndisponibilidadeCandidato.getValueAt(l, c));
+                    objColuna = Table__IndisponibilidadeCandidato.getValueAt(l, c);
+                    System.out.println("objColuna: "+objColuna);
+                    if (objColuna instanceof Boolean) {  
+                        boolean tableDia = (boolean) objColuna;
+                        System.out.println("TableDia: "+tableDia);
+                        if(tableDia){
+                            switch (c){
+                                case 1:
+                                    dispTemp.setDia("Domingo");
+                                    break;
+                                case 2:
+                                    dispTemp.setDia("Segunda-feira");
+                                    break;
+                                case 3:
+                                    dispTemp.setDia("Terça-feira");
+                                    break;
+                                case 4:
+                                    dispTemp.setDia("Quarta-feira");
+                                    break;
+                                case 5:
+                                    dispTemp.setDia("Quinta-feira");
+                                    break;
+                                case 6:
+                                    dispTemp.setDia("Sexta-feira");
+                                    break;
+                                case 7:
+                                    dispTemp.setDia("Sábado");
+                                    break;                        
+                            }
+                        }
+                    }
+                disponibilidades.add(dispTemp);    
+                }
+            }
+            objLinha = null;
+            col++;
+        }
+        
+        for(IndisponibilidadeCandidato ind: disponibilidades){
+            System.out.println("Dia: "+ind.getDia()+" Turno: "+ind.getTurno());
+        }
+//        
+//        //Busca todos os candidatos que possuem uma das profissões acima
+//        List<Candidato> candidatosPorIndisponibilidade = new ArrayList<>();     
+//        CandidatoDAO candidadoDaoIndisponibilidade = new CandidatoDAO();
+//        if(!disponibilidades.isEmpty()){
+//            for(IndisponibilidadeCandidato ind : disponibilidades){
+//                Candidato canTemp = new Candidato();
+//                canTemp.addIndisponibilidadeCandidatoList(ind);
+//                candidatosPorIndisponibilidade.addAll(candidadoDaoIndisponibilidade.buscaCandidatoPorIndisponibilidade(canTemp));
+//            }
+//        }
+//        
+//        candidatosPorIndisponibilidade.stream().forEach((can) -> {
+//            System.out.println(can.getPrenome());
+//        });
+        
+        //Tratar os arrays com os resultados das buscas
+        List<Candidato> candidatosFiltrados = new ArrayList<>();
+        if(!candidatosPorDadosPessoais.isEmpty()){
+            candidatosFiltrados.addAll(candidatosPorDadosPessoais);
+        }
+        if(!candidatosPorExperienciaProfissional.isEmpty()){
+            candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
+        }
+        
+        
+        
+        //Cria objeto do tipo DefaultTableModel e exibe resultado do filtro
         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) Table__ResultadoFiltragem.getModel();
-        for(Candidato c : candidatosProfissoes){
-                dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getPrenome(), 1, false});
+        for(Candidato c : candidatosFiltrados){
+                dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getCpf(), c.getPrenome()+" "+c.getSobrenome(), c.getEmail(), "7788398284",false});
         }
         
         jTPResultado.setSelectedIndex(1);
@@ -1013,7 +1159,12 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton delCaracteristica;
     private javax.swing.JButton delProfissao;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

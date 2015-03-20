@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -96,12 +97,11 @@ public class CandidatoDAO {
         return candidato;
     }
     
-    public List<Candidato> buscaCandidato(Candidato candidato){
+    public List<Candidato> buscaCandidatoPorExperienciasProfissionais(Candidato candidato){
         
         List<Candidato> candidatos = new ArrayList<Candidato>();
-//        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND "
-//                + "codigoProfissao LIKE ?";
-        String sql = "SELECT c.codigoCandidato as codCandidato,c.prenome as prenomeCandidato,c.sobrenome as sobrenomeCandidato,c.codigoProfissao as codigoProfissaoCandidato,exp.gerencia "
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato,exp.gerencia "
                 + "FROM Candidato c JOIN ExperienciaProfissional exp ON c.codigoCandidato = exp.codigoCandidato "
                 + "WHERE c.codigoCandidato LIKE ? AND c.codigoProfissao LIKE ? "
                 + "AND exp.codigoProfissao LIKE ? "
@@ -143,9 +143,95 @@ public class CandidatoDAO {
             while (resultado.next()) {
                 Candidato can = new Candidato();
                 can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
                 can.setPrenome(resultado.getString("prenomeCandidato"));
                 can.setSobrenome(resultado.getString("sobrenomeCandidato"));
-                can.setCodProfissao(resultado.getInt("codigoProfissaoCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
+    
+    public List<Candidato> buscaCandidatoPorDadosPessoais(Candidato candidato){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND "
+                  + "codigoProfissao LIKE ?";    
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            if(candidato.getCodigoCandidato() != null)
+                stmt.setInt(1, candidato.getCodigoCandidato());
+            else
+                stmt.setString(1, "%");
+
+            if(candidato.getCodProfissao() != null)
+                stmt.setInt(2, candidato.getCodProfissao());
+            else
+                stmt.setString(2, "%");
+                       
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codigoCandidato"));
+                can.setCpf(resultado.getString("cpf"));
+                can.setPrenome(resultado.getString("prenome"));
+                can.setSobrenome(resultado.getString("sobrenome"));
+                can.setEmail(resultado.getString("email"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
+
+    public List<Candidato> buscaCandidatoPorIndisponibilidade(Candidato candidato) {
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato"
+                + "FROM Candidato c JOIN IndisponibilidadeCandidato ind ON c.codigoCandidato = ind.codigoCandidato "
+                + "WHERE ind.dia LIKE ? AND ind.turno LIKE ?"
+                + "GROUP BY (c.codigoCandidato)";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            if(!candidato.getIndisponibilidadeCandidatoList().isEmpty())
+                    stmt.setString(1, candidato.getIndisponibilidadeCandidatoList().get(0).getDia());
+            else
+                stmt.setString(1, "%");
+            
+            if(!candidato.getIndisponibilidadeCandidatoList().isEmpty())
+                    stmt.setString(2, candidato.getIndisponibilidadeCandidatoList().get(0).getTurno());
+            else
+                stmt.setString(2, "%");
+            
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
                 candidatos.add(can);
             }
             stmt.close();

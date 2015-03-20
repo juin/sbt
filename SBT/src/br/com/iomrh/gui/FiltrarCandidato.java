@@ -983,19 +983,16 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         
         //Indisponibilidade Candidato        
         //Cria arrayList de Experiências profissionais selecionadas pelo usuário
-        List<IndisponibilidadeCandidato> disponibilidades = new ArrayList<>();
+        List<IndisponibilidadeCandidato> indisponibilidades = new ArrayList<>();
+        Object objColuna = new Object();
         //Adiciona os dias que o Candidato deve ter disponiveis, selecionadas pelo usuário
-        for (int l=0; l < 3; l++){
-            int col = 1;
-            IndisponibilidadeCandidato dispTemp = new IndisponibilidadeCandidato();
-            Object objLinha = new Object();
-            Object objColuna = new Object();
-            objLinha = Table__IndisponibilidadeCandidato.getValueAt(l, col);
-            System.out.println("objLinha: "+objLinha);
-            if(objLinha instanceof Boolean){
-                boolean tableTurno = (boolean) objLinha;
-                for(int c=1;c<8;c++){
-                    if(tableTurno){
+        for (int l=0; l < 3; l++){            
+            for(int c=1;c<=7;c++){
+                objColuna = Table__IndisponibilidadeCandidato.getValueAt(l, c);
+                if(objColuna instanceof Boolean){
+                    boolean tableTurnoDia = (boolean) objColuna;
+                    if(tableTurnoDia){
+                        IndisponibilidadeCandidato dispTemp = new IndisponibilidadeCandidato();
                         switch (l){
                             case 0:
                                 dispTemp.setTurno("Matutino");
@@ -1007,64 +1004,52 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                                 dispTemp.setTurno("Noturno");
                                 break;
                         }
-                    }
-                    System.out.println("linha: "+l+" Coluna: "+c+"Valor: "+Table__IndisponibilidadeCandidato.getValueAt(l, c));
-                    objColuna = Table__IndisponibilidadeCandidato.getValueAt(l, c);
-                    System.out.println("objColuna: "+objColuna);
-                    if (objColuna instanceof Boolean) {  
-                        boolean tableDia = (boolean) objColuna;
-                        System.out.println("TableDia: "+tableDia);
-                        if(tableDia){
-                            switch (c){
-                                case 1:
-                                    dispTemp.setDia("Domingo");
-                                    break;
-                                case 2:
-                                    dispTemp.setDia("Segunda-feira");
-                                    break;
-                                case 3:
-                                    dispTemp.setDia("Terça-feira");
-                                    break;
-                                case 4:
-                                    dispTemp.setDia("Quarta-feira");
-                                    break;
-                                case 5:
-                                    dispTemp.setDia("Quinta-feira");
-                                    break;
-                                case 6:
-                                    dispTemp.setDia("Sexta-feira");
-                                    break;
-                                case 7:
-                                    dispTemp.setDia("Sábado");
-                                    break;                        
-                            }
+                        switch (c){
+                            case 1:
+                                dispTemp.setDia("Domingo");
+                                break;
+                            case 2:
+                                dispTemp.setDia("Segunda-feira");
+                                break;
+                            case 3:
+                                dispTemp.setDia("Terça-feira");
+                                break;
+                            case 4:
+                                dispTemp.setDia("Quarta-feira");
+                                break;
+                            case 5:
+                                dispTemp.setDia("Quinta-feira");
+                                break;
+                            case 6:
+                                dispTemp.setDia("Sexta-feira");
+                                break;
+                            case 7:
+                                dispTemp.setDia("Sábado");
+                                break;                        
                         }
+                        indisponibilidades.add(dispTemp);
                     }
-                disponibilidades.add(dispTemp);    
                 }
             }
-            objLinha = null;
-            col++;
         }
         
-        for(IndisponibilidadeCandidato ind: disponibilidades){
+        for(IndisponibilidadeCandidato ind: indisponibilidades){
             System.out.println("Dia: "+ind.getDia()+" Turno: "+ind.getTurno());
+        }      
+        //Busca todos os candidatos que possuem uma das profissões acima
+        List<Candidato> candidatosPorIndisponibilidade = new ArrayList<>();     
+        CandidatoDAO candidadoDaoIndisponibilidade = new CandidatoDAO();
+        if(!indisponibilidades.isEmpty()){
+            for(IndisponibilidadeCandidato ind : indisponibilidades){
+                Candidato canTemp = new Candidato();
+                canTemp.addIndisponibilidadeCandidatoList(ind);
+                candidatosPorIndisponibilidade.addAll(candidadoDaoIndisponibilidade.buscaCandidatoPorIndisponibilidade(canTemp));
+            }
         }
-//        
-//        //Busca todos os candidatos que possuem uma das profissões acima
-//        List<Candidato> candidatosPorIndisponibilidade = new ArrayList<>();     
-//        CandidatoDAO candidadoDaoIndisponibilidade = new CandidatoDAO();
-//        if(!disponibilidades.isEmpty()){
-//            for(IndisponibilidadeCandidato ind : disponibilidades){
-//                Candidato canTemp = new Candidato();
-//                canTemp.addIndisponibilidadeCandidatoList(ind);
-//                candidatosPorIndisponibilidade.addAll(candidadoDaoIndisponibilidade.buscaCandidatoPorIndisponibilidade(canTemp));
-//            }
-//        }
-//        
-//        candidatosPorIndisponibilidade.stream().forEach((can) -> {
-//            System.out.println(can.getPrenome());
-//        });
+        
+        candidatosPorIndisponibilidade.stream().forEach((can) -> {
+            System.out.println(can.getPrenome());
+        });
         
         //Tratar os arrays com os resultados das buscas
         List<Candidato> candidatosFiltrados = new ArrayList<>();
@@ -1083,7 +1068,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getCpf(), c.getPrenome()+" "+c.getSobrenome(), c.getEmail(), "7788398284",false});
         }
         
-        jTPResultado.setSelectedIndex(1);
+       // jTPResultado.setSelectedIndex(1);
       
     }//GEN-LAST:event_FiltrarActionPerformed
 

@@ -1086,6 +1086,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                        
         }
 
+        
         //Cria objeto do tipo DefaultTableModel e exibe resultado do filtro
         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) Table__ResultadoFiltragem.getModel();
         dtm.getDataVector().removeAllElements();

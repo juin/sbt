@@ -195,9 +195,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Label__Candidato__profissao = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         Button__Candidato__cadastrar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel4__observacao = new javax.swing.JLabel();
 
         jLabel__Mensagem_Candidato__nome3.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem_Candidato__nome3.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. ");
@@ -377,22 +375,27 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         jLabel__Mensagem__Field__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__dataNascimento.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__dataNascimento.setText("Informe a data de nascimento");
+        jLabel__Mensagem__Field__Candidato__dataNascimento.setName("jLabel__Mensagem__Field__Candidato__dataNascimento"); // NOI18N
 
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setText("Informe o tipo de veículo");
+        jLabel__Mensagem__ComboBox__Candidato__veiculo.setName("jLabel__Mensagem__ComboBox__Candidato__veiculo"); // NOI18N
 
         jLabel__Mensagem__Field__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__quantFilhos.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__quantFilhos.setText("Informe a quantidade de filhos");
+        jLabel__Mensagem__Field__Candidato__quantFilhos.setName("jLabel__Mensagem__Field__Candidato__quantFilhos"); // NOI18N
 
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setText("Informe o CNH");
+        jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setName("jLabel__Mensagem__ComboBox__Candidato__cnhPossui"); // NOI18N
 
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setText("Informe o estado civil do candidato");
+        jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setName("jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil"); // NOI18N
 
         jLabel5.setForeground(new java.awt.Color(255, 0, 51));
         jLabel5.setText("*");
@@ -751,22 +754,27 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         jLabel__Mensagem__Field__Telefone__telefone1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Telefone__telefone1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Telefone__telefone1.setText("Informe o telefone");
+        jLabel__Mensagem__Field__Telefone__telefone1.setName("jLabel__Mensagem__Field__Telefone__telefone1"); // NOI18N
 
         jLabel__Mensagem__Field__Telefone__telefone2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Telefone__telefone2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Telefone__telefone2.setText("Informe o telefone");
+        jLabel__Mensagem__Field__Telefone__telefone2.setName("jLabel__Mensagem__Field__Telefone__telefone2"); // NOI18N
 
         jLabel__Mensagem__Field__Telefone__telefone3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Telefone__telefone3.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Telefone__telefone3.setText("Informe o telefone");
+        jLabel__Mensagem__Field__Telefone__telefone3.setName("jLabel__Mensagem__Field__Telefone__telefone3"); // NOI18N
 
         jLabel__Mensagem__Field__Candidato__nome4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__nome4.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__nome4.setText("Informe o email");
+        jLabel__Mensagem__Field__Candidato__nome4.setName("jLabel__Mensagem__Field__Candidato__nome4"); // NOI18N
 
         jLabel__Mensagem__Field__RedeSocial__redeSocial.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__RedeSocial__redeSocial.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__RedeSocial__redeSocial.setText("Informe o link de rede social");
+        jLabel__Mensagem__Field__RedeSocial__redeSocial.setName("jLabel__Mensagem__Field__RedeSocial__redeSocial"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -948,22 +956,27 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         jLabel__Mensagem__Field__ComboBox__Estado.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__ComboBox__Estado.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__ComboBox__Estado.setText("Informe o estado");
+        jLabel__Mensagem__Field__ComboBox__Estado.setName("jLabel__Mensagem__Field__ComboBox__Estado"); // NOI18N
 
         jLabel__Mensagem__Field__ComboBox__Cidade.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__ComboBox__Cidade.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__ComboBox__Cidade.setText("Informe a cidade");
+        jLabel__Mensagem__Field__ComboBox__Cidade.setName("jLabel__Mensagem__Field__ComboBox__Cidade"); // NOI18N
 
         jLabel__Mensagem__Field__ComboBox__Bairro.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__ComboBox__Bairro.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__ComboBox__Bairro.setText("Informe o bairro");
+        jLabel__Mensagem__Field__ComboBox__Bairro.setName("jLabel__Mensagem__Field__ComboBox__Bairro"); // NOI18N
 
         jLabel__Mensagem__Field__ComboBox__Logradouro.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__ComboBox__Logradouro.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__ComboBox__Logradouro.setText("Informe o logradouro");
+        jLabel__Mensagem__Field__ComboBox__Logradouro.setName("jLabel__Mensagem__Field__ComboBox__Logradouro"); // NOI18N
 
         jLabel__Mensagem__Field__Endereco__numero.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Endereco__numero.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Endereco__numero.setText("Informe o número do endereço");
+        jLabel__Mensagem__Field__Endereco__numero.setName("jLabel__Mensagem__Field__Endereco__numero"); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1104,21 +1117,18 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
         jButton1.setToolTipText("");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
         jButton3.setToolTipText("");
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
         jButton4.setToolTipText("");
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
@@ -1399,17 +1409,10 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 51, 0));
-        jLabel2.setText("fshhsshhsjssjsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 51, 0));
-        jLabel3.setText("fshhsshhsjssjsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("Alguns campos obrigatórios não foram preenchidos");
+        jLabel4__observacao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4__observacao.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4__observacao.setText("Alguns campos obrigatórios não foram preenchidos");
+        jLabel4__observacao.setName("jLabel4__observacao"); // NOI18N
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
@@ -1420,41 +1423,21 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4__observacao, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(Button__Candidato__cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                    .addGap(126, 126, 126)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(118, Short.MAX_VALUE)))
-            .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
-                    .addContainerGap(128, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(116, 116, 116)))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4__observacao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Button__Candidato__cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                    .addGap(311, 311, 311)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(312, 312, 312)))
-            .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                    .addGap(321, 321, 321)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(302, 302, 302)))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("CadastrarCandidato");
@@ -1776,9 +1759,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel4__observacao;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

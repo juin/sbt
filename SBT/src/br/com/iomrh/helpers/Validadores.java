@@ -29,28 +29,40 @@ import org.omg.CosNaming.NamingContextPackage.NotEmpty;
  */
 public class Validadores {
     
-    public static ArrayList<String> NotEmpty(Component[] fieldsObrigatorios){
-       ArrayList result;
-       result = new ArrayList<>();
-        
+    /**
+     * Verifica se os componentes recebidos no primeiro parametro estã 
+     * preenchidos. Se não, setá uma borda vermelha e exibe a mensagem 
+     * presente na mesma posção do array no segundo parametro
+     * @param fieldsObrigatorios
+     * @param fieldsObrigatoriosJLabel
+     * @return TRUE se nenhum campo obrigatorio é vazio
+     **/
+    public static boolean NotEmpty(Component[] fieldsObrigatorios, Component[] fieldsObrigatoriosJLabel){
+       boolean result = true;
+       
         for (int i = 0; i < fieldsObrigatorios.length; i++) {  
-          
            if (fieldsObrigatorios[i] instanceof JTextField) {
                 JTextField jTextField  =  (JTextField) fieldsObrigatorios[i];
                 
                 if(jTextField.getText().isEmpty()){
                   jTextField.setBorder(new LineBorder(Color.RED)); 
-                  result.add("O campo " + jTextField.getName() + " está vazio");
+                  fieldsObrigatoriosJLabel[i].setVisible(true);
+                  result = false;
                 }
+                jTextField.setBorder(new LineBorder(null)); 
+                fieldsObrigatoriosJLabel[i].setVisible(false); 
            }     
-            
-            if (fieldsObrigatorios[i] instanceof JComboBox) {
-                JComboBox jComboBox  =  (JComboBox) fieldsObrigatorios[i];
-
+           
+           if (fieldsObrigatorios[i] instanceof JComboBox) {
+                JComboBox jComboBox=  (JComboBox) fieldsObrigatorios[i];
+                
                 if(jComboBox.getSelectedItem().toString().isEmpty()){
-                  jComboBox.setBorder(new LineBorder(Color.RED)); 
-                  result.add("O campo " + jComboBox.getName() + " está vazio");
+                    jComboBox.setBorder(new LineBorder(Color.RED)); 
+                    fieldsObrigatoriosJLabel[i].setVisible(true);
+                    result = false;
                 }
+                jComboBox.setBorder(null); 
+                fieldsObrigatoriosJLabel[i].setVisible(false); 
            }     
         }
         return result;

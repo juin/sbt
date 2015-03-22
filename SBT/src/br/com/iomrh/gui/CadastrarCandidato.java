@@ -9,13 +9,9 @@ import br.com.iomrh.beans.Candidato;
 import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
-import br.com.iomrh.helpers.Validadores;
 import br.com.iomrh.listeners.CadastrarCandidatoListener;
-import java.awt.Color;
-import java.awt.Component;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -215,12 +211,9 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Label__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Label__Candidato__nome.setText("Nome ");
-        jPanel1.add(Label__Candidato__nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 32, -1, -1));
-        Label__Candidato__nome.getAccessibleContext().setAccessibleName("Label__Candidato__prenome");
 
         Field__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__nome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -230,25 +223,17 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 Field__Candidato__nomeActionPerformed(evt);
             }
         });
-        jPanel1.add(Field__Candidato__nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 26, 373, 30));
-        Field__Candidato__nome.getAccessibleContext().setAccessibleName("TField__Candidato__prenome");
 
         Field__Candidato__sobrenome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__sobrenome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Field__Candidato__sobrenome.setName("sobrenome"); // NOI18N
-        jPanel1.add(Field__Candidato__sobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 26, 473, 30));
-        Field__Candidato__sobrenome.getAccessibleContext().setAccessibleName("TField2__Candidato__sobrenome");
 
         Label__Candidato__sexo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__sexo.setText("Sexo");
-        jPanel1.add(Label__Candidato__sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, -1, -1));
-        Label__Candidato__sexo.getAccessibleContext().setAccessibleName("Label__Candidato__sexo");
 
         Button__Candidato__masculino.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__masculino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__masculino.setText("Masculino");
-        jPanel1.add(Button__Candidato__masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 80, 89, -1));
-        Button__Candidato__masculino.getAccessibleContext().setAccessibleName("Button__Candidato__sexoMasculino");
 
         Button__Candidato__feminino.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__feminino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -258,14 +243,9 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 Button__Candidato__femininoActionPerformed(evt);
             }
         });
-        jPanel1.add(Button__Candidato__feminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 80, -1, -1));
-        Button__Candidato__feminino.getAccessibleContext().setAccessibleName("Button__Candidato__sexoFeminino");
-        Button__Candidato__feminino.getAccessibleContext().setAccessibleDescription("");
 
         Label__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__CPF.setText("CPF");
-        jPanel1.add(Label__Candidato__CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 128, -1, -1));
-        Label__Candidato__CPF.getAccessibleContext().setAccessibleName("Label__Candidato__CPF");
 
         Field__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__CPF.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -275,35 +255,23 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 Field__Candidato__CPFActionPerformed(evt);
             }
         });
-        jPanel1.add(Field__Candidato__CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 113, 366, 30));
-        Field__Candidato__CPF.getAccessibleContext().setAccessibleName("Field__Candidato__CPF");
 
         Label__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__RG.setText("RG");
-        jPanel1.add(Label__Candidato__RG, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 120, -1, -1));
-        Label__Candidato__RG.getAccessibleContext().setAccessibleName("Label__Candidato__RG");
 
         Field__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__RG.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Field__Candidato__RG.setName("RG"); // NOI18N
-        jPanel1.add(Field__Candidato__RG, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 113, 407, 30));
-        Field__Candidato__RG.getAccessibleContext().setAccessibleName("Field__Candidato__RG");
 
         Label__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__dataNascimento.setText("Data de Nasc.");
-        jPanel1.add(Label__Candidato__dataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 181, -1, -1));
-        Label__Candidato__dataNascimento.getAccessibleContext().setAccessibleName("Label__Candidato__dataNascimento");
 
         Field__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__dataNascimento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Field__Candidato__dataNascimento.setName("Data de nascimento"); // NOI18N
-        jPanel1.add(Field__Candidato__dataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 174, 397, 30));
-        Field__Candidato__dataNascimento.getAccessibleContext().setAccessibleName("Field__Candidato__dataNascimento");
 
         Label__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__estadoCivil.setText("Estado Civil");
-        jPanel1.add(Label__Candidato__estadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 243, -1, -1));
-        Label__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("Label__Candidato__estadoCivil");
 
         jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
@@ -314,13 +282,9 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 jLabel__Mensagem__ComboBox__Candidato__estadoCivilActionPerformed(evt);
             }
         });
-        jPanel1.add(jLabel__Mensagem__ComboBox__Candidato__estadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 235, 819, 30));
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("ComboBox__Candidato__estadoCivil");
 
         Label__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__quantFilhos.setText("Quant. de Filhos");
-        jPanel1.add(Label__Candidato__quantFilhos, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 181, -1, -1));
-        Label__Candidato__quantFilhos.getAccessibleContext().setAccessibleName("Label__Candidato__quantFilhos");
 
         Field__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__quantFilhos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -330,55 +294,34 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 Field__Candidato__quantFilhosActionPerformed(evt);
             }
         });
-        jPanel1.add(Field__Candidato__quantFilhos, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 174, 296, 30));
-        Field__Candidato__quantFilhos.getAccessibleContext().setAccessibleName("Field__Candidato__quantFilhos");
 
         Label__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__portadorNecessidadesEspeciais.setText("PNE");
-        jPanel1.add(Label__Candidato__portadorNecessidadesEspeciais, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 296, -1, -1));
-        Label__Candidato__portadorNecessidadesEspeciais.getAccessibleContext().setAccessibleName("Label__Candidato__portadorNecessidadesEspeciais");
 
         Field__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__portadorNecessidadesEspeciais.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(Field__Candidato__portadorNecessidadesEspeciais, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 296, 645, 30));
-        Field__Candidato__portadorNecessidadesEspeciais.getAccessibleContext().setAccessibleName("Field__Candidato__portadorNecessidadesEspeciais");
 
         Button__Candidato__portadorNecessidadesEspeciais__sim.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__portadorNecessidadesEspeciais__sim.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__portadorNecessidadesEspeciais__sim.setText("Sim");
-        jPanel1.add(Button__Candidato__portadorNecessidadesEspeciais__sim, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 303, -1, -1));
-        Button__Candidato__portadorNecessidadesEspeciais__sim.getAccessibleContext().setAccessibleName("Button__Candidato__portadorNecessidadesEspeciais__sim");
 
         Button__Candidato__portadorNecessidadesEspeciais__nao.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__portadorNecessidadesEspeciais__nao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__portadorNecessidadesEspeciais__nao.setText("Nao");
-        jPanel1.add(Button__Candidato__portadorNecessidadesEspeciais__nao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 299, -1, -1));
-        Button__Candidato__portadorNecessidadesEspeciais__nao.getAccessibleContext().setAccessibleName("Button__Candidato__portadorNecessidadesEspeciais__nao");
 
         Label__Candidato__dispisponibilidadeViajar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__dispisponibilidadeViajar.setText("Disp. Viajar");
-        jPanel1.add(Label__Candidato__dispisponibilidadeViajar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 337, -1, -1));
-        Label__Candidato__dispisponibilidadeViajar.getAccessibleContext().setAccessibleName("Label__Candidato__disponibilidadeViajar");
-        Label__Candidato__dispisponibilidadeViajar.getAccessibleContext().setAccessibleDescription("");
 
         Button__Candidato__disponibilidadeViajar__sim.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__disponibilidadeViajar__sim.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__disponibilidadeViajar__sim.setText("Sim");
-        jPanel1.add(Button__Candidato__disponibilidadeViajar__sim, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 333, -1, -1));
-        Button__Candidato__disponibilidadeViajar__sim.getAccessibleContext().setAccessibleName("Button__Candidato__disponibilidadeViajar__sim");
 
         Button__Candidato__disponibilidadeViajar__nao.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__disponibilidadeViajar__nao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__disponibilidadeViajar__nao.setText("Nao");
-        jPanel1.add(Button__Candidato__disponibilidadeViajar__nao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 333, -1, -1));
-        Button__Candidato__disponibilidadeViajar__nao.getAccessibleContext().setAccessibleName("Button__Candidato__disponibilidadeViajar__nao");
-        Button__Candidato__disponibilidadeViajar__nao.getAccessibleContext().setAccessibleDescription("");
 
         Label__Candidato_cnhPossui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato_cnhPossui.setText("CNH");
-        jPanel1.add(Label__Candidato_cnhPossui, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 386, -1, -1));
-        Label__Candidato_cnhPossui.getAccessibleContext().setAccessibleName("Label__Candidato_cnhPossui");
-        Label__Candidato_cnhPossui.getAccessibleContext().setAccessibleDescription("");
 
         ComboBox__Candidato__cnhPossui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__cnhPossui.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "A", "B", "C", "D", "E", "Nao Possui" }));
@@ -389,14 +332,9 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 ComboBox__Candidato__cnhPossuiActionPerformed(evt);
             }
         });
-        jPanel1.add(ComboBox__Candidato__cnhPossui, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 378, 288, 30));
-        ComboBox__Candidato__cnhPossui.getAccessibleContext().setAccessibleName("ComboBox__Candidato__cnhPossui");
-        ComboBox__Candidato__cnhPossui.getAccessibleContext().setAccessibleDescription("");
 
         Label__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__veiculo.setText("Veiculo");
-        jPanel1.add(Label__Candidato__veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 386, -1, -1));
-        Label__Candidato__veiculo.getAccessibleContext().setAccessibleName("Label__Candidato__veiculo");
 
         ComboBox__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__veiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Carro", "Moto", "Outro", "Não Possui" }));
@@ -407,97 +345,334 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 ComboBox__Candidato__veiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(ComboBox__Candidato__veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 378, 449, 30));
-        ComboBox__Candidato__veiculo.getAccessibleContext().setAccessibleName("ComboBox__Candidato__veiculo");
-        ComboBox__Candidato__veiculo.getAccessibleContext().setAccessibleDescription("");
-
-        jPanel1.add(jLabel_Mensagens, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 8, 893, -1));
 
         jLabel__Mensagem__Field__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__nome.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__nome.setText("Informe o prenome do candidato");
         jLabel__Mensagem__Field__Candidato__nome.setName("jLabel__Mensagem__Field__Candidato__nome"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__Field__Candidato__nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 59, 341, -1));
 
         jLabel__Mensagem__Field__Candidato__sobrenome.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel__Mensagem__Field__Candidato__sobrenome.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel__Mensagem__Field__Candidato__sobrenome.setForeground(new java.awt.Color(255, 0, 0));
         jLabel__Mensagem__Field__Candidato__sobrenome.setText("Informe o sobrenome do candidato");
         jLabel__Mensagem__Field__Candidato__sobrenome.setName("jLabel__Mensagem__Field__Candidato__sobrenome"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__Field__Candidato__sobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 59, 435, -1));
 
         jLabel__Mensagem__Field__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__RG.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__RG.setText("Informe o RG");
         jLabel__Mensagem__Field__Candidato__RG.setName("jLabel__Mensagem__Field__Candidato__RG"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__Field__Candidato__RG, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 149, 407, -1));
 
         jLabel__Mensagem__Field__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__CPF.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__CPF.setText("Informe o CPF");
         jLabel__Mensagem__Field__Candidato__CPF.setName("jLabel__Mensagem__Field__Candidato__CPF"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__Field__Candidato__CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 149, 392, -1));
 
         jLabel__Mensagem__Field__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__dataNascimento.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__dataNascimento.setText("Informe a data de nascimento");
         jLabel__Mensagem__Field__Candidato__dataNascimento.setName("jLabel__Mensagem__Field__Candidato__dataNascimento"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__Field__Candidato__dataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 210, 390, -1));
 
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setText("Informe o tipo de veículo");
         jLabel__Mensagem__ComboBox__Candidato__veiculo.setName("jLabel__Mensagem__ComboBox__Candidato__veiculo"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__ComboBox__Candidato__veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 414, 449, -1));
 
         jLabel__Mensagem__Field__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__Field__Candidato__quantFilhos.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__Field__Candidato__quantFilhos.setText("Informe a quantidade de filhos");
         jLabel__Mensagem__Field__Candidato__quantFilhos.setName("jLabel__Mensagem__Field__Candidato__quantFilhos"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__Field__Candidato__quantFilhos, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 210, 296, -1));
 
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setText("Informe o CNH");
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui.setName("jLabel__Mensagem__ComboBox__Candidato__cnhPossui"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__ComboBox__Candidato__cnhPossui, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 414, 311, -1));
 
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setForeground(new java.awt.Color(255, 0, 51));
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setText("Informe o estado civil do candidato");
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setName("jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil"); // NOI18N
-        jPanel1.add(jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 271, 819, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 0, 51));
         jLabel5.setText("*");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 34, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 51));
         jLabel6.setText("*");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 85, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 0, 51));
         jLabel7.setText("*");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 129, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(255, 0, 51));
         jLabel8.setText("*");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 182, -1, -1));
 
         jLabel9.setForeground(new java.awt.Color(255, 0, 51));
         jLabel9.setText("*");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 244, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(255, 0, 51));
         jLabel10.setText("*");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 297, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(255, 0, 51));
         jLabel11.setText("*");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 338, -1, -1));
 
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
         jLabel12.setText("*");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 387, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel_Mensagens, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__nome)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel5)
+                .addGap(6, 6, 6)
+                .addComponent(Field__Candidato__nome, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(Field__Candidato__sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel__Mensagem__Field__Candidato__nome, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel__Mensagem__Field__Candidato__sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__sexo)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel6)
+                .addGap(63, 63, 63)
+                .addComponent(Button__Candidato__masculino, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Button__Candidato__feminino))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__CPF)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel7)
+                .addGap(59, 59, 59)
+                .addComponent(Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__RG)
+                .addGap(18, 18, 18)
+                .addComponent(Field__Candidato__RG, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jLabel__Mensagem__Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel__Mensagem__Field__Candidato__RG, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__dataNascimento)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel8)
+                .addGap(5, 5, 5)
+                .addComponent(Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Label__Candidato__quantFilhos)
+                .addGap(18, 18, 18)
+                .addComponent(Field__Candidato__quantFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jLabel__Mensagem__Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133)
+                .addComponent(jLabel__Mensagem__Field__Candidato__quantFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__estadoCivil)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel__Mensagem__ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__portadorNecessidadesEspeciais)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel10)
+                .addGap(58, 58, 58)
+                .addComponent(Button__Candidato__portadorNecessidadesEspeciais__sim)
+                .addGap(18, 18, 18)
+                .addComponent(Button__Candidato__portadorNecessidadesEspeciais__nao)
+                .addGap(60, 60, 60)
+                .addComponent(Field__Candidato__portadorNecessidadesEspeciais, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato__dispisponibilidadeViajar)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel11)
+                .addGap(20, 20, 20)
+                .addComponent(Button__Candidato__disponibilidadeViajar__sim)
+                .addGap(18, 18, 18)
+                .addComponent(Button__Candidato__disponibilidadeViajar__nao))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label__Candidato_cnhPossui)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel12)
+                .addGap(56, 56, 56)
+                .addComponent(ComboBox__Candidato__cnhPossui, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(Label__Candidato__veiculo)
+                .addGap(18, 18, 18)
+                .addComponent(ComboBox__Candidato__veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(jLabel__Mensagem__ComboBox__Candidato__cnhPossui, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel__Mensagem__ComboBox__Candidato__veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel_Mensagens)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(Label__Candidato__nome))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel5))
+                    .addComponent(Field__Candidato__nome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Field__Candidato__sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel__Mensagem__Field__Candidato__nome)
+                    .addComponent(jLabel__Mensagem__Field__Candidato__sobrenome))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(Label__Candidato__sexo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel6))
+                    .addComponent(Button__Candidato__masculino)
+                    .addComponent(Button__Candidato__feminino))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(Label__Candidato__CPF))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel7))
+                    .addComponent(Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(Label__Candidato__RG))
+                    .addComponent(Field__Candidato__RG, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel__Mensagem__Field__Candidato__CPF)
+                    .addComponent(jLabel__Mensagem__Field__Candidato__RG))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(Label__Candidato__dataNascimento))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel8))
+                    .addComponent(Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(Label__Candidato__quantFilhos))
+                    .addComponent(Field__Candidato__quantFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel__Mensagem__Field__Candidato__dataNascimento)
+                    .addComponent(jLabel__Mensagem__Field__Candidato__quantFilhos))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(Label__Candidato__estadoCivil))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel9))
+                    .addComponent(jLabel__Mensagem__ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label__Candidato__portadorNecessidadesEspeciais)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(Button__Candidato__portadorNecessidadesEspeciais__sim))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(Button__Candidato__portadorNecessidadesEspeciais__nao))
+                    .addComponent(Field__Candidato__portadorNecessidadesEspeciais, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(Label__Candidato__dispisponibilidadeViajar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel11))
+                    .addComponent(Button__Candidato__disponibilidadeViajar__sim)
+                    .addComponent(Button__Candidato__disponibilidadeViajar__nao))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(Label__Candidato_cnhPossui))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel12))
+                    .addComponent(ComboBox__Candidato__cnhPossui, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(Label__Candidato__veiculo))
+                    .addComponent(ComboBox__Candidato__veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel__Mensagem__ComboBox__Candidato__cnhPossui)
+                    .addComponent(jLabel__Mensagem__ComboBox__Candidato__veiculo)))
+        );
+
+        Label__Candidato__nome.getAccessibleContext().setAccessibleName("Label__Candidato__prenome");
+        Field__Candidato__nome.getAccessibleContext().setAccessibleName("TField__Candidato__prenome");
+        Field__Candidato__sobrenome.getAccessibleContext().setAccessibleName("TField2__Candidato__sobrenome");
+        Label__Candidato__sexo.getAccessibleContext().setAccessibleName("Label__Candidato__sexo");
+        Button__Candidato__masculino.getAccessibleContext().setAccessibleName("Button__Candidato__sexoMasculino");
+        Button__Candidato__feminino.getAccessibleContext().setAccessibleName("Button__Candidato__sexoFeminino");
+        Button__Candidato__feminino.getAccessibleContext().setAccessibleDescription("");
+        Label__Candidato__CPF.getAccessibleContext().setAccessibleName("Label__Candidato__CPF");
+        Field__Candidato__CPF.getAccessibleContext().setAccessibleName("Field__Candidato__CPF");
+        Label__Candidato__RG.getAccessibleContext().setAccessibleName("Label__Candidato__RG");
+        Field__Candidato__RG.getAccessibleContext().setAccessibleName("Field__Candidato__RG");
+        Label__Candidato__dataNascimento.getAccessibleContext().setAccessibleName("Label__Candidato__dataNascimento");
+        Field__Candidato__dataNascimento.getAccessibleContext().setAccessibleName("Field__Candidato__dataNascimento");
+        Label__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("Label__Candidato__estadoCivil");
+        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("ComboBox__Candidato__estadoCivil");
+        Label__Candidato__quantFilhos.getAccessibleContext().setAccessibleName("Label__Candidato__quantFilhos");
+        Field__Candidato__quantFilhos.getAccessibleContext().setAccessibleName("Field__Candidato__quantFilhos");
+        Label__Candidato__portadorNecessidadesEspeciais.getAccessibleContext().setAccessibleName("Label__Candidato__portadorNecessidadesEspeciais");
+        Field__Candidato__portadorNecessidadesEspeciais.getAccessibleContext().setAccessibleName("Field__Candidato__portadorNecessidadesEspeciais");
+        Button__Candidato__portadorNecessidadesEspeciais__sim.getAccessibleContext().setAccessibleName("Button__Candidato__portadorNecessidadesEspeciais__sim");
+        Button__Candidato__portadorNecessidadesEspeciais__nao.getAccessibleContext().setAccessibleName("Button__Candidato__portadorNecessidadesEspeciais__nao");
+        Label__Candidato__dispisponibilidadeViajar.getAccessibleContext().setAccessibleName("Label__Candidato__disponibilidadeViajar");
+        Label__Candidato__dispisponibilidadeViajar.getAccessibleContext().setAccessibleDescription("");
+        Button__Candidato__disponibilidadeViajar__sim.getAccessibleContext().setAccessibleName("Button__Candidato__disponibilidadeViajar__sim");
+        Button__Candidato__disponibilidadeViajar__nao.getAccessibleContext().setAccessibleName("Button__Candidato__disponibilidadeViajar__nao");
+        Button__Candidato__disponibilidadeViajar__nao.getAccessibleContext().setAccessibleDescription("");
+        Label__Candidato_cnhPossui.getAccessibleContext().setAccessibleName("Label__Candidato_cnhPossui");
+        Label__Candidato_cnhPossui.getAccessibleContext().setAccessibleDescription("");
+        ComboBox__Candidato__cnhPossui.getAccessibleContext().setAccessibleName("ComboBox__Candidato__cnhPossui");
+        ComboBox__Candidato__cnhPossui.getAccessibleContext().setAccessibleDescription("");
+        Label__Candidato__veiculo.getAccessibleContext().setAccessibleName("Label__Candidato__veiculo");
+        ComboBox__Candidato__veiculo.getAccessibleContext().setAccessibleName("ComboBox__Candidato__veiculo");
+        ComboBox__Candidato__veiculo.getAccessibleContext().setAccessibleDescription("");
 
         jTabbedPane1.addTab("Dados Pessoais", jPanel1);
 

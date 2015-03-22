@@ -11,7 +11,9 @@ import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ConfiguracaoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
+import br.com.iomrh.gui.CadastrarCandidato;
 import br.com.iomrh.gui.FiltrarCandidato;
+import br.com.iomrh.gui.Layout;
 import br.com.iomrh.jdbc.Conexao;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,7 +34,7 @@ public class SBT {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FiltrarCandidato().setVisible(true);
+                new Layout().setVisible(true);
             }
         });
         

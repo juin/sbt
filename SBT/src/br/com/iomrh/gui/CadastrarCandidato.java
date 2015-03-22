@@ -10,6 +10,7 @@ import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
 import br.com.iomrh.listeners.CadastrarCandidatoListener;
+import java.awt.Component;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -83,7 +84,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Label__Candidato__dataNascimento = new javax.swing.JLabel();
         Field__Candidato__dataNascimento = new javax.swing.JTextField();
         Label__Candidato__estadoCivil = new javax.swing.JLabel();
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil = new javax.swing.JComboBox();
+        ComboBox__Candidato__estadoCivil = new javax.swing.JComboBox();
         Label__Candidato__quantFilhos = new javax.swing.JLabel();
         Field__Candidato__quantFilhos = new javax.swing.JTextField();
         Label__Candidato__portadorNecessidadesEspeciais = new javax.swing.JLabel();
@@ -98,12 +99,12 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Label__Candidato__veiculo = new javax.swing.JLabel();
         ComboBox__Candidato__veiculo = new javax.swing.JComboBox();
         jLabel_Mensagens = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel__Mensagem__Field__Candidato__nome = new javax.swing.JLabel();
+        jLabel__Mensagem__Field__Candidato__nome = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Candidato__sobrenome = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Candidato__RG = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Candidato__CPF = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Candidato__dataNascimento = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel__Mensagem__ComboBox__Candidato__veiculo = new javax.swing.JLabel();
+        jLabel__Mensagem__ComboBox__Candidato__veiculo = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Candidato__quantFilhos = new javax.swing.JLabel();
         jLabel__Mensagem__ComboBox__Candidato__cnhPossui = new javax.swing.JLabel();
         jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil = new javax.swing.JLabel();
@@ -131,14 +132,14 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__RedeSocial__redeSocial = new javax.swing.JTextField();
         jLabel__Mensagem__Field__Telefone__telefone1 = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Telefone__telefone2 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel__Mensagem__Field__Telefone__telefone3 = new javax.swing.JLabel();
+        jLabel__Mensagem__Field__Telefone__telefone3 = new javax.swing.JLabel();
         jLabel__Mensagem__Field__Candidato__nome4 = new javax.swing.JLabel();
         jLabel__Mensagem__Field__RedeSocial__redeSocial = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Field__ComboBox__Estado = new javax.swing.JComboBox();
         Label__Candidato__estadoCivil1 = new javax.swing.JLabel();
         Label__Candidato__estadoCivil2 = new javax.swing.JLabel();
-        javax.swing.JComboBox Field__ComboBox__Cidade = new javax.swing.JComboBox();
+        Field__ComboBox__Cidade = new javax.swing.JComboBox();
         Field__ComboBox__Bairro = new javax.swing.JComboBox();
         Label__Candidato__estadoCivil3 = new javax.swing.JLabel();
         Field__ComboBox__Logradouro = new javax.swing.JComboBox();
@@ -149,11 +150,11 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Label__Candidato__nome7 = new javax.swing.JLabel();
         javax.swing.JTextField Field__Endereco_pontoReferencia = new javax.swing.JTextField();
         Label__Candidato__nome8 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel__Mensagem__Field__ComboBox__Estado = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel__Mensagem__Field__ComboBox__Cidade = new javax.swing.JLabel();
+        jLabel__Mensagem__Field__ComboBox__Estado = new javax.swing.JLabel();
+        jLabel__Mensagem__Field__ComboBox__Cidade = new javax.swing.JLabel();
         jLabel__Mensagem__Field__ComboBox__Bairro = new javax.swing.JLabel();
         jLabel__Mensagem__Field__ComboBox__Logradouro = new javax.swing.JLabel();
-        javax.swing.JLabel jLabel__Mensagem__Field__Endereco__numero = new javax.swing.JLabel();
+        jLabel__Mensagem__Field__Endereco__numero = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         Label__Candidato__cursos = new javax.swing.JLabel();
         Label__Candidato__cursos_idioma = new javax.swing.JLabel();
@@ -217,7 +218,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato__nome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__nome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato__nome.setName("nome"); // NOI18N
+        Field__Candidato__nome.setName("Field__Candidato__nome"); // NOI18N
         Field__Candidato__nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Candidato__nomeActionPerformed(evt);
@@ -226,7 +227,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato__sobrenome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__sobrenome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato__sobrenome.setName("sobrenome"); // NOI18N
+        Field__Candidato__sobrenome.setName("Field__Candidato__sobrenome"); // NOI18N
 
         Label__Candidato__sexo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__sexo.setText("Sexo");
@@ -234,10 +235,12 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Button__Candidato__masculino.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__masculino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__masculino.setText("Masculino");
+        Button__Candidato__masculino.setName("Button__Candidato__masculino"); // NOI18N
 
         Button__Candidato__feminino.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__feminino.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__feminino.setText("Feminino");
+        Button__Candidato__feminino.setName("Button__Candidato__feminino"); // NOI18N
         Button__Candidato__feminino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Button__Candidato__femininoActionPerformed(evt);
@@ -249,7 +252,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato__CPF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__CPF.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato__CPF.setName("CPF"); // NOI18N
+        Field__Candidato__CPF.setName("Field__Candidato__CPF"); // NOI18N
         Field__Candidato__CPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Candidato__CPFActionPerformed(evt);
@@ -261,25 +264,25 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato__RG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__RG.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato__RG.setName("RG"); // NOI18N
+        Field__Candidato__RG.setName("Field__Candidato__RG"); // NOI18N
 
         Label__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__dataNascimento.setText("Data de Nasc.");
 
         Field__Candidato__dataNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__dataNascimento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato__dataNascimento.setName("Data de nascimento"); // NOI18N
+        Field__Candidato__dataNascimento.setName("Field__Candidato__dataNascimento"); // NOI18N
 
         Label__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__estadoCivil.setText("Estado Civil");
 
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.setName("Estado Civil"); // NOI18N
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.addActionListener(new java.awt.event.ActionListener() {
+        ComboBox__Candidato__estadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ComboBox__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
+        ComboBox__Candidato__estadoCivil.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ComboBox__Candidato__estadoCivil.setName("ComboBox__Candidato__estadoCivil"); // NOI18N
+        ComboBox__Candidato__estadoCivil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLabel__Mensagem__ComboBox__Candidato__estadoCivilActionPerformed(evt);
+                ComboBox__Candidato__estadoCivilActionPerformed(evt);
             }
         });
 
@@ -288,7 +291,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato__quantFilhos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__quantFilhos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato__quantFilhos.setName("Quant. de filhos"); // NOI18N
+        Field__Candidato__quantFilhos.setName("Field__Candidato__quantFilhos"); // NOI18N
         Field__Candidato__quantFilhos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Candidato__quantFilhosActionPerformed(evt);
@@ -300,14 +303,17 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato__portadorNecessidadesEspeciais.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato__portadorNecessidadesEspeciais.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Field__Candidato__portadorNecessidadesEspeciais.setName("Field__Candidato__portadorNecessidadesEspeciais"); // NOI18N
 
         Button__Candidato__portadorNecessidadesEspeciais__sim.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__portadorNecessidadesEspeciais__sim.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__portadorNecessidadesEspeciais__sim.setText("Sim");
+        Button__Candidato__portadorNecessidadesEspeciais__sim.setName("Button__Candidato__portadorNecessidadesEspeciais__sim"); // NOI18N
 
         Button__Candidato__portadorNecessidadesEspeciais__nao.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__portadorNecessidadesEspeciais__nao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__portadorNecessidadesEspeciais__nao.setText("Nao");
+        Button__Candidato__portadorNecessidadesEspeciais__nao.setName("Button__Candidato__portadorNecessidadesEspeciais__nao"); // NOI18N
 
         Label__Candidato__dispisponibilidadeViajar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato__dispisponibilidadeViajar.setText("Disp. Viajar");
@@ -315,10 +321,12 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Button__Candidato__disponibilidadeViajar__sim.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__disponibilidadeViajar__sim.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__disponibilidadeViajar__sim.setText("Sim");
+        Button__Candidato__disponibilidadeViajar__sim.setName("Button__Candidato__disponibilidadeViajar__sim"); // NOI18N
 
         Button__Candidato__disponibilidadeViajar__nao.setBackground(new java.awt.Color(255, 255, 255));
         Button__Candidato__disponibilidadeViajar__nao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Button__Candidato__disponibilidadeViajar__nao.setText("Nao");
+        Button__Candidato__disponibilidadeViajar__nao.setName("Button__Candidato__disponibilidadeViajar__nao"); // NOI18N
 
         Label__Candidato_cnhPossui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Label__Candidato_cnhPossui.setText("CNH");
@@ -326,7 +334,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         ComboBox__Candidato__cnhPossui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__cnhPossui.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "A", "B", "C", "D", "E", "Nao Possui" }));
         ComboBox__Candidato__cnhPossui.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        ComboBox__Candidato__cnhPossui.setName("CNH"); // NOI18N
+        ComboBox__Candidato__cnhPossui.setName("ComboBox__Candidato__cnhPossui"); // NOI18N
         ComboBox__Candidato__cnhPossui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBox__Candidato__cnhPossuiActionPerformed(evt);
@@ -339,7 +347,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         ComboBox__Candidato__veiculo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox__Candidato__veiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Carro", "Moto", "Outro", "Não Possui" }));
         ComboBox__Candidato__veiculo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        ComboBox__Candidato__veiculo.setName("Veículo"); // NOI18N
+        ComboBox__Candidato__veiculo.setName("ComboBox__Candidato__veiculo"); // NOI18N
         ComboBox__Candidato__veiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBox__Candidato__veiculoActionPerformed(evt);
@@ -483,7 +491,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel__Mensagem__ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(105, 105, 105)
                 .addComponent(jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -595,7 +603,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel9))
-                    .addComponent(jLabel__Mensagem__ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboBox__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addComponent(jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil)
                 .addGap(11, 11, 11)
@@ -654,7 +662,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Label__Candidato__dataNascimento.getAccessibleContext().setAccessibleName("Label__Candidato__dataNascimento");
         Field__Candidato__dataNascimento.getAccessibleContext().setAccessibleName("Field__Candidato__dataNascimento");
         Label__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("Label__Candidato__estadoCivil");
-        jLabel__Mensagem__ComboBox__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("ComboBox__Candidato__estadoCivil");
+        ComboBox__Candidato__estadoCivil.getAccessibleContext().setAccessibleName("ComboBox__Candidato__estadoCivil");
         Label__Candidato__quantFilhos.getAccessibleContext().setAccessibleName("Label__Candidato__quantFilhos");
         Field__Candidato__quantFilhos.getAccessibleContext().setAccessibleName("Field__Candidato__quantFilhos");
         Label__Candidato__portadorNecessidadesEspeciais.getAccessibleContext().setAccessibleName("Label__Candidato__portadorNecessidadesEspeciais");
@@ -684,7 +692,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Telefone__telefone1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Telefone__telefone1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Telefone__telefone1.setName("nome"); // NOI18N
+        Field__Telefone__telefone1.setName("Field__Telefone__telefone1"); // NOI18N
         Field__Telefone__telefone1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Telefone__telefone1ActionPerformed(evt);
@@ -694,7 +702,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__Telefone__tipoTelefone1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Telefone__tipoTelefone1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Móvel", "Fixo" }));
         Field__Telefone__tipoTelefone1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Telefone__tipoTelefone1.setName("Estado Civil"); // NOI18N
+        Field__Telefone__tipoTelefone1.setName("Field__Telefone__tipoTelefone1"); // NOI18N
         Field__Telefone__tipoTelefone1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Telefone__tipoTelefone1ActionPerformed(evt);
@@ -706,7 +714,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Telefone__telefone2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Telefone__telefone2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Telefone__telefone2.setName("nome"); // NOI18N
+        Field__Telefone__telefone2.setName("Field__Telefone__telefone2"); // NOI18N
         Field__Telefone__telefone2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Telefone__telefone2ActionPerformed(evt);
@@ -716,7 +724,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__Telefone__tipoTelefone2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Telefone__tipoTelefone2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Móvel", "Fixo" }));
         Field__Telefone__tipoTelefone2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Telefone__tipoTelefone2.setName("Estado Civil"); // NOI18N
+        Field__Telefone__tipoTelefone2.setName("Field__Telefone__tipoTelefone2"); // NOI18N
         Field__Telefone__tipoTelefone2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Telefone__tipoTelefone2ActionPerformed(evt);
@@ -728,7 +736,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Telefone__telefone3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Telefone__telefone3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Telefone__telefone3.setName("nome"); // NOI18N
+        Field__Telefone__telefone3.setName("Field__Telefone__telefone3"); // NOI18N
         Field__Telefone__telefone3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Telefone__telefone3ActionPerformed(evt);
@@ -738,7 +746,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__Telefone__tipoTelefone3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Telefone__tipoTelefone3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Móvel", "Fixo" }));
         Field__Telefone__tipoTelefone3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Telefone__tipoTelefone3.setName("Estado Civil"); // NOI18N
+        Field__Telefone__tipoTelefone3.setName("Field__Telefone__tipoTelefone3"); // NOI18N
         Field__Telefone__tipoTelefone3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Telefone__tipoTelefone3ActionPerformed(evt);
@@ -750,7 +758,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Candidato_email.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Candidato_email.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Candidato_email.setName("nome"); // NOI18N
+        Field__Candidato_email.setName("Field__Candidato_email"); // NOI18N
         Field__Candidato_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Candidato_emailActionPerformed(evt);
@@ -762,7 +770,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__RedeSocial__redeSocial.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__RedeSocial__redeSocial.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__RedeSocial__redeSocial.setName("nome"); // NOI18N
+        Field__RedeSocial__redeSocial.setName("Field__RedeSocial__redeSocial"); // NOI18N
         Field__RedeSocial__redeSocial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__RedeSocial__redeSocialActionPerformed(evt);
@@ -883,7 +891,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__ComboBox__Estado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__ComboBox__Estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
         Field__ComboBox__Estado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__ComboBox__Estado.setName("Estado Civil"); // NOI18N
+        Field__ComboBox__Estado.setName("Field__ComboBox__Estado"); // NOI18N
         Field__ComboBox__Estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__ComboBox__EstadoActionPerformed(evt);
@@ -899,7 +907,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__ComboBox__Cidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__ComboBox__Cidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
         Field__ComboBox__Cidade.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__ComboBox__Cidade.setName("Estado Civil"); // NOI18N
+        Field__ComboBox__Cidade.setName("Field__ComboBox__Cidade"); // NOI18N
         Field__ComboBox__Cidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__ComboBox__CidadeActionPerformed(evt);
@@ -909,7 +917,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__ComboBox__Bairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__ComboBox__Bairro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
         Field__ComboBox__Bairro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__ComboBox__Bairro.setName("Estado Civil"); // NOI18N
+        Field__ComboBox__Bairro.setName("Field__ComboBox__Bairro"); // NOI18N
         Field__ComboBox__Bairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__ComboBox__BairroActionPerformed(evt);
@@ -922,7 +930,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         Field__ComboBox__Logradouro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__ComboBox__Logradouro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)'", "Outros" }));
         Field__ComboBox__Logradouro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__ComboBox__Logradouro.setName("Estado Civil"); // NOI18N
+        Field__ComboBox__Logradouro.setName("Field__ComboBox__Logradouro"); // NOI18N
         Field__ComboBox__Logradouro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__ComboBox__LogradouroActionPerformed(evt);
@@ -937,7 +945,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Endereco__numero.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Endereco__numero.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Endereco__numero.setName("nome"); // NOI18N
+        Field__Endereco__numero.setName("Field__Endereco__numero"); // NOI18N
         Field__Endereco__numero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Endereco__numeroActionPerformed(evt);
@@ -946,7 +954,8 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Endereco__complemento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Endereco__complemento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Endereco__complemento.setName("nome"); // NOI18N
+        Field__Endereco__complemento.setFocusCycleRoot(true);
+        Field__Endereco__complemento.setName("Field__Endereco__complemento"); // NOI18N
         Field__Endereco__complemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Endereco__complementoActionPerformed(evt);
@@ -958,7 +967,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
         Field__Endereco_pontoReferencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Field__Endereco_pontoReferencia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Field__Endereco_pontoReferencia.setName("nome"); // NOI18N
+        Field__Endereco_pontoReferencia.setName("Field__Endereco_pontoReferencia"); // NOI18N
         Field__Endereco_pontoReferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Endereco_pontoReferenciaActionPerformed(evt);
@@ -1149,7 +1158,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         jButton4.setContentAreaFilled(false);
 
         jButton_Add_Formacao_Academica.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Add_Formacao_Academica.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
+        jButton_Add_Formacao_Academica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/iomrh/gui/imagens/Add.png"))); // NOI18N
         jButton_Add_Formacao_Academica.setBorderPainted(false);
         jButton_Add_Formacao_Academica.setFocusPainted(false);
         jButton_Add_Formacao_Academica.setFocusable(false);
@@ -1160,7 +1169,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         });
 
         jButton_Add_Idioma.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Add_Idioma.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
+        jButton_Add_Idioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/iomrh/gui/imagens/Add.png"))); // NOI18N
         jButton_Add_Idioma.setBorderPainted(false);
         jButton_Add_Idioma.setFocusPainted(false);
         jButton_Add_Idioma.setFocusable(false);
@@ -1171,7 +1180,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         });
 
         jButton_Add_Informatica.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Add_Informatica.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
+        jButton_Add_Informatica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/iomrh/gui/imagens/Add.png"))); // NOI18N
         jButton_Add_Informatica.setBorderPainted(false);
         jButton_Add_Informatica.setFocusPainted(false);
         jButton_Add_Informatica.setFocusable(false);
@@ -1312,6 +1321,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         CheckBox__Candidato__gerencia.setBackground(new java.awt.Color(255, 255, 255));
         CheckBox__Candidato__gerencia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         CheckBox__Candidato__gerencia.setText("Gerência");
+        CheckBox__Candidato__gerencia.setName("CheckBox__Candidato__gerencia"); // NOI18N
         CheckBox__Candidato__gerencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckBox__Candidato__gerenciaActionPerformed(evt);
@@ -1321,10 +1331,11 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         CheckBox__Candidato__primeiroEmprego.setBackground(new java.awt.Color(255, 255, 255));
         CheckBox__Candidato__primeiroEmprego.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         CheckBox__Candidato__primeiroEmprego.setText("Primeiro Emprego");
+        CheckBox__Candidato__primeiroEmprego.setName("CheckBox__Candidato__primeiroEmprego"); // NOI18N
 
         ComboBox__Candidato__profissao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ComboBox__Candidato__profissao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        ComboBox__Candidato__profissao.setName("Profissão"); // NOI18N
+        ComboBox__Candidato__profissao.setName("ComboBox__Candidato__profissao"); // NOI18N
         ComboBox__Candidato__profissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBox__Candidato__profissaoActionPerformed(evt);
@@ -1332,6 +1343,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         });
 
         ComboBox__Candidato__pretencaoSalarial.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ComboBox__Candidato__pretencaoSalarial.setName("ComboBox__Candidato__pretencaoSalarial"); // NOI18N
         ComboBox__Candidato__pretencaoSalarial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBox__Candidato__pretencaoSalarialActionPerformed(evt);
@@ -1429,7 +1441,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         ScrollPane__Candidato__experienciaProfissional.setViewportView(Table__Candidato__experienciaProfissional);
 
         jButton_Add_ExperienciaProfissional.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Add_ExperienciaProfissional.setIcon(new javax.swing.ImageIcon("C:\\Users\\joabe_000\\Documents\\NetBeansProjects\\sbt\\SBT\\src\\br\\com\\iomrh\\gui\\imagens\\Add.png")); // NOI18N
+        jButton_Add_ExperienciaProfissional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/iomrh/gui/imagens/Add.png"))); // NOI18N
         jButton_Add_ExperienciaProfissional.setBorderPainted(false);
         jButton_Add_ExperienciaProfissional.setFocusPainted(false);
         jButton_Add_ExperienciaProfissional.setFocusable(false);
@@ -1538,7 +1550,45 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button__Candidato__cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__Candidato__cadastrarActionPerformed
- jLabel__Mensagem__Field__Candidato__CPF.setVisible(true);
+    jLabel__Mensagem__Field__Candidato__CPF.setVisible(true);
+    
+    Component[]  fieldsObrigatorios = {
+            Field__Candidato__nome,
+            Field__Candidato__sobrenome,
+            Field__Candidato__CPF,
+            Field__Candidato__RG,
+            Field__Candidato__dataNascimento,
+            ComboBox__Candidato__veiculo,
+            ComboBox__Candidato__cnhPossui,
+            Field__Telefone__telefone1,
+            Field__Telefone__telefone2,
+            Field__Telefone__telefone3,
+            Field__ComboBox__Estado,
+            Field__ComboBox__Cidade,
+            Field__ComboBox__Logradouro,
+            Field__Endereco__numero,
+            Field__Candidato__quantFilhos,
+            ComboBox__Candidato__estadoCivil,
+        };
+    
+     Component[]  fieldsObrigatoriosJLabel = {
+            jLabel__Mensagem__Field__Candidato__nome,
+            jLabel__Mensagem__Field__Candidato__sobrenome,
+            jLabel__Mensagem__Field__Candidato__CPF,
+            jLabel__Mensagem__Field__Candidato__RG,
+            jLabel__Mensagem__Field__Candidato__dataNascimento,
+            jLabel__Mensagem__ComboBox__Candidato__veiculo,
+            jLabel__Mensagem__ComboBox__Candidato__cnhPossui,
+            jLabel__Mensagem__Field__Telefone__telefone1,
+            jLabel__Mensagem__Field__Telefone__telefone2,
+            jLabel__Mensagem__Field__Telefone__telefone3,
+            jLabel__Mensagem__Field__ComboBox__Estado,
+            jLabel__Mensagem__Field__ComboBox__Cidade,
+            jLabel__Mensagem__Field__ComboBox__Logradouro,
+            jLabel__Mensagem__Field__Endereco__numero,
+            jLabel__Mensagem__Field__Candidato__quantFilhos,
+            jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil,  
+        };
         /**
         Component[]  fieldsObrigatorios = {
             Field__Candidato__nome,
@@ -1588,7 +1638,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
   
         Short quantidadeFilhos = (!Field__Candidato__quantFilhos.getText().isEmpty()) ? Short.parseShort(Field__Candidato__quantFilhos.getText()) : 0;
 
-        String estadoCivil = jLabel__Mensagem__ComboBox__Candidato__estadoCivil.getSelectedItem().toString();
+        String estadoCivil = ComboBox__Candidato__estadoCivil.getSelectedItem().toString();
 
         boolean disponibilidadeViajar_sim = Button__Candidato__disponibilidadeViajar__sim.isSelected();
         boolean disponibilidadeViajar_nao = Button__Candidato__disponibilidadeViajar__nao.isSelected();
@@ -1663,9 +1713,9 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_ComboBox__Candidato__cnhPossuiActionPerformed
 
-    private void jLabel__Mensagem__ComboBox__Candidato__estadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLabel__Mensagem__ComboBox__Candidato__estadoCivilActionPerformed
+    private void ComboBox__Candidato__estadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox__Candidato__estadoCivilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel__Mensagem__ComboBox__Candidato__estadoCivilActionPerformed
+    }//GEN-LAST:event_ComboBox__Candidato__estadoCivilActionPerformed
 
     private void Field__Candidato__CPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__Candidato__CPFActionPerformed
         // TODO add your handling code here:
@@ -1783,6 +1833,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox CheckBox__Candidato__gerencia;
     private javax.swing.JCheckBox CheckBox__Candidato__primeiroEmprego;
     private javax.swing.JComboBox ComboBox__Candidato__cnhPossui;
+    private javax.swing.JComboBox ComboBox__Candidato__estadoCivil;
     private javax.swing.JTextField ComboBox__Candidato__pretencaoSalarial;
     private javax.swing.JComboBox ComboBox__Candidato__profissao;
     private javax.swing.JComboBox ComboBox__Candidato__veiculo;
@@ -1795,6 +1846,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
     private javax.swing.JTextField Field__Candidato__sobrenome;
     private javax.swing.JTextField Field__Candidato_email;
     private javax.swing.JComboBox Field__ComboBox__Bairro;
+    private javax.swing.JComboBox Field__ComboBox__Cidade;
     private javax.swing.JComboBox Field__ComboBox__Estado;
     private javax.swing.JComboBox Field__ComboBox__Logradouro;
     private javax.swing.JTextField Field__Endereco__complemento;
@@ -1867,18 +1919,23 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel__Mensagem_Candidato__nome3;
     private javax.swing.JLabel jLabel__Mensagem_Candidato__nome5;
     private javax.swing.JLabel jLabel__Mensagem__ComboBox__Candidato__cnhPossui;
-    private javax.swing.JComboBox jLabel__Mensagem__ComboBox__Candidato__estadoCivil;
+    private javax.swing.JLabel jLabel__Mensagem__ComboBox__Candidato__veiculo;
     private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__CPF;
     private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__RG;
     private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__dataNascimento;
+    private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__nome;
     private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__nome4;
     private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__quantFilhos;
     private javax.swing.JLabel jLabel__Mensagem__Field__Candidato__sobrenome;
     private javax.swing.JLabel jLabel__Mensagem__Field__ComboBox__Bairro;
+    private javax.swing.JLabel jLabel__Mensagem__Field__ComboBox__Cidade;
+    private javax.swing.JLabel jLabel__Mensagem__Field__ComboBox__Estado;
     private javax.swing.JLabel jLabel__Mensagem__Field__ComboBox__Logradouro;
+    private javax.swing.JLabel jLabel__Mensagem__Field__Endereco__numero;
     private javax.swing.JLabel jLabel__Mensagem__Field__RedeSocial__redeSocial;
     private javax.swing.JLabel jLabel__Mensagem__Field__Telefone__telefone1;
     private javax.swing.JLabel jLabel__Mensagem__Field__Telefone__telefone2;
+    private javax.swing.JLabel jLabel__Mensagem__Field__Telefone__telefone3;
     private javax.swing.JLabel jLabel__Mensagem__jLabel__Mensagem__ComboBox__Candidato__estadoCivil;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

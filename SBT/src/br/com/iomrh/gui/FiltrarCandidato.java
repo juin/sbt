@@ -12,6 +12,7 @@ import br.com.iomrh.beans.IndisponibilidadeCandidato;
 import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
+import br.com.iomrh.listeners.FiltrarCandidatoListener;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,14 @@ import javax.swing.DefaultListModel;
  */
 public class FiltrarCandidato extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form Filtro
      */
     
     //Cria novo Model para adicionar/remover elementos do 2º jList
     DefaultListModel dlm2 = new DefaultListModel();
+    FiltrarCandidatoListener listener = new FiltrarCandidatoListener();
     
     public FiltrarCandidato() {
         initComponents();
@@ -106,11 +109,13 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         Table__IndisponibilidadeCandidato = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Comercial__Sabado = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Semana__Manha = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Semana__Tarde = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Semana__Noite = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Comercial__SegSex = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__MarcarTudo = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Limpar = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa = new javax.swing.JComboBox();
@@ -527,16 +532,16 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         Table__IndisponibilidadeCandidato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Manhã", null, null, null, null, null, null, null, "COLOCAR BOTÃO"},
-                {"Tarde", null, null, null, null, null, null, null, "COLOCAR BOTÃO"},
-                {"Noite", null, null, null, null, null, null, null, "COLOCAR BOTÃO"}
+                {"Manhã", null, null, null, null, null, null, null},
+                {"Tarde", null, null, null, null, null, null, null},
+                {"Noite", null, null, null, null, null, null, null}
             },
             new String [] {
-                "Dia/turno", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Desmarcar linha"
+                "Dia/turno", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -545,13 +550,33 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(Table__IndisponibilidadeCandidato);
 
-        jButton1.setText("Horário Comercial");
+        Button__IndisponibilidadeCandidato__Comercial__Sabado.setText("Horário Comercial");
+        Button__IndisponibilidadeCandidato__Comercial__Sabado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Semana - Manhã");
+        Button__IndisponibilidadeCandidato__Semana__Manha.setText("Semana - Manhã");
+        Button__IndisponibilidadeCandidato__Semana__Manha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Semana - Tarde");
+        Button__IndisponibilidadeCandidato__Semana__Tarde.setText("Semana - Tarde");
+        Button__IndisponibilidadeCandidato__Semana__Tarde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Semana - Noite");
+        Button__IndisponibilidadeCandidato__Semana__Noite.setText("Semana - Noite");
+        Button__IndisponibilidadeCandidato__Semana__Noite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -562,13 +587,13 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                     .addComponent(jLabel56)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Manha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Tarde, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)))
+                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Noite)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
@@ -579,13 +604,32 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5)))
+                    .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado)
+                    .addComponent(Button__IndisponibilidadeCandidato__Semana__Manha)
+                    .addComponent(Button__IndisponibilidadeCandidato__Semana__Tarde)
+                    .addComponent(Button__IndisponibilidadeCandidato__Semana__Noite)))
         );
 
-        jButton6.setText("Horário Comercial - Seg a Sex");
+        Button__IndisponibilidadeCandidato__Comercial__SegSex.setText("Horário Comercial - Seg a Sex");
+        Button__IndisponibilidadeCandidato__Comercial__SegSex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed(evt);
+            }
+        });
+
+        Button__IndisponibilidadeCandidato__MarcarTudo.setText("Marcar tudo");
+        Button__IndisponibilidadeCandidato__MarcarTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed(evt);
+            }
+        });
+
+        Button__IndisponibilidadeCandidato__Limpar.setText("Limpar");
+        Button__IndisponibilidadeCandidato__Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__LimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -596,7 +640,11 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex)
+                        .addGap(18, 18, 18)
+                        .addComponent(Button__IndisponibilidadeCandidato__MarcarTudo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Button__IndisponibilidadeCandidato__Limpar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -606,7 +654,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex)
+                    .addComponent(Button__IndisponibilidadeCandidato__MarcarTudo)
+                    .addComponent(Button__IndisponibilidadeCandidato__Limpar))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
 
@@ -910,7 +961,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(Filtrar))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1131,9 +1182,47 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Field__Candidato__dataNascimentoActionPerformed
 
+    private void Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 0, 0, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 1, 1, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 2, 2, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 0, 0, 2, 7, Table__IndisponibilidadeCandidato);
+        listener.preencherTabelaDisponibilidade(true, 1, 1, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed
+        listener.preencherTabelaDisponibilidade(true,0, 0, 2, 6, Table__IndisponibilidadeCandidato);
+        listener.preencherTabelaDisponibilidade(true,1, 1, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
+
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
+        listener.preencherTabelaDisponibilidade(false, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;
     private javax.swing.JButton Button__ExperienciaProfissional__InserirExperiencia;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__Comercial__Sabado;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__Comercial__SegSex;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__Limpar;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__MarcarTudo;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Manha;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Noite;
+    private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Tarde;
     private javax.swing.JButton Button__Profissao__Nome__Pesquisar;
     private javax.swing.JCheckBox Checkbox__Candidato__Gerencia;
     private javax.swing.JCheckBox Checkbox__ExperienciaProfissional__Gerente;
@@ -1170,12 +1259,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton delCaracteristica;
     private javax.swing.JButton delProfissao;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

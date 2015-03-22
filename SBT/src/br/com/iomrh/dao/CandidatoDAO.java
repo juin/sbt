@@ -204,9 +204,9 @@ public class CandidatoDAO {
         List<Candidato> candidatos = new ArrayList<Candidato>();
         String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
                 + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato"
-                + "FROM Candidato c JOIN IndisponibilidadeCandidato ind ON c.codigoCandidato = ind.codigoCandidato "
+                + " FROM Candidato c JOIN IndisponibilidadeCandidato ind ON c.codigoCandidato = ind.codigoCandidato "
                 + "WHERE ind.dia LIKE ? AND ind.turno LIKE ?"
-                + "GROUP BY (c.codigoCandidato)";
+                + " GROUP BY (c.codigoCandidato)";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);

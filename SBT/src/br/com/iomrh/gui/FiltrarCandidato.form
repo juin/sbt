@@ -81,13 +81,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTPResultado" min="-2" pref="434" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jTPResultado" min="-2" pref="454" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Filtrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <EmptySpace pref="85" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -464,12 +464,12 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="406" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="94" max="32767" attributes="0"/>
+                              <EmptySpace pref="91" max="32767" attributes="0"/>
                               <Component id="jPanel22" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="88" max="32767" attributes="0"/>
+                              <EmptySpace pref="86" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -759,8 +759,8 @@
             <Container class="javax.swing.JPanel" name="jPanel23">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Indisponiblidade do candidato">
-                    <Property name="tabTitle" type="java.lang.String" value="Indisponiblidade do candidato"/>
+                  <JTabbedPaneConstraints tabName="Disponiblidade do candidato">
+                    <Property name="tabTitle" type="java.lang.String" value="Disponiblidade do candidato"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -773,7 +773,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel24" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__Comercial__SegSex" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__MarcarTudo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__Limpar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -787,8 +791,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel24" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="149" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Button__IndisponibilidadeCandidato__Comercial__SegSex" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Button__IndisponibilidadeCandidato__MarcarTudo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Button__IndisponibilidadeCandidato__Limpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="169" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -804,13 +812,13 @@
                                   <Component id="jLabel56" min="-2" max="-2" attributes="0"/>
                                   <Component id="jScrollPane6" min="-2" pref="901" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton1" min="-2" pref="181" max="-2" attributes="0"/>
+                                      <Component id="Button__IndisponibilidadeCandidato__Comercial__Sabado" min="-2" pref="181" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton2" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Component id="Button__IndisponibilidadeCandidato__Semana__Manha" min="-2" pref="170" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton3" min="-2" pref="157" max="-2" attributes="0"/>
+                                      <Component id="Button__IndisponibilidadeCandidato__Semana__Tarde" min="-2" pref="157" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Button__IndisponibilidadeCandidato__Semana__Noite" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="136" max="32767" attributes="0"/>
@@ -825,10 +833,10 @@
                               <Component id="jScrollPane6" min="-2" pref="75" max="-2" attributes="0"/>
                               <EmptySpace pref="56" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__Comercial__Sabado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__Semana__Manha" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__Semana__Tarde" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Button__IndisponibilidadeCandidato__Semana__Noite" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -840,7 +848,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Indisponibilidade do candidato"/>
+                        <Property name="text" type="java.lang.String" value="Disponibilidade do candidato"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane6">
@@ -853,7 +861,7 @@
                         <Component class="javax.swing.JTable" name="Table__IndisponibilidadeCandidato">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="9" rowCount="3">
+                              <Table columnCount="8" rowCount="3">
                                 <Column editable="true" title="Dia/turno" type="java.lang.Object">
                                   <Data value="Manh&#xe3;"/>
                                   <Data value="Tarde"/>
@@ -866,20 +874,10 @@
                                 <Column editable="true" title="Quinta" type="java.lang.Boolean"/>
                                 <Column editable="true" title="Sexta" type="java.lang.Boolean"/>
                                 <Column editable="true" title="S&#xe1;bado" type="java.lang.Boolean"/>
-                                <Column editable="true" title="Desmarcar linha" type="java.lang.Object">
-                                  <Data value="COLOCAR BOT&#xc3;O"/>
-                                  <Data value="COLOCAR BOT&#xc3;O"/>
-                                  <Data value="COLOCAR BOT&#xc3;O"/>
-                                </Column>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -929,32 +927,63 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__Comercial__Sabado">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Hor&#xe1;rio Comercial"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton2">
+                    <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__Semana__Manha">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Semana - Manh&#xe3;"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton3">
+                    <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__Semana__Tarde">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Semana - Tarde"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton5">
+                    <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__Semana__Noite">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Semana - Noite"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton6">
+                <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__Comercial__SegSex">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hor&#xe1;rio Comercial - Seg a Sex"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__MarcarTudo">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Marcar tudo"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="Button__IndisponibilidadeCandidato__Limpar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Limpar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__IndisponibilidadeCandidato__LimparActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1097,13 +1126,9 @@
                         <Component class="javax.swing.JTable" name="Table__ExperienciaProfissional">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="1">
-                                <Column editable="true" title="Cargo" type="java.lang.Integer">
-                                  <Data value="382"/>
-                                </Column>
-                                <Column editable="true" title="Dura&#xe7;&#xe3;o" type="java.lang.Integer">
-                                  <Data value="10"/>
-                                </Column>
+                              <Table columnCount="4" rowCount="0">
+                                <Column editable="true" title="Cargo" type="java.lang.Integer"/>
+                                <Column editable="true" title="Dura&#xe7;&#xe3;o" type="java.lang.Integer"/>
                                 <Column editable="false" title="Gerente" type="java.lang.Boolean"/>
                                 <Column editable="true" title="Remover" type="java.lang.Object"/>
                               </Table>

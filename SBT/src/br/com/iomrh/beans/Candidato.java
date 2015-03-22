@@ -48,6 +48,7 @@ public class Candidato implements Comparable<Candidato>{
     
     public Candidato() {
         experienciaProfissionalList = new ArrayList<>();
+        indisponibilidadeCandidatoList = new ArrayList<>();
     }
 
     public Integer getCodigoCandidato() {
@@ -314,19 +315,24 @@ public class Candidato implements Comparable<Candidato>{
         for(ExperienciaProfissional ep : experienciaProfissionalList){
             expPro.add(ep.getCodigoProfissao());
         }
-        
        return expPro;     
     }
 
     @Override
     public int compareTo(Candidato c) {
         Candidato can = (Candidato) c;
-        		
 	if(getCodigoCandidato() == can.getCodigoCandidato()){
             return 1;
 	}else{
            return 0;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Candidato{" + "codigoCandidato=" + codigoCandidato + '}';
+    }
+    
+    
     
 }

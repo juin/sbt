@@ -509,18 +509,18 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
             .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                    .addContainerGap(94, Short.MAX_VALUE)
+                    .addContainerGap(91, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(88, Short.MAX_VALUE)))
+                    .addContainerGap(86, Short.MAX_VALUE)))
         );
 
         jTPResultado.addTab("Dados pessoais", jPanel21);
 
         jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel56.setText("Indisponibilidade do candidato");
+        jLabel56.setText("Disponibilidade do candidato");
 
         Table__IndisponibilidadeCandidato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -604,10 +604,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
-        jTPResultado.addTab("Indisponiblidade do candidato", jPanel23);
+        jTPResultado.addTab("Disponiblidade do candidato", jPanel23);
 
         ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -621,7 +621,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         Table__ExperienciaProfissional.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(382),  new Integer(10), null, null}
+
             },
             new String [] {
                 "Cargo", "Duração", "Gerente", "Remover"
@@ -902,8 +902,8 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTPResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jTPResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(Filtrar))
@@ -954,6 +954,17 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             canTemp.setCodProfissao(prof.getCodigoProfissao());
             candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
         }
+        
+        if(!Field__Candidato__Nome.getText().isEmpty()){
+            String nomeCompleto = Field__Candidato__Nome.getText();
+            String[] vetorNome = nomeCompleto.split(" ");
+            
+            System.out.println(vetorNome[0]);
+            Candidato canTemp = new Candidato();
+            
+        }
+        String CandidatoNome = Field__Candidato__Nome.getText();
+        System.out.println("Nome: "+CandidatoNome);
        
         
         //ExperienciasProfissionais
@@ -1042,29 +1053,40 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         if(!indisponibilidades.isEmpty()){
             for(IndisponibilidadeCandidato ind : indisponibilidades){
                 Candidato canTemp = new Candidato();
+                System.out.println(ind);
                 canTemp.addIndisponibilidadeCandidatoList(ind);
                 candidatosPorIndisponibilidade.addAll(candidadoDaoIndisponibilidade.buscaCandidatoPorIndisponibilidade(canTemp));
             }
         }
         
-        candidatosPorIndisponibilidade.stream().forEach((can) -> {
-            System.out.println(can.getPrenome());
-        });
-        
+      
         //Tratar os arrays com os resultados das buscas
         List<Candidato> candidatosFiltrados = new ArrayList<>();
+        List<Candidato> candidatosResultadoFiltragem = new ArrayList<>();
         if(!candidatosPorDadosPessoais.isEmpty()){
+            
             candidatosFiltrados.addAll(candidatosPorDadosPessoais);
         }
         if(!candidatosPorExperienciaProfissional.isEmpty()){
             candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
         }
-        
-        
-        
+        if(!candidatosPorIndisponibilidade.isEmpty()){
+            candidatosFiltrados.addAll(candidatosPorIndisponibilidade);
+            candidatosResultadoFiltragem.addAll(candidatosFiltrados);
+                for(Candidato c : candidatosFiltrados){
+                    for(Candidato ca : candidatosPorIndisponibilidade){
+                        if(c.compareTo(ca) == 1){
+                            candidatosResultadoFiltragem.remove(ca);
+                        }
+                    }
+                }
+                       
+        }
+
         //Cria objeto do tipo DefaultTableModel e exibe resultado do filtro
         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) Table__ResultadoFiltragem.getModel();
-        for(Candidato c : candidatosFiltrados){
+        dtm.getDataVector().removeAllElements();
+        for(Candidato c : candidatosResultadoFiltragem){
                 dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getCpf(), c.getPrenome()+" "+c.getSobrenome(), c.getEmail(), "7788398284",false});
         }
         

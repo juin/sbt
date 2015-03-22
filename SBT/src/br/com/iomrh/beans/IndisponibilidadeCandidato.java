@@ -75,7 +75,7 @@ public class IndisponibilidadeCandidato {
 
     @Override
     public String toString() {
-        return "bancodetalentos.IndisponibilidadeCandidato[ codigoIndisponibilidadeCandidato=" + codigoIndisponibilidadeCandidato + " ]";
+        return "bancodetalentos.IndisponibilidadeCandidato[ codigoIndisponibilidadeCandidato=" + codigoIndisponibilidadeCandidato + " turno= " + turno + " ]";
     }
     
 }

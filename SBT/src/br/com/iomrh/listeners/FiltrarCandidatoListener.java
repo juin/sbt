@@ -6,6 +6,9 @@
 
 package br.com.iomrh.listeners;
 
+import br.com.iomrh.beans.ExperienciaProfissional;
+import br.com.iomrh.beans.Profissao;
+import br.com.iomrh.dao.ProfissaoDAO;
 import static java.lang.Boolean.TRUE;
 import javax.swing.JTable;
 
@@ -23,4 +26,12 @@ public class FiltrarCandidatoListener {
         }
     }
     
+    public void inserirTabelaExperienciaProfissional(ExperienciaProfissional expTemp, JTable tabela){
+        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) tabela.getModel();
+        ProfissaoDAO pd1 = new ProfissaoDAO();
+        Profissao temp = pd1.buscaProfissaoPorCodigo(expTemp.getCodigoProfissao());
+        dtm.addRow(new Object[]{temp, expTemp.getDuracao(), expTemp.getGerencia()});
+    }
 }
+
+

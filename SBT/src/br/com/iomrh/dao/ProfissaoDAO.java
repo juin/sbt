@@ -50,9 +50,9 @@ public class ProfissaoDAO {
         }
     }
     
-    public List<Profissao> buscaProfissaoPorCodigo(int codigoProfissao){
+    public Profissao buscaProfissaoPorCodigo(int codigoProfissao){
         
-        List<Profissao> profissoes = new ArrayList<Profissao>();
+        Profissao profissao = new Profissao();
         String sql = "SELECT * FROM Profissao WHERE codigoProfissao LIKE ?";
         
         try {
@@ -68,12 +68,12 @@ public class ProfissaoDAO {
             
             while (resultado.next()) {
                 
-                Profissao profissao = new Profissao();
+
                 
                  profissao.setCodigoProfissao(resultado.getInt("codigoProfissao"));
                  profissao.setNome(resultado.getString("nome"));
                  
-                 profissoes.add(profissao);
+
             }
             stmt.close();
             resultado.close();
@@ -81,7 +81,7 @@ public class ProfissaoDAO {
             throw new RuntimeException(e);
         }
         
-        return profissoes;
+        return profissao;
     }
     
     public Profissao buscaProfissaoPorNome(String nome){

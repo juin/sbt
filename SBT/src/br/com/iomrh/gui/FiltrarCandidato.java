@@ -663,13 +663,22 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jTPResultado.addTab("Disponiblidade do candidato", jPanel23);
 
-        ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ProfissaoDAO pd1 = new ProfissaoDAO();
+        List<Profissao> profissoes1 = pd1.listarProfissoes();
+        for(Profissao p : profissoes1){
+            ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.addItem(p);
+        }
 
         jLabel8.setText("Cargo");
 
         jLabel9.setText("Duração");
 
         Button__ExperienciaProfissional__InserirExperiencia.setText("Inserir experiência");
+        Button__ExperienciaProfissional__InserirExperiencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__ExperienciaProfissional__InserirExperienciaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Gerente?");
 
@@ -961,7 +970,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(Filtrar))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1212,6 +1221,21 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private void Button__IndisponibilidadeCandidato__LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
         listener.preencherTabelaDisponibilidade(false, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
     }//GEN-LAST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
+
+    private void Button__ExperienciaProfissional__InserirExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__ExperienciaProfissional__InserirExperienciaActionPerformed
+        ExperienciaProfissional expTemp = new ExperienciaProfissional();
+        Profissao cargo = (Profissao) ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.getSelectedItem();
+        expTemp.setCodigoProfissao(cargo.getCodigoProfissao());
+        int duracao = Integer.parseInt(Field__ExperienciaProfissional__Duracao.getText());
+        expTemp.setDuracao(duracao);        
+        boolean gerente = Checkbox__ExperienciaProfissional__Gerente.isSelected();
+        if( gerente == true){
+            expTemp.setGerencia("Sim");
+        } else {
+            expTemp.setGerencia("Não");
+        }
+        listener.inserirTabelaExperienciaProfissional(expTemp, Table__ExperienciaProfissional);
+    }//GEN-LAST:event_Button__ExperienciaProfissional__InserirExperienciaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;

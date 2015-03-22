@@ -87,7 +87,7 @@
                       <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Filtrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <EmptySpace pref="91" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1083,14 +1083,13 @@
                     <Component class="javax.swing.JComboBox" name="ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                          </StringArray>
+                          <StringArray count="0"/>
                         </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox()"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ProfissaoDAO pd1 = new ProfissaoDAO();&#xa;List&lt;Profissao&gt; profissoes1 = pd1.listarProfissoes();&#xa;for(Profissao p : profissoes1){&#xa;    ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.addItem(p);&#xa;}"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="Field__ExperienciaProfissional__Duracao">
                     </Component>
@@ -1108,6 +1107,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Inserir experi&#xea;ncia"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Button__ExperienciaProfissional__InserirExperienciaActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>

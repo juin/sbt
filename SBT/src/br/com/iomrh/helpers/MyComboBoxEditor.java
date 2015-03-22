@@ -5,6 +5,7 @@
  */
 package br.com.iomrh.helpers;
 
+import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 
@@ -13,8 +14,11 @@ import javax.swing.JComboBox;
  * @author joabe_000
  */
 
-class MyComboBoxEditor extends DefaultCellEditor {
+public class MyComboBoxEditor extends DefaultCellEditor {
   public MyComboBoxEditor(String[] items) {
+    super(new JComboBox(items));
+  }
+  public MyComboBoxEditor(Object[] items) {
     super(new JComboBox(items));
   }
 }

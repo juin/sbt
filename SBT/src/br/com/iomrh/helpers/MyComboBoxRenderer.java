@@ -11,8 +11,8 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 
-class MyComboBoxRenderer extends JComboBox implements TableCellRenderer {
-  public MyComboBoxRenderer(String[] items) {
+public class MyComboBoxRenderer extends JComboBox implements TableCellRenderer {
+  public MyComboBoxRenderer(Object[] items) {
     super(items);
   }
 

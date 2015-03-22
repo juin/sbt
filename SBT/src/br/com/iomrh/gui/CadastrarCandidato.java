@@ -1258,6 +1258,11 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         jButton_Add_ExperienciaProfissional.setBorderPainted(false);
         jButton_Add_ExperienciaProfissional.setFocusPainted(false);
         jButton_Add_ExperienciaProfissional.setFocusable(false);
+        jButton_Add_ExperienciaProfissional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Add_ExperienciaProfissionalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1574,6 +1579,10 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
     private void jButton_Add_InformaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Add_InformaticaActionPerformed
         cadastrarCandidatoListener.gerarLinhaInformatica(Table__Informatica);
     }//GEN-LAST:event_jButton_Add_InformaticaActionPerformed
+
+    private void jButton_Add_ExperienciaProfissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Add_ExperienciaProfissionalActionPerformed
+         cadastrarCandidatoListener.gerarLinhaExperienciaProfissional(Table__Candidato__experienciaProfissional);
+    }//GEN-LAST:event_jButton_Add_ExperienciaProfissionalActionPerformed
 
     /**
      * @param args the command line arguments

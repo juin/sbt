@@ -34,7 +34,7 @@ public class SBT {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Layout().setVisible(true);
+                new FiltrarCandidato().setVisible(true);
             }
         });
         

@@ -12,10 +12,15 @@ import br.com.iomrh.beans.IndisponibilidadeCandidato;
 import br.com.iomrh.beans.Profissao;
 import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
+import br.com.iomrh.helpers.Util;
 import br.com.iomrh.listeners.FiltrarCandidatoListener;
 import java.awt.Color;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -88,7 +93,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         Field__Candidato__CPF = new javax.swing.JTextField();
-        Field__Candidato__Nome = new javax.swing.JTextField();
+        Field__Candidato__PreNome = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
         Radio__Candidato__PortadorNecessidadesEspeciais__Sim = new javax.swing.JRadioButton();
         Radio__Candidato__DisponibilidadeViajar__Nao = new javax.swing.JRadioButton();
@@ -104,6 +109,11 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         Field__Candidato__PrimeiroEmprego = new javax.swing.JCheckBox();
         Checkbox__Candidato__Gerencia = new javax.swing.JCheckBox();
         Combo__Candidato__estadoCivil = new javax.swing.JComboBox();
+        Field__Candidato__SobreNome = new javax.swing.JTextField();
+        Field__Candidato__RG = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        Radio__Candidato__Sexo = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
@@ -361,7 +371,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             }
         });
 
-        jLabel48.setText("Nome");
+        jLabel48.setText("Prenome");
 
         jLabel49.setText("CPF");
 
@@ -395,18 +405,18 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         Combo__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)", "Outros" }));
 
+        jLabel6.setText("RG");
+
+        Radio__Candidato__Sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(Field__Candidato__PrimeiroEmprego)
-                        .addGap(18, 18, 18)
-                        .addComponent(Checkbox__Candidato__Gerencia))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,111 +428,149 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                                     .addComponent(jLabel46)
                                     .addComponent(jLabel50)
                                     .addComponent(jLabel45))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(Field__Candidato__SobreNome)
+                        .addGap(81, 81, 81)
+                        .addComponent(Field__Candidato__PrimeiroEmprego)
+                        .addGap(18, 18, 18)
+                        .addComponent(Checkbox__Candidato__Gerencia))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Field__Candidato__CPF)
-                            .addComponent(Field__Candidato__Nome)
+                            .addComponent(Field__Candidato__PreNome)
                             .addComponent(Field__Candidato__dataNascimento)
                             .addComponent(Field__Candidato__quantidadeFilhos)
                             .addComponent(Combo__Candidato__estadoCivil, 0, 218, Short.MAX_VALUE))
                         .addGap(54, 54, 54)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel51)
-                            .addComponent(jLabel52)
-                            .addComponent(jLabel53)
-                            .addComponent(jLabel54)
-                            .addComponent(jLabel55))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
-                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao)
-                                .addGroup(jPanel22Layout.createSequentialGroup()
-                                    .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao)))
-                            .addComponent(Combo__Candidato__CNHCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Radio__Candidato__Veiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Radio__Candidato__PretensaoSalarial))))
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel51)
+                                    .addComponent(jLabel52)
+                                    .addComponent(jLabel53)
+                                    .addComponent(jLabel54)
+                                    .addComponent(jLabel55))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
+                                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao)
+                                        .addGroup(jPanel22Layout.createSequentialGroup()
+                                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
+                                            .addGap(29, 29, 29)
+                                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao)))
+                                    .addComponent(Combo__Candidato__CNHCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Radio__Candidato__Veiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Radio__Candidato__PretensaoSalarial)))
+                            .addComponent(Radio__Candidato__Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel22Layout.createSequentialGroup()
+                    .addGap(182, 182, 182)
+                    .addComponent(Field__Candidato__RG)
+                    .addGap(430, 430, 430)))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Field__Candidato__Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel48))
+                        .addComponent(jLabel51)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel49))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel50))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel46)
-                            .addComponent(Combo__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Field__Candidato__quantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel45))
-                        .addGap(28, 28, 28))
+                        .addComponent(jLabel52)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel53)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel54))
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addComponent(jLabel51)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel52)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel53)
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel54))
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
-                                    .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
-                                    .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Combo__Candidato__CNHCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Radio__Candidato__Veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
+                            .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel55)
-                            .addComponent(Radio__Candidato__PretensaoSalarial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
+                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Field__Candidato__PrimeiroEmprego)
-                            .addComponent(Checkbox__Candidato__Gerencia))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(Combo__Candidato__CNHCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Radio__Candidato__Veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel55)
+                    .addComponent(Radio__Candidato__PretensaoSalarial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Field__Candidato__PrimeiroEmprego)
+                    .addComponent(Checkbox__Candidato__Gerencia))
+                .addGap(18, 18, 18)
+                .addComponent(Radio__Candidato__Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Field__Candidato__PreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46)
+                    .addComponent(Combo__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Field__Candidato__quantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel45))
+                .addGap(18, 18, 18)
+                .addComponent(Field__Candidato__SobreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel22Layout.createSequentialGroup()
+                    .addGap(14, 14, 14)
+                    .addComponent(Field__Candidato__RG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(316, Short.MAX_VALUE)))
         );
+
+        jLabel5.setText("Sobrenome");
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 939, Short.MAX_VALUE)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel5)
+                .addContainerGap(947, Short.MAX_VALUE))
             .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(14, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(219, Short.MAX_VALUE)))
+                    .addContainerGap(221, Short.MAX_VALUE)))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                .addContainerGap(264, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(130, 130, 130))
             .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                    .addContainerGap(91, Short.MAX_VALUE)
+                    .addContainerGap(48, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(86, Short.MAX_VALUE)))
+                    .addContainerGap()))
         );
 
         jTPResultado.addTab("Dados pessoais", jPanel21);
@@ -1015,18 +1063,31 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         for(Profissao prof : profissoes){
             Candidato canTemp = new Candidato();
             canTemp.setCodProfissao(prof.getCodigoProfissao());
+            canTemp.setPrenome(Field__Candidato__PreNome.getText());
+            canTemp.setSobrenome(Field__Candidato__SobreNome.getText());
+            canTemp.setCpf(Field__Candidato__CPF.getText());
+            canTemp.setRg(Field__Candidato__RG.getText());
+            canTemp.setSexo((String) Radio__Candidato__Sexo.getSelectedItem());
+            String dataNascimento = Field__Candidato__dataNascimento.getText();
+            Util dnTemp = new Util();
+            Date dataNasc = new Date();
+            try {
+                canTemp.setDataNascimento(dnTemp.criaData(dataNascimento));
+            } catch (ParseException ex) {
+                Logger.getLogger(FiltrarCandidato.class.getName()).log(Level.SEVERE, null, ex);
+            }
             candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
         }
         
-        if(!Field__Candidato__Nome.getText().isEmpty()){
-            String nomeCompleto = Field__Candidato__Nome.getText();
+        if(!Field__Candidato__PreNome.getText().isEmpty()){
+            String nomeCompleto = Field__Candidato__PreNome.getText();
             String[] vetorNome = nomeCompleto.split(" ");
             
             System.out.println(vetorNome[0]);
             Candidato canTemp = new Candidato();
             
         }
-        String CandidatoNome = Field__Candidato__Nome.getText();
+        String CandidatoNome = Field__Candidato__PreNome.getText();
         System.out.println("Nome: "+CandidatoNome);
        
         
@@ -1254,8 +1315,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JComboBox Combo__Candidato__CNHCategoria;
     private javax.swing.JComboBox Combo__Candidato__estadoCivil;
     private javax.swing.JTextField Field__Candidato__CPF;
-    private javax.swing.JTextField Field__Candidato__Nome;
+    private javax.swing.JTextField Field__Candidato__PreNome;
     private javax.swing.JCheckBox Field__Candidato__PrimeiroEmprego;
+    private javax.swing.JTextField Field__Candidato__RG;
+    private javax.swing.JTextField Field__Candidato__SobreNome;
     private javax.swing.JTextField Field__Candidato__dataNascimento;
     private javax.swing.JTextField Field__Candidato__quantidadeFilhos;
     private javax.swing.JTextField Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;
@@ -1271,6 +1334,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JRadioButton Radio__Candidato__PortadorNecessidadesEspeciais__Nao;
     private javax.swing.JRadioButton Radio__Candidato__PortadorNecessidadesEspeciais__Sim;
     private javax.swing.JTextField Radio__Candidato__PretensaoSalarial;
+    private javax.swing.JComboBox Radio__Candidato__Sexo;
     private javax.swing.JComboBox Radio__Candidato__Veiculo;
     private javax.swing.JTable Table__CurriculoIdioma;
     private javax.swing.JTable Table__CurriculoInformatica;
@@ -1295,6 +1359,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
@@ -1302,6 +1367,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel13;

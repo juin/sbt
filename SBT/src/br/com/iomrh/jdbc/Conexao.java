@@ -18,7 +18,7 @@ public class Conexao {
     public Connection getConexao() {
         try {
             return DriverManager.getConnection(
-            "jdbc:mysql://localhost/sbt", "root", "");
+            "jdbc:mysql://localhost/sbt", "sbt", "sbt2015");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

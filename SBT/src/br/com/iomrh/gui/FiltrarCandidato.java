@@ -14,6 +14,7 @@ import br.com.iomrh.dao.CandidatoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
 import br.com.iomrh.helpers.Util;
 import br.com.iomrh.listeners.FiltrarCandidatoListener;
+import com.sun.javafx.PlatformUtil;
 import java.awt.Color;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,7 +39,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     //Cria novo Model para adicionar/remover elementos do 2º jList
     DefaultListModel dlm2 = new DefaultListModel();
     FiltrarCandidatoListener listener = new FiltrarCandidatoListener();
-    
+    ProfissaoDAO pd = new ProfissaoDAO();
+    List<Profissao> profissoes = pd.listarProfissoes();
+
+
     public FiltrarCandidato() {
         initComponents();
         //buttonGroup1 está relacionado ao PNE
@@ -61,92 +66,83 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jTPResultado = new javax.swing.JTabbedPane();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        Field__Profissao__Nome__Pesquisa = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        List__Profissao__Nome__Lista = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        List__Profissao__Nome__Selecionados = new javax.swing.JList();
+        jPDadosPessoais = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        Radio__Candidato__PortadorNecessidadesEspeciais__Nao = new javax.swing.JRadioButton();
+        Radio__Candidato__PortadorNecessidadesEspeciais__Sim = new javax.swing.JRadioButton();
+        jLabel51 = new javax.swing.JLabel();
+        Radio__Candidato__DisponibilidadeViajar__Nao = new javax.swing.JRadioButton();
+        Radio__Candidato__DisponibilidadeViajar__Sim = new javax.swing.JRadioButton();
+        jLabel52 = new javax.swing.JLabel();
+        Combo__Candidato__CNHCategoria = new javax.swing.JComboBox();
+        Combo__Candidato__Veiculo = new javax.swing.JComboBox();
+        Combo__Candidato__Sexo = new javax.swing.JComboBox();
+        Field__Candidato__PretensaoSalarialMin = new javax.swing.JTextField();
+        jLabel55 = new javax.swing.JLabel();
+        Field__Candidato__PrimeiroEmprego = new javax.swing.JCheckBox();
+        Checkbox__Candidato__Gerencia = new javax.swing.JCheckBox();
+        jLabel48 = new javax.swing.JLabel();
+        Field__Candidato__PreNome = new javax.swing.JTextField();
+        Field__Candidato__SobreNome = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        Field__Candidato__RG = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
+        Field__Candidato__CPF = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        Field__Candidato__dataNascimento = new javax.swing.JTextField();
+        Combo__Candidato__estadoCivil = new javax.swing.JComboBox();
+        jLabel45 = new javax.swing.JLabel();
+        Field__Candidato__quantidadeFilhos = new javax.swing.JTextField();
+        Field__Candidato__PretensaoSalarialMax = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes = new javax.swing.JComboBox();
         addProfissao = new javax.swing.JButton();
         delProfissao = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        Button__Profissao__Nome__Pesquisar = new javax.swing.JButton();
-        jPanel17 = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        List__Profissao__Nome__Selecionados = new javax.swing.JList();
+        jLabel11 = new javax.swing.JLabel();
+        jPCaracteristicas = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados = new javax.swing.JList();
+        addCaracteristica = new javax.swing.JButton();
+        delCaracteristica = new javax.swing.JButton();
         Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         List__CaracteristicasCandidato__Nome__Lista = new javax.swing.JList();
-        addCaracteristica = new javax.swing.JButton();
-        delCaracteristica = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados = new javax.swing.JList();
-        jPanel21 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        Field__Candidato__dataNascimento = new javax.swing.JTextField();
-        Field__Candidato__quantidadeFilhos = new javax.swing.JTextField();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        Field__Candidato__CPF = new javax.swing.JTextField();
-        Field__Candidato__PreNome = new javax.swing.JTextField();
-        jLabel51 = new javax.swing.JLabel();
-        Radio__Candidato__PortadorNecessidadesEspeciais__Sim = new javax.swing.JRadioButton();
-        Radio__Candidato__DisponibilidadeViajar__Nao = new javax.swing.JRadioButton();
-        Radio__Candidato__DisponibilidadeViajar__Sim = new javax.swing.JRadioButton();
-        Radio__Candidato__PortadorNecessidadesEspeciais__Nao = new javax.swing.JRadioButton();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        Combo__Candidato__CNHCategoria = new javax.swing.JComboBox();
-        jLabel54 = new javax.swing.JLabel();
-        Radio__Candidato__Veiculo = new javax.swing.JComboBox();
-        jLabel55 = new javax.swing.JLabel();
-        Radio__Candidato__PretensaoSalarial = new javax.swing.JTextField();
-        Field__Candidato__PrimeiroEmprego = new javax.swing.JCheckBox();
-        Checkbox__Candidato__Gerencia = new javax.swing.JCheckBox();
-        Combo__Candidato__estadoCivil = new javax.swing.JComboBox();
-        Field__Candidato__SobreNome = new javax.swing.JTextField();
-        Field__Candidato__RG = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        Radio__Candidato__Sexo = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
-        jPanel24 = new javax.swing.JPanel();
-        jLabel56 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        Table__IndisponibilidadeCandidato = new javax.swing.JTable();
-        Button__IndisponibilidadeCandidato__Comercial__Sabado = new javax.swing.JButton();
-        Button__IndisponibilidadeCandidato__Semana__Manha = new javax.swing.JButton();
-        Button__IndisponibilidadeCandidato__Semana__Tarde = new javax.swing.JButton();
-        Button__IndisponibilidadeCandidato__Semana__Noite = new javax.swing.JButton();
+        Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa = new javax.swing.JButton();
+        jPDisponibilidade = new javax.swing.JPanel();
         Button__IndisponibilidadeCandidato__Comercial__SegSex = new javax.swing.JButton();
         Button__IndisponibilidadeCandidato__MarcarTudo = new javax.swing.JButton();
         Button__IndisponibilidadeCandidato__Limpar = new javax.swing.JButton();
-        jPanel15 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa = new javax.swing.JComboBox();
-        Field__ExperienciaProfissional__Duracao = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        Button__ExperienciaProfissional__InserirExperiencia = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        Checkbox__ExperienciaProfissional__Gerente = new javax.swing.JCheckBox();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        Table__IndisponibilidadeCandidato = new javax.swing.JTable();
+        jLabel56 = new javax.swing.JLabel();
+        Button__IndisponibilidadeCandidato__Semana__Noite = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Semana__Tarde = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Semana__Manha = new javax.swing.JButton();
+        Button__IndisponibilidadeCandidato__Comercial__Sabado = new javax.swing.JButton();
+        jPExperienciaProfissional = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         Table__ExperienciaProfissional = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Table__ResultadoFiltragem = new javax.swing.JTable();
-        jPanel19 = new javax.swing.JPanel();
-        jPanel20 = new javax.swing.JPanel();
+        jBtnLimparTabelaExperienciasProfissionais = new javax.swing.JButton();
+        Button__ExperienciaProfissional__InserirExperiencia = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        Field__ExperienciaProfissional__Duracao = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Checkbox__ExperienciaProfissional__Gerente = new javax.swing.JCheckBox();
+        jPInformaticaIdiomas = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         Table__CurriculoInformatica = new javax.swing.JTable();
+        jLabel42 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         Table__CurriculoIdioma = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Table__ResultadoFiltragem = new javax.swing.JTable();
         Filtrar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -155,122 +151,249 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jInternalFrame1.setVisible(true);
 
-        jPanel14.setMaximumSize(new java.awt.Dimension(30000, 32767));
-        jPanel14.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel14ComponentShown(evt);
-            }
-        });
+        jLabel5.setText("Sobrenome");
 
-        Field__Profissao__Nome__Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+        Radio__Candidato__PortadorNecessidadesEspeciais__Nao.setText("Não");
+
+        Radio__Candidato__PortadorNecessidadesEspeciais__Sim.setText("Sim");
+
+        jLabel51.setText("PNE");
+
+        Radio__Candidato__DisponibilidadeViajar__Nao.setText("Não");
+
+        Radio__Candidato__DisponibilidadeViajar__Sim.setText("Sim");
+
+        jLabel52.setText("Disp. viajar");
+
+        Combo__Candidato__CNHCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CNH", "Não possui", "A", "B", "C", "D", "E" }));
+
+        Combo__Candidato__Veiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Veículo", "Não possui", "Carro", "Moto", "Outro", " " }));
+
+        Combo__Candidato__Sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Escolha o Sexo", "Masculino", "Feminino" }));
+
+        jLabel55.setText("Pretensão salarial");
+
+        Field__Candidato__PrimeiroEmprego.setText("Primeiro emprego");
+
+        Checkbox__Candidato__Gerencia.setText("Gerência");
+
+        jLabel48.setText("Prenome");
+
+        Field__Candidato__PreNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Field__Profissao__Nome__PesquisaActionPerformed(evt);
+                Field__Candidato__PreNomeActionPerformed(evt);
             }
         });
 
-        DefaultListModel dlm = new DefaultListModel();
+        jLabel6.setText("RG");
 
-        ProfissaoDAO pd = new ProfissaoDAO();
-        List<Profissao> profissoes = pd.listarProfissoes();
+        jLabel49.setText("CPF");
+
+        jLabel50.setText("Data de nascimento");
+
+        Field__Candidato__dataNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Field__Candidato__dataNascimentoActionPerformed(evt);
+            }
+        });
+
+        Combo__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estado Civil", "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)", "Outros" }));
+
+        jLabel45.setText("Qtd. de filhos");
+
+        jLabel7.setText("Mínimo");
+
+        jLabel10.setText("Máximo");
+
         for(Profissao p : profissoes){
-            dlm.addElement(p);
+            ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes.addItem(p);
         }
-        List__Profissao__Nome__Lista.setModel(dlm);
-        jScrollPane1.setViewportView(List__Profissao__Nome__Lista);
 
-        List__Profissao__Nome__Selecionados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(List__Profissao__Nome__Selecionados);
-
-        addProfissao.setText("->");
+        addProfissao.setText("+");
         addProfissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addProfissaoActionPerformed(evt);
             }
         });
 
-        delProfissao.setText("<-");
+        delProfissao.setText("-");
         delProfissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delProfissaoActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Pesquisar:");
+        List__Profissao__Nome__Selecionados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(List__Profissao__Nome__Selecionados);
 
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
+        jLabel11.setText("Profissões");
+
+        javax.swing.GroupLayout jPDadosPessoaisLayout = new javax.swing.GroupLayout(jPDadosPessoais);
+        jPDadosPessoais.setLayout(jPDadosPessoaisLayout);
+        jPDadosPessoaisLayout.setHorizontalGroup(
+            jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(jLabel45)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Field__Candidato__quantidadeFilhos))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPDadosPessoaisLayout.createSequentialGroup()
+                                .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel49)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Field__Candidato__RG)
+                                    .addComponent(Field__Candidato__CPF)
+                                    .addComponent(Field__Candidato__SobreNome)))
+                            .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(jLabel50)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Field__Candidato__dataNascimento))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(jLabel48)
+                                .addGap(37, 37, 37)
+                                .addComponent(Field__Candidato__PreNome, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 1, Short.MAX_VALUE)))
+                        .addGap(47, 47, 47))
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
+                                .addGap(8, 8, 8)
+                                .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao))
+                            .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(jLabel52)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao))
+                            .addComponent(Combo__Candidato__estadoCivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Combo__Candidato__CNHCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Combo__Candidato__Veiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Combo__Candidato__Sexo, 0, 272, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addComponent(Checkbox__Candidato__Gerencia)
+                        .addGap(18, 18, 18)
+                        .addComponent(Field__Candidato__PrimeiroEmprego))
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addComponent(jLabel55)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel7)
+                            .addComponent(Field__Candidato__PretensaoSalarialMin, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Field__Profissao__Nome__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addProfissao)
-                    .addComponent(delProfissao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel10)
+                            .addComponent(Field__Candidato__PretensaoSalarialMax, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addComponent(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addProfissao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delProfissao))
+                    .addComponent(jLabel11)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(333, 333, 333))
         );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__Profissao__Nome__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(addProfissao)
-                                .addGap(34, 34, 34)
-                                .addComponent(delProfissao)))))
-                .addContainerGap())
+        jPDadosPessoaisLayout.setVerticalGroup(
+            jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDadosPessoaisLayout.createSequentialGroup()
+                .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDadosPessoaisLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Field__Candidato__PreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Checkbox__Candidato__Gerencia)
+                            .addComponent(Field__Candidato__PrimeiroEmprego))))
+                .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(Field__Candidato__SobreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel49))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Field__Candidato__RG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel50)
+                            .addComponent(Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel45)
+                            .addComponent(Field__Candidato__quantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Combo__Candidato__Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(Combo__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(Combo__Candidato__CNHCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Combo__Candidato__Veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao)
+                            .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel51)
+                                .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel52)
+                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
+                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao))
+                        .addContainerGap())
+                    .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel55)
+                            .addComponent(Field__Candidato__PretensaoSalarialMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Field__Candidato__PretensaoSalarialMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addProfissao)
+                            .addComponent(delProfissao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        Button__Profissao__Nome__Pesquisar.setText("Pesquisar");
+        jTPResultado.addTab("Dados pessoais", jPDadosPessoais);
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addComponent(Button__Profissao__Nome__Pesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Button__Profissao__Nome__Pesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados);
 
-        jTPResultado.addTab("Profissões/Cargos", jPanel13);
+        addCaracteristica.setText("->");
 
-        jPanel18.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel18.setToolTipText("");
-
-        Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa.setText("Pesquisar");
+        delCaracteristica.setText("<-");
 
         Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,376 +410,54 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(List__CaracteristicasCandidato__Nome__Lista);
 
-        addCaracteristica.setText("->");
+        Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa.setText("Pesquisar");
 
-        delCaracteristica.setText("<-");
-
-        Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados);
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa)
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addCaracteristica)
-                    .addComponent(delCaracteristica))
-                .addGap(104, 104, 104)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPCaracteristicasLayout = new javax.swing.GroupLayout(jPCaracteristicas);
+        jPCaracteristicas.setLayout(jPCaracteristicasLayout);
+        jPCaracteristicasLayout.setHorizontalGroup(
+            jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCaracteristicasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(addCaracteristica)
-                        .addGap(43, 43, 43)
-                        .addComponent(delCaracteristica))
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4))))
-                .addGap(3, 3, 3)
-                .addComponent(Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPCaracteristicasLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addCaracteristica)
+                            .addComponent(delCaracteristica))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
+        jPCaracteristicasLayout.setVerticalGroup(
+            jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCaracteristicasLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
-
-        jTPResultado.addTab("Características", jPanel17);
-
-        jLabel45.setText("Qtd. de filhos");
-
-        jLabel46.setText("Estado civil");
-
-        Field__Candidato__dataNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Field__Candidato__dataNascimentoActionPerformed(evt);
-            }
-        });
-
-        jLabel48.setText("Prenome");
-
-        jLabel49.setText("CPF");
-
-        jLabel50.setText("Data de nascimento");
-
-        jLabel51.setText("PNE");
-
-        Radio__Candidato__PortadorNecessidadesEspeciais__Sim.setText("Sim");
-
-        Radio__Candidato__DisponibilidadeViajar__Nao.setText("Não");
-
-        Radio__Candidato__DisponibilidadeViajar__Sim.setText("Sim");
-
-        Radio__Candidato__PortadorNecessidadesEspeciais__Nao.setText("Não");
-
-        jLabel52.setText("Disp. viajar");
-
-        jLabel53.setText("CNH");
-
-        Combo__Candidato__CNHCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Não possui", "A", "B", "C", "D", "E" }));
-
-        jLabel54.setText("Veículo");
-
-        Radio__Candidato__Veiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Não possui", "Carro", "Moto", "Outro", " " }));
-
-        jLabel55.setText("Pretensão salarial");
-
-        Field__Candidato__PrimeiroEmprego.setText("Primeiro emprego");
-
-        Checkbox__Candidato__Gerencia.setText("Gerência");
-
-        Combo__Candidato__estadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Casado(a)", "Solteiro(a)", "Divorciado(a)", "Viúvo(a)", "Outros" }));
-
-        jLabel6.setText("RG");
-
-        Radio__Candidato__Sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel48)
-                                    .addComponent(jLabel49))
-                                .addGap(78, 78, 78))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel46)
-                                    .addComponent(jLabel50)
-                                    .addComponent(jLabel45))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(Field__Candidato__SobreNome)
-                        .addGap(81, 81, 81)
-                        .addComponent(Field__Candidato__PrimeiroEmprego)
+                .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(13, 13, 13)
+                .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPCaracteristicasLayout.createSequentialGroup()
+                        .addComponent(addCaracteristica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(delCaracteristica)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPCaracteristicasLayout.createSequentialGroup()
+                        .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane5)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(Checkbox__Candidato__Gerencia))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Field__Candidato__CPF)
-                            .addComponent(Field__Candidato__PreNome)
-                            .addComponent(Field__Candidato__dataNascimento)
-                            .addComponent(Field__Candidato__quantidadeFilhos)
-                            .addComponent(Combo__Candidato__estadoCivil, 0, 218, Short.MAX_VALUE))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel51)
-                                    .addComponent(jLabel52)
-                                    .addComponent(jLabel53)
-                                    .addComponent(jLabel54)
-                                    .addComponent(jLabel55))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
-                                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao)
-                                        .addGroup(jPanel22Layout.createSequentialGroup()
-                                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
-                                            .addGap(29, 29, 29)
-                                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao)))
-                                    .addComponent(Combo__Candidato__CNHCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Radio__Candidato__Veiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Radio__Candidato__PretensaoSalarial)))
-                            .addComponent(Radio__Candidato__Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel22Layout.createSequentialGroup()
-                    .addGap(182, 182, 182)
-                    .addComponent(Field__Candidato__RG)
-                    .addGap(430, 430, 430)))
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel51)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel52)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel53)
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel54))
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Sim)
-                            .addComponent(Radio__Candidato__PortadorNecessidadesEspeciais__Nao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Sim)
-                            .addComponent(Radio__Candidato__DisponibilidadeViajar__Nao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Combo__Candidato__CNHCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Radio__Candidato__Veiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel55)
-                    .addComponent(Radio__Candidato__PretensaoSalarial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__Candidato__PrimeiroEmprego)
-                    .addComponent(Checkbox__Candidato__Gerencia))
-                .addGap(18, 18, 18)
-                .addComponent(Radio__Candidato__Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__Candidato__PreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel48))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__Candidato__CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel49))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__Candidato__dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel50))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel46)
-                    .addComponent(Combo__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__Candidato__quantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel45))
-                .addGap(18, 18, 18)
-                .addComponent(Field__Candidato__SobreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel22Layout.createSequentialGroup()
-                    .addGap(14, 14, 14)
-                    .addComponent(Field__Candidato__RG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(316, Short.MAX_VALUE)))
+                        .addComponent(Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa)
+                        .addContainerGap(91, Short.MAX_VALUE))))
         );
 
-        jLabel5.setText("Sobrenome");
-
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel5)
-                .addContainerGap(947, Short.MAX_VALUE))
-            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                    .addContainerGap(14, Short.MAX_VALUE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(221, Short.MAX_VALUE)))
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(264, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(130, 130, 130))
-            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                    .addContainerGap(48, Short.MAX_VALUE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-        );
-
-        jTPResultado.addTab("Dados pessoais", jPanel21);
-
-        jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel56.setText("Disponibilidade do candidato");
-
-        Table__IndisponibilidadeCandidato.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Manhã", null, null, null, null, null, null, null},
-                {"Tarde", null, null, null, null, null, null, null},
-                {"Noite", null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Dia/turno", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane6.setViewportView(Table__IndisponibilidadeCandidato);
-
-        Button__IndisponibilidadeCandidato__Comercial__Sabado.setText("Horário Comercial");
-        Button__IndisponibilidadeCandidato__Comercial__Sabado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed(evt);
-            }
-        });
-
-        Button__IndisponibilidadeCandidato__Semana__Manha.setText("Semana - Manhã");
-        Button__IndisponibilidadeCandidato__Semana__Manha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed(evt);
-            }
-        });
-
-        Button__IndisponibilidadeCandidato__Semana__Tarde.setText("Semana - Tarde");
-        Button__IndisponibilidadeCandidato__Semana__Tarde.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed(evt);
-            }
-        });
-
-        Button__IndisponibilidadeCandidato__Semana__Noite.setText("Semana - Noite");
-        Button__IndisponibilidadeCandidato__Semana__Noite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel56)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Manha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Tarde, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Noite)))
-                .addContainerGap(136, Short.MAX_VALUE))
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addComponent(jLabel56)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado)
-                    .addComponent(Button__IndisponibilidadeCandidato__Semana__Manha)
-                    .addComponent(Button__IndisponibilidadeCandidato__Semana__Tarde)
-                    .addComponent(Button__IndisponibilidadeCandidato__Semana__Noite)))
-        );
+        jTPResultado.addTab("Características", jPCaracteristicas);
 
         Button__IndisponibilidadeCandidato__Comercial__SegSex.setText("Horário Comercial - Seg a Sex");
         Button__IndisponibilidadeCandidato__Comercial__SegSex.addActionListener(new java.awt.event.ActionListener() {
@@ -679,70 +480,125 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex)
-                        .addGap(18, 18, 18)
-                        .addComponent(Button__IndisponibilidadeCandidato__MarcarTudo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Button__IndisponibilidadeCandidato__Limpar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex)
-                    .addComponent(Button__IndisponibilidadeCandidato__MarcarTudo)
-                    .addComponent(Button__IndisponibilidadeCandidato__Limpar))
-                .addContainerGap(169, Short.MAX_VALUE))
-        );
+        Table__IndisponibilidadeCandidato.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Manhã", null, null, null, null, null, null, null},
+                {"Tarde", null, null, null, null, null, null, null},
+                {"Noite", null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Dia/turno", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
 
-        jTPResultado.addTab("Disponiblidade do candidato", jPanel23);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(Table__IndisponibilidadeCandidato);
 
-        ProfissaoDAO pd1 = new ProfissaoDAO();
-        List<Profissao> profissoes1 = pd1.listarProfissoes();
-        for(Profissao p : profissoes1){
-            ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.addItem(p);
-        }
+        jLabel56.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel56.setText("Disponibilidade do candidato");
 
-        jLabel8.setText("Cargo");
-
-        jLabel9.setText("Duração");
-
-        Button__ExperienciaProfissional__InserirExperiencia.setText("Inserir experiência");
-        Button__ExperienciaProfissional__InserirExperiencia.addActionListener(new java.awt.event.ActionListener() {
+        Button__IndisponibilidadeCandidato__Semana__Noite.setText("Semana - Noite");
+        Button__IndisponibilidadeCandidato__Semana__Noite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button__ExperienciaProfissional__InserirExperienciaActionPerformed(evt);
+                Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Gerente?");
+        Button__IndisponibilidadeCandidato__Semana__Tarde.setText("Semana - Tarde");
+        Button__IndisponibilidadeCandidato__Semana__Tarde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed(evt);
+            }
+        });
+
+        Button__IndisponibilidadeCandidato__Semana__Manha.setText("Semana - Manhã");
+        Button__IndisponibilidadeCandidato__Semana__Manha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed(evt);
+            }
+        });
+
+        Button__IndisponibilidadeCandidato__Comercial__Sabado.setText("Horário Comercial");
+        Button__IndisponibilidadeCandidato__Comercial__Sabado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPDisponibilidadeLayout = new javax.swing.GroupLayout(jPDisponibilidade);
+        jPDisponibilidade.setLayout(jPDisponibilidadeLayout);
+        jPDisponibilidadeLayout.setHorizontalGroup(
+            jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPDisponibilidadeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPDisponibilidadeLayout.createSequentialGroup()
+                        .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPDisponibilidadeLayout.createSequentialGroup()
+                                .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)
+                                .addComponent(Button__IndisponibilidadeCandidato__Semana__Manha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Button__IndisponibilidadeCandidato__Semana__Tarde, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Button__IndisponibilidadeCandidato__Semana__Noite))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Button__IndisponibilidadeCandidato__MarcarTudo)
+                            .addComponent(Button__IndisponibilidadeCandidato__Limpar)))
+                    .addGroup(jPDisponibilidadeLayout.createSequentialGroup()
+                        .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel56)
+                            .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPDisponibilidadeLayout.setVerticalGroup(
+            jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPDisponibilidadeLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel56)
+                .addGap(18, 18, 18)
+                .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPDisponibilidadeLayout.createSequentialGroup()
+                        .addComponent(Button__IndisponibilidadeCandidato__MarcarTudo)
+                        .addGap(18, 18, 18)
+                        .addComponent(Button__IndisponibilidadeCandidato__Limpar)))
+                .addGap(18, 18, 18)
+                .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPDisponibilidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Manha)
+                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Tarde)
+                        .addComponent(Button__IndisponibilidadeCandidato__Semana__Noite))
+                    .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado))
+                .addGap(26, 26, 26)
+                .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex)
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+
+        jTPResultado.addTab("Disponiblidade do candidato", jPDisponibilidade);
 
         Table__ExperienciaProfissional.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cargo", "Duração", "Gerente", "Remover"
+                "Cargo", "Duração", "Gerente"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -758,75 +614,170 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             Table__ExperienciaProfissional.getColumnModel().getColumn(1).setPreferredWidth(8);
             Table__ExperienciaProfissional.getColumnModel().getColumn(2).setResizable(false);
             Table__ExperienciaProfissional.getColumnModel().getColumn(2).setPreferredWidth(2);
-            Table__ExperienciaProfissional.getColumnModel().getColumn(3).setResizable(false);
-            Table__ExperienciaProfissional.getColumnModel().getColumn(3).setPreferredWidth(4);
         }
 
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
+        jBtnLimparTabelaExperienciasProfissionais.setText("Limpar Tabela");
+        jBtnLimparTabelaExperienciasProfissionais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLimparTabelaExperienciasProfissionaisActionPerformed(evt);
+            }
+        });
+
+        Button__ExperienciaProfissional__InserirExperiencia.setText("Inserir experiência");
+        Button__ExperienciaProfissional__InserirExperiencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button__ExperienciaProfissional__InserirExperienciaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Cargo");
+
+        for(Profissao p : profissoes){
+            ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.addItem(p);
+        }
+
+        jLabel9.setText("Duração");
+
+        jLabel4.setText("Gerente?");
+
+        javax.swing.GroupLayout jPExperienciaProfissionalLayout = new javax.swing.GroupLayout(jPExperienciaProfissional);
+        jPExperienciaProfissional.setLayout(jPExperienciaProfissionalLayout);
+        jPExperienciaProfissionalLayout.setHorizontalGroup(
+            jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPExperienciaProfissionalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPExperienciaProfissionalLayout.createSequentialGroup()
+                        .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Field__ExperienciaProfissional__Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Checkbox__ExperienciaProfissional__Gerente)))
-                    .addComponent(Button__ExperienciaProfissional__InserirExperiencia)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPExperienciaProfissionalLayout.createSequentialGroup()
+                            .addComponent(Button__ExperienciaProfissional__InserirExperiencia)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtnLimparTabelaExperienciasProfissionais))
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
+        jPExperienciaProfissionalLayout.setVerticalGroup(
+            jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPExperienciaProfissionalLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPExperienciaProfissionalLayout.createSequentialGroup()
                         .addComponent(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Field__ExperienciaProfissional__Duracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPExperienciaProfissionalLayout.createSequentialGroup()
+                        .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addGroup(jPanel16Layout.createSequentialGroup()
+                            .addGroup(jPExperienciaProfissionalLayout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addComponent(jLabel9)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(Checkbox__ExperienciaProfissional__Gerente))))
                 .addGap(18, 18, 18)
-                .addComponent(Button__ExperienciaProfissional__InserirExperiencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(259, 259, 259))
+                .addGroup(jPExperienciaProfissionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Button__ExperienciaProfissional__InserirExperiencia)
+                    .addComponent(jBtnLimparTabelaExperienciasProfissionais))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        jTPResultado.addTab("Experiência profissional", jPExperienciaProfissional);
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel41.setText("Informática");
+
+        Table__CurriculoInformatica.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Habilidade", "Nível", "Marcar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(Table__CurriculoInformatica);
+        if (Table__CurriculoInformatica.getColumnModel().getColumnCount() > 0) {
+            Table__CurriculoInformatica.getColumnModel().getColumn(2).setResizable(false);
+            Table__CurriculoInformatica.getColumnModel().getColumn(2).setPreferredWidth(4);
+        }
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel42.setText("Idiomas");
+
+        Table__CurriculoIdioma.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Nível fala", "Nível Escrita", "Nível Leitura", "Marcar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(Table__CurriculoIdioma);
+        if (Table__CurriculoIdioma.getColumnModel().getColumnCount() > 0) {
+            Table__CurriculoIdioma.getColumnModel().getColumn(4).setResizable(false);
+            Table__CurriculoIdioma.getColumnModel().getColumn(4).setPreferredWidth(5);
+        }
+
+        javax.swing.GroupLayout jPInformaticaIdiomasLayout = new javax.swing.GroupLayout(jPInformaticaIdiomas);
+        jPInformaticaIdiomas.setLayout(jPInformaticaIdiomasLayout);
+        jPInformaticaIdiomasLayout.setHorizontalGroup(
+            jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPInformaticaIdiomasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel41)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel42))
+                .addGap(22, 22, 22))
+        );
+        jPInformaticaIdiomasLayout.setVerticalGroup(
+            jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPInformaticaIdiomasLayout.createSequentialGroup()
+                .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPInformaticaIdiomasLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPInformaticaIdiomasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel42)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jTPResultado.addTab("Experiência profissional", jPanel15);
+        jTPResultado.addTab("Informática/Idiomas", jPInformaticaIdiomas);
 
         Table__ResultadoFiltragem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -870,107 +821,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jTPResultado.addTab("Resultado Filtragem", jScrollPane3);
 
-        jPanel20.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel20.setToolTipText("");
-
-        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel41.setText("Informática");
-
-        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel42.setText("Idiomas");
-
-        Table__CurriculoInformatica.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Habilidade", "Nível", "Marcar"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane9.setViewportView(Table__CurriculoInformatica);
-        if (Table__CurriculoInformatica.getColumnModel().getColumnCount() > 0) {
-            Table__CurriculoInformatica.getColumnModel().getColumn(2).setResizable(false);
-            Table__CurriculoInformatica.getColumnModel().getColumn(2).setPreferredWidth(4);
-        }
-
-        Table__CurriculoIdioma.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Nível fala", "Nível Escrita", "Nível Leitura", "Marcar"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane7.setViewportView(Table__CurriculoIdioma);
-        if (Table__CurriculoIdioma.getColumnModel().getColumnCount() > 0) {
-            Table__CurriculoIdioma.getColumnModel().getColumn(4).setResizable(false);
-            Table__CurriculoIdioma.getColumnModel().getColumn(4).setPreferredWidth(5);
-        }
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel41)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel42))
-                .addContainerGap())
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel42)
-                    .addComponent(jLabel41))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jTPResultado.addTab("Informática/Idiomas", jPanel19);
-
         Filtrar.setText("Filtrar");
         Filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -993,19 +843,22 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTPResultado)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jTPResultado))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jButton4)
+                                .addGap(30, 30, 30)
+                                .addComponent(Filtrar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButton4)
-                .addGap(30, 30, 30)
-                .addComponent(Filtrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1049,47 +902,52 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private void FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarActionPerformed
         
         //Dados Pessoais
-        //Pega tamanho da lista de profissões selecionadas pelo usuário
-        int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
-        //Cria arrayList de profissões selecionadas pelo usuário
-        List<Profissao> profissoes = new ArrayList<>();
-        //Adiciona as profissões selecionadas pelo usuário ao arrayList
-        for (int i=0; i < tamanhoLista; i++){
-            profissoes.add((Profissao) List__Profissao__Nome__Selecionados.getModel().getElementAt(i));
-        }
-        //Busca todos os candidatos que possuem uma das profissões acima
+        //Busca todos os candidatos que possuem um dos campos acima
         List<Candidato> candidatosPorDadosPessoais = new ArrayList<Candidato>();
         CandidatoDAO candidadoProfissoesDao = new CandidatoDAO();
-        for(Profissao prof : profissoes){
-            Candidato canTemp = new Candidato();
-            canTemp.setCodProfissao(prof.getCodigoProfissao());
-            canTemp.setPrenome(Field__Candidato__PreNome.getText());
-            canTemp.setSobrenome(Field__Candidato__SobreNome.getText());
-            canTemp.setCpf(Field__Candidato__CPF.getText());
-            canTemp.setRg(Field__Candidato__RG.getText());
-            canTemp.setSexo((String) Radio__Candidato__Sexo.getSelectedItem());
-            String dataNascimento = Field__Candidato__dataNascimento.getText();
-            Util dnTemp = new Util();
-            Date dataNasc = new Date();
-            try {
-                canTemp.setDataNascimento(dnTemp.criaData(dataNascimento));
-            } catch (ParseException ex) {
-                Logger.getLogger(FiltrarCandidato.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
-        }
-        
-        if(!Field__Candidato__PreNome.getText().isEmpty()){
-            String nomeCompleto = Field__Candidato__PreNome.getText();
-            String[] vetorNome = nomeCompleto.split(" ");
+        if(!Field__Candidato__PreNome.getText().isEmpty() || !Field__Candidato__SobreNome.getText().isEmpty() || 
+                !Field__Candidato__CPF.getText().isEmpty() || !Field__Candidato__RG.getText().isEmpty() || 
+                !Field__Candidato__dataNascimento.getText().isEmpty() || !Field__Candidato__quantidadeFilhos.getText().isEmpty() ||  
+                !Combo__Candidato__Sexo.getSelectedItem().equals("Escolha o Sexo") || !Combo__Candidato__estadoCivil.getSelectedItem().equals("Estado Civil") ||
+                !Combo__Candidato__CNHCategoria.getSelectedItem().equals("CNH") || 
+                !Combo__Candidato__Veiculo.getSelectedItem().equals("Veículo") || Radio__Candidato__PortadorNecessidadesEspeciais__Sim.isSelected() || 
+                Radio__Candidato__PortadorNecessidadesEspeciais__Nao.isSelected() || Radio__Candidato__DisponibilidadeViajar__Sim.isSelected() || 
+                Radio__Candidato__DisponibilidadeViajar__Nao.isSelected() || Checkbox__Candidato__Gerencia.isSelected() || Field__Candidato__PrimeiroEmprego.isSelected() || 
+                !Field__Candidato__PretensaoSalarialMin.getText().isEmpty() || !Field__Candidato__PretensaoSalarialMax.getText().isEmpty() || 
+                (List__Profissao__Nome__Selecionados.getModel().getSize()>0)
+            ){
+                Candidato canTemp = new Candidato();
+                canTemp.setCodProfissao(0);
+                canTemp.setPrenome(Field__Candidato__PreNome.getText());
+                canTemp.setSobrenome(Field__Candidato__SobreNome.getText());
+                canTemp.setCpf(Field__Candidato__CPF.getText());
+                canTemp.setRg(Field__Candidato__RG.getText());
+                canTemp.setSexo((String) Combo__Candidato__Sexo.getSelectedItem());
+                String dataNascimento = Field__Candidato__dataNascimento.getText();
+                if(!dataNascimento.isEmpty()){
+                    Util dnTemp = new Util();
+                    Date dataNasc = new Date();
+                    try {
+                        canTemp.setDataNascimento(dnTemp.criaData(dataNascimento));
+                    } catch (ParseException ex) {
+                        Logger.getLogger(FiltrarCandidato.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
+                
+                //Pega tamanho da lista de profissões selecionadas pelo usuário
+                int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
+                //Efetua busca por cada código de profissão selecionado pelo usuário.
+                for (int i=0; i < tamanhoLista; i++){
+                    Profissao p = new Profissao();
+                    p = (Profissao)List__Profissao__Nome__Selecionados.getModel().getElementAt(i);
+                    canTemp.setCodProfissao(p.getCodigoProfissao());
+                    candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
+                }
+                
             
-            System.out.println(vetorNome[0]);
-            Candidato canTemp = new Candidato();
-            
         }
-        String CandidatoNome = Field__Candidato__PreNome.getText();
-        System.out.println("Nome: "+CandidatoNome);
-       
+              
         
         //ExperienciasProfissionais
         //Pega tamanho da lista de Experiências profissionais selecionadas pelo usuário
@@ -1099,9 +957,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         //Adiciona as Experiências profissionais selecionadas pelo usuário
         for (int i=0; i < tamanhoListaExperienciaProfissional; i++){
             ExperienciaProfissional expProTemp = new ExperienciaProfissional();
-            expProTemp.setCodigoProfissao((Integer) Table__ExperienciaProfissional.getValueAt(i, 0));
+            Profissao temp = (Profissao) Table__ExperienciaProfissional.getValueAt(i, 0);
+            expProTemp.setCodigoProfissao(temp.getCodigoProfissao());
             expProTemp.setDuracao((Integer) Table__ExperienciaProfissional.getValueAt(i, 1));
-            //expProTemp.setGerencia((String) dtm.getValueAt(i,2));
+            expProTemp.setGerencia((String) Table__ExperienciaProfissional.getValueAt(i, 2));
             experienciasProfissionais.add(expProTemp);
         }
         //Busca todos os candidatos que possuem uma das profissões acima
@@ -1111,6 +970,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             for(ExperienciaProfissional expPro : experienciasProfissionais){
                 Candidato canTemp = new Candidato();
                 canTemp.addExperienciaProfissionalList(expPro);
+                canTemp.setGerencia(expPro.getGerencia());
                 candidatosPorExperienciaProfissional.addAll(candidadoDaoExpPro.buscaCandidatoPorExperienciasProfissionais(canTemp));
             }
         }
@@ -1167,23 +1027,18 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 }
             }
         }
-        
-        for(IndisponibilidadeCandidato ind: indisponibilidades){
-            System.out.println("Dia: "+ind.getDia()+" Turno: "+ind.getTurno());
-        }      
+          
         //Busca todos os candidatos que possuem uma das profissões acima
         List<Candidato> candidatosPorIndisponibilidade = new ArrayList<>();     
         CandidatoDAO candidadoDaoIndisponibilidade = new CandidatoDAO();
         if(!indisponibilidades.isEmpty()){
             for(IndisponibilidadeCandidato ind : indisponibilidades){
                 Candidato canTemp = new Candidato();
-                System.out.println(ind);
                 canTemp.addIndisponibilidadeCandidatoList(ind);
                 candidatosPorIndisponibilidade.addAll(candidadoDaoIndisponibilidade.buscaCandidatoPorIndisponibilidade(canTemp));
             }
         }
         
-      
         //Tratar os arrays com os resultados das buscas
         List<Candidato> candidatosFiltrados = new ArrayList<>();
         List<Candidato> candidatosResultadoFiltragem = new ArrayList<>();
@@ -1206,7 +1061,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 }
                        
         }
-
         
         //Cria objeto do tipo DefaultTableModel e exibe resultado do filtro
         javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) Table__ResultadoFiltragem.getModel();
@@ -1215,17 +1069,53 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getCpf(), c.getPrenome()+" "+c.getSobrenome(), c.getEmail(), "7788398284",false});
         }
         
-       // jTPResultado.setSelectedIndex(1);
+       jTPResultado.setSelectedIndex(5);
       
     }//GEN-LAST:event_FiltrarActionPerformed
 
-    private void Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed
+    private void jBtnLimparTabelaExperienciasProfissionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparTabelaExperienciasProfissionaisActionPerformed
+        DefaultTableModel dmExpProf = (DefaultTableModel) Table__ExperienciaProfissional.getModel();
+        int linhasExpProf = dmExpProf.getRowCount();
+        //Remove todas aslinhas
+        for (int i = linhasExpProf - 1; i >= 0; i--) {
+            dmExpProf.removeRow(i);
+        }
+    }//GEN-LAST:event_jBtnLimparTabelaExperienciasProfissionaisActionPerformed
 
-    private void jPanel14ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel14ComponentShown
+    private void Button__ExperienciaProfissional__InserirExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__ExperienciaProfissional__InserirExperienciaActionPerformed
+        ExperienciaProfissional expTemp = new ExperienciaProfissional();
+        Profissao cargo = (Profissao) ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.getSelectedItem();
+        expTemp.setCodigoProfissao(cargo.getCodigoProfissao());
 
-    }//GEN-LAST:event_jPanel14ComponentShown
+        if(!Field__ExperienciaProfissional__Duracao.getText().isEmpty()){
+            int duracao = Integer.parseInt(Field__ExperienciaProfissional__Duracao.getText());
+            expTemp.setDuracao(duracao);
+        }else{
+            expTemp.setDuracao(0);
+        }
+
+        boolean gerente = Checkbox__ExperienciaProfissional__Gerente.isSelected();
+        System.out.println("gerente: "+gerente);
+        if( gerente == true){
+            expTemp.setGerencia("Sim");
+        } else {
+            expTemp.setGerencia("Não");
+        }
+        listener.inserirTabelaExperienciaProfissional(expTemp, Table__ExperienciaProfissional);
+    }//GEN-LAST:event_Button__ExperienciaProfissional__InserirExperienciaActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
+        listener.preencherTabelaDisponibilidade(false, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed
+        listener.preencherTabelaDisponibilidade(true,0, 0, 2, 6, Table__IndisponibilidadeCandidato);
+        listener.preencherTabelaDisponibilidade(true,1, 1, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed
 
     private void delProfissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delProfissaoActionPerformed
         List<Profissao> lista = List__Profissao__Nome__Selecionados.getSelectedValuesList();
@@ -1236,67 +1126,40 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_delProfissaoActionPerformed
 
     private void addProfissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProfissaoActionPerformed
-        List<Profissao> lista = List__Profissao__Nome__Lista.getSelectedValuesList();
-        for(Profissao l : lista){
-            dlm2.addElement(l);
+        if(!dlm2.contains(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes.getSelectedItem())){
+            dlm2.addElement(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes.getSelectedItem());
         }
-
         List__Profissao__Nome__Selecionados.setModel(dlm2);
     }//GEN-LAST:event_addProfissaoActionPerformed
-
-    private void Field__Profissao__Nome__PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__Profissao__Nome__PesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Field__Profissao__Nome__PesquisaActionPerformed
 
     private void Field__Candidato__dataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__Candidato__dataNascimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Field__Candidato__dataNascimentoActionPerformed
 
-    private void Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed
-        listener.preencherTabelaDisponibilidade(true, 0, 0, 2, 6, Table__IndisponibilidadeCandidato);
-    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed
+    private void Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed
+
+    private void Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 2, 2, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
 
     private void Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed
         listener.preencherTabelaDisponibilidade(true, 1, 1, 2, 6, Table__IndisponibilidadeCandidato);
     }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__TardeActionPerformed
 
-    private void Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
-        listener.preencherTabelaDisponibilidade(true, 2, 2, 2, 6, Table__IndisponibilidadeCandidato);
-    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
+    private void Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed
+        listener.preencherTabelaDisponibilidade(true, 0, 0, 2, 6, Table__IndisponibilidadeCandidato);
+    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Semana__ManhaActionPerformed
 
     private void Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed
         listener.preencherTabelaDisponibilidade(true, 0, 0, 2, 7, Table__IndisponibilidadeCandidato);
         listener.preencherTabelaDisponibilidade(true, 1, 1, 2, 6, Table__IndisponibilidadeCandidato);
     }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Comercial__SabadoActionPerformed
 
-    private void Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed
-        listener.preencherTabelaDisponibilidade(true,0, 0, 2, 6, Table__IndisponibilidadeCandidato);
-        listener.preencherTabelaDisponibilidade(true,1, 1, 2, 6, Table__IndisponibilidadeCandidato);
-    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__Comercial__SegSexActionPerformed
-
-    private void Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed
-        listener.preencherTabelaDisponibilidade(true, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
-
-    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__MarcarTudoActionPerformed
-
-    private void Button__IndisponibilidadeCandidato__LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
-        listener.preencherTabelaDisponibilidade(false, 0, 2, 1, 7, Table__IndisponibilidadeCandidato);
-    }//GEN-LAST:event_Button__IndisponibilidadeCandidato__LimparActionPerformed
-
-    private void Button__ExperienciaProfissional__InserirExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__ExperienciaProfissional__InserirExperienciaActionPerformed
-        ExperienciaProfissional expTemp = new ExperienciaProfissional();
-        Profissao cargo = (Profissao) ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa.getSelectedItem();
-        expTemp.setCodigoProfissao(cargo.getCodigoProfissao());
-        int duracao = Integer.parseInt(Field__ExperienciaProfissional__Duracao.getText());
-        expTemp.setDuracao(duracao);        
-        boolean gerente = Checkbox__ExperienciaProfissional__Gerente.isSelected();
-        if( gerente == true){
-            expTemp.setGerencia("Sim");
-        } else {
-            expTemp.setGerencia("Não");
-        }
-        listener.inserirTabelaExperienciaProfissional(expTemp, Table__ExperienciaProfissional);
-    }//GEN-LAST:event_Button__ExperienciaProfissional__InserirExperienciaActionPerformed
+    private void Field__Candidato__PreNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__Candidato__PreNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Field__Candidato__PreNomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;
@@ -1308,14 +1171,18 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Manha;
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Noite;
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Tarde;
-    private javax.swing.JButton Button__Profissao__Nome__Pesquisar;
     private javax.swing.JCheckBox Checkbox__Candidato__Gerencia;
     private javax.swing.JCheckBox Checkbox__ExperienciaProfissional__Gerente;
     private javax.swing.JComboBox ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa;
+    private javax.swing.JComboBox ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes;
     private javax.swing.JComboBox Combo__Candidato__CNHCategoria;
+    private javax.swing.JComboBox Combo__Candidato__Sexo;
+    private javax.swing.JComboBox Combo__Candidato__Veiculo;
     private javax.swing.JComboBox Combo__Candidato__estadoCivil;
     private javax.swing.JTextField Field__Candidato__CPF;
     private javax.swing.JTextField Field__Candidato__PreNome;
+    private javax.swing.JTextField Field__Candidato__PretensaoSalarialMax;
+    private javax.swing.JTextField Field__Candidato__PretensaoSalarialMin;
     private javax.swing.JCheckBox Field__Candidato__PrimeiroEmprego;
     private javax.swing.JTextField Field__Candidato__RG;
     private javax.swing.JTextField Field__Candidato__SobreNome;
@@ -1324,18 +1191,13 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JTextField Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;
     private javax.swing.JList Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados;
     private javax.swing.JTextField Field__ExperienciaProfissional__Duracao;
-    private javax.swing.JTextField Field__Profissao__Nome__Pesquisa;
     private javax.swing.JButton Filtrar;
     private javax.swing.JList List__CaracteristicasCandidato__Nome__Lista;
-    private javax.swing.JList List__Profissao__Nome__Lista;
     private javax.swing.JList List__Profissao__Nome__Selecionados;
     private javax.swing.JRadioButton Radio__Candidato__DisponibilidadeViajar__Nao;
     private javax.swing.JRadioButton Radio__Candidato__DisponibilidadeViajar__Sim;
     private javax.swing.JRadioButton Radio__Candidato__PortadorNecessidadesEspeciais__Nao;
     private javax.swing.JRadioButton Radio__Candidato__PortadorNecessidadesEspeciais__Sim;
-    private javax.swing.JTextField Radio__Candidato__PretensaoSalarial;
-    private javax.swing.JComboBox Radio__Candidato__Sexo;
-    private javax.swing.JComboBox Radio__Candidato__Veiculo;
     private javax.swing.JTable Table__CurriculoIdioma;
     private javax.swing.JTable Table__CurriculoInformatica;
     private javax.swing.JTable Table__ExperienciaProfissional;
@@ -1347,42 +1209,34 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton delCaracteristica;
     private javax.swing.JButton delProfissao;
+    private javax.swing.JButton jBtnLimparTabelaExperienciasProfissionais;
     private javax.swing.JButton jButton4;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPCaracteristicas;
+    private javax.swing.JPanel jPDadosPessoais;
+    private javax.swing.JPanel jPDisponibilidade;
+    private javax.swing.JPanel jPExperienciaProfissional;
+    private javax.swing.JPanel jPInformaticaIdiomas;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

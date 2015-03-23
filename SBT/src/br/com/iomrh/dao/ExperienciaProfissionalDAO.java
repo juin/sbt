@@ -33,15 +33,10 @@ public class ExperienciaProfissionalDAO {
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
             // seta os valores
-            stmt.setInt(1, experienciaProfissional.getCodigoExperienciaProfissional());
-            stmt.setString(2, experienciaProfissional.getDescricaoFuncao());
-            stmt.setInt(3, experienciaProfissional.getDuracao());
-            stmt.setString(4, experienciaProfissional.getEmpresa());
-            stmt.setDate(5, (Date) experienciaProfissional.getDataAdmissao());
-            stmt.setDate(6, (Date) experienciaProfissional.getDataDemissao());
-            stmt.setInt(7, experienciaProfissional.getCodigoCandidato());
-            stmt.setInt(8, experienciaProfissional.getCodigoProfissao());
-
+            stmt.setInt(1, experienciaProfissional.getCodigoProfissao());
+            stmt.setInt(2, experienciaProfissional.getDuracao());
+            stmt.setString(3, experienciaProfissional.getGerencia());
+            
             // executa
             stmt.execute();
             stmt.close();

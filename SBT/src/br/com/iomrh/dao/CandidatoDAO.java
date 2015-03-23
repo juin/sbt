@@ -103,8 +103,8 @@ public class CandidatoDAO {
         String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
                 + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato,exp.gerencia "
                 + "FROM Candidato c JOIN ExperienciaProfissional exp ON c.codigoCandidato = exp.codigoCandidato "
-                + "WHERE c.codigoCandidato LIKE ? AND c.codigoProfissao LIKE ? "
-                + "AND exp.codigoProfissao LIKE ? "
+                + "WHERE c.codigoCandidato LIKE ? "
+                + "AND exp.codigoProfissao LIKE ? AND exp.gerencia LIKE ? "
                 + "GROUP BY (c.codigoCandidato) HAVING (SUM(exp.duracao) > ?)";
         
         try {
@@ -117,20 +117,15 @@ public class CandidatoDAO {
             else
                 stmt.setString(1, "%");
 
-            if(candidato.getCodProfissao() != null)
-                stmt.setInt(2, candidato.getCodProfissao());
+            if(!candidato.getExperienciaProfissionalList().isEmpty())
+                    stmt.setInt(2, candidato.getExperienciaProfissionalList().get(0).getCodigoProfissao());
             else
                 stmt.setString(2, "%");
             
-            if(!candidato.getExperienciaProfissionalList().isEmpty())
-                    stmt.setInt(3, candidato.getExperienciaProfissionalList().get(0).getCodigoProfissao());
+            if(candidato.getGerencia().equals("Sim"))
+                stmt.setString(3, candidato.getGerencia());
             else
                 stmt.setString(3, "%");
-            
-//            if(candidato.getGerencia()!= null)
-//                stmt.setString(4, candidato.getGerencia());
-//            else
-//                stmt.setString(4, "%");
             
             if(!candidato.getExperienciaProfissionalList().isEmpty())
                     stmt.setInt(4, candidato.getExperienciaProfissionalList().get(0).getDuracao());
@@ -161,7 +156,8 @@ public class CandidatoDAO {
     public List<Candidato> buscaCandidatoPorDadosPessoais(Candidato candidato){
         
         List<Candidato> candidatos = new ArrayList<Candidato>();
-        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND "
+        String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND prenome LIKE ? AND sobrenome LIKE ? AND cpf LIKE ? "
+                + "AND rg LIKE ? AND dataNascimento LIKE ? AND quantidadeFilhos LIKE ? AND sexo LIKE ?"
                   + "codigoProfissao LIKE ?";    
         try {
             // prepared statement para inserção

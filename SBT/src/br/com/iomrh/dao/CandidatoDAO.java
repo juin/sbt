@@ -56,7 +56,7 @@ public class CandidatoDAO {
             stmt.setString(13, candidato.getDisponibilidadeViajar());
             stmt.setString(14, candidato.getTipoNecessidadeEspecial());
             stmt.setString(15, candidato.getPortadorNecessidadesEspeciais());
-            stmt.setDouble(16, candidato.getPretensaoSalarial());
+            stmt.setDouble(16, candidato.getPretensaoSalarialMin());
             stmt.setString(17, candidato.getVeiculo());
             stmt.setString(18, candidato.getPrimeiroEmprego());
             stmt.setString(19, candidato.getGerencia());
@@ -157,8 +157,10 @@ public class CandidatoDAO {
         
         List<Candidato> candidatos = new ArrayList<Candidato>();
         String sql = "SELECT * FROM Candidato WHERE codigoCandidato LIKE ? AND prenome LIKE ? AND sobrenome LIKE ? AND cpf LIKE ? "
-                + "AND rg LIKE ? AND dataNascimento LIKE ? AND quantidadeFilhos LIKE ? AND sexo LIKE ?"
-                  + "codigoProfissao LIKE ?";    
+                + "AND rg LIKE ? AND dataNascimento LIKE ? AND quantidadeFilhos LIKE ? AND sexo LIKE ? AND estadoCivil LIKE ? "
+                + "AND cnhCategoria LIKE ? AND veiculo LIKE ? AND portadorNecessidadeEspecial LIKE ? AND disponibilidadeViajar LIKE ? "
+                + "AND primeiroEmprego LIKE ? AND gerencia LIKE ? AND codigoProfissao LIKE ? "
+                + "AND pretensaoSalarial BETWEEN ? AND ?;";    
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -168,11 +170,94 @@ public class CandidatoDAO {
                 stmt.setInt(1, candidato.getCodigoCandidato());
             else
                 stmt.setString(1, "%");
-
-            if(candidato.getCodProfissao() != null)
-                stmt.setInt(2, candidato.getCodProfissao());
+            
+            if(!candidato.getPrenome().isEmpty())
+                stmt.setString(2, "%"+candidato.getPrenome()+"%");
             else
                 stmt.setString(2, "%");
+            
+            if(!candidato.getSobrenome().isEmpty())
+                stmt.setString(3, "%"+candidato.getSobrenome()+"%");
+            else
+                stmt.setString(3, "%");
+            
+            if(!candidato.getCpf().isEmpty())
+                stmt.setString(4, candidato.getCpf());
+            else
+                stmt.setString(4, "%");
+            
+            if(!candidato.getRg().isEmpty())
+                stmt.setString(5, candidato.getRg());
+            else
+                stmt.setString(5, "%");
+            
+            if(candidato.getDataNascimento()!= null){
+                java.sql.Date sDate = new java.sql.Date(candidato.getDataNascimento().getTime());
+                stmt.setDate(6, sDate);
+            } else
+                stmt.setString(6, "%");
+            
+            if(candidato.getQuantidadeFilhos()!= null)
+                stmt.setInt(7, candidato.getQuantidadeFilhos());
+            else
+                stmt.setString(7, "%");
+            
+            if(candidato.getSexo()!=null)
+                stmt.setString(8, candidato.getSexo());
+            else
+                stmt.setString(8, "%");
+            
+            if(candidato.getEstadoCivil()!=null)
+                stmt.setString(9, candidato.getEstadoCivil());
+            else
+                stmt.setString(9, "%");
+            
+            if(candidato.getCnhCategoria()!=null)
+                stmt.setString(10, candidato.getCnhCategoria());
+            else
+                stmt.setString(10, "%");
+            
+            if(candidato.getVeiculo()!=null)
+                stmt.setString(11, candidato.getVeiculo());
+            else
+                stmt.setString(11, "%");
+            
+            if(candidato.getPortadorNecessidadesEspeciais()!=null)
+                stmt.setString(12, candidato.getPortadorNecessidadesEspeciais());
+            else
+                stmt.setString(12, "%");
+            
+            if(candidato.getDisponibilidadeViajar()!=null)
+                stmt.setString(13, candidato.getDisponibilidadeViajar());
+            else
+                stmt.setString(13, "%");
+            
+            if(candidato.getPrimeiroEmprego()!=null)
+                stmt.setString(14, candidato.getPrimeiroEmprego());
+            else
+                stmt.setString(14, "%");
+            
+            if(candidato.getGerencia()!=null)
+                stmt.setString(15, candidato.getGerencia());
+            else
+                stmt.setString(15, "%");
+           
+            if(candidato.getCodProfissao() != null)
+                stmt.setInt(16, candidato.getCodProfissao());
+            else
+                stmt.setString(16, "%");
+                        
+            if(candidato.getPretensaoSalarialMin()!=0)
+                stmt.setDouble(17, candidato.getPretensaoSalarialMin());
+            else
+                stmt.setInt(17, 0);
+            
+            if(candidato.getPretensaoSalarialMax()!=0)
+                stmt.setDouble(18, candidato.getPretensaoSalarialMax());
+            else
+                stmt.setInt(18, 99999);
+            
+
                        
             // executa
             System.out.println(stmt);

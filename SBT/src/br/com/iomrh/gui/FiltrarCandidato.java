@@ -79,7 +79,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         Combo__Candidato__Sexo = new javax.swing.JComboBox();
         Field__Candidato__PretensaoSalarialMin = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
-        Field__Candidato__PrimeiroEmprego = new javax.swing.JCheckBox();
+        Checkbox__Candidato__PrimeiroEmprego = new javax.swing.JCheckBox();
         Checkbox__Candidato__Gerencia = new javax.swing.JCheckBox();
         jLabel48 = new javax.swing.JLabel();
         Field__Candidato__PreNome = new javax.swing.JTextField();
@@ -173,7 +173,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jLabel55.setText("Pretensão salarial");
 
-        Field__Candidato__PrimeiroEmprego.setText("Primeiro emprego");
+        Checkbox__Candidato__PrimeiroEmprego.setText("Primeiro emprego");
 
         Checkbox__Candidato__Gerencia.setText("Gerência");
 
@@ -285,7 +285,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                     .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
                         .addComponent(Checkbox__Candidato__Gerencia)
                         .addGap(18, 18, 18)
-                        .addComponent(Field__Candidato__PrimeiroEmprego))
+                        .addComponent(Checkbox__Candidato__PrimeiroEmprego))
                     .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
                         .addComponent(jLabel55)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,7 +318,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                         .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Field__Candidato__PreNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Checkbox__Candidato__Gerencia)
-                            .addComponent(Field__Candidato__PrimeiroEmprego))))
+                            .addComponent(Checkbox__Candidato__PrimeiroEmprego))))
                 .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -912,17 +912,17 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 !Combo__Candidato__CNHCategoria.getSelectedItem().equals("CNH") || 
                 !Combo__Candidato__Veiculo.getSelectedItem().equals("Veículo") || Radio__Candidato__PortadorNecessidadesEspeciais__Sim.isSelected() || 
                 Radio__Candidato__PortadorNecessidadesEspeciais__Nao.isSelected() || Radio__Candidato__DisponibilidadeViajar__Sim.isSelected() || 
-                Radio__Candidato__DisponibilidadeViajar__Nao.isSelected() || Checkbox__Candidato__Gerencia.isSelected() || Field__Candidato__PrimeiroEmprego.isSelected() || 
-                !Field__Candidato__PretensaoSalarialMin.getText().isEmpty() || !Field__Candidato__PretensaoSalarialMax.getText().isEmpty() || 
-                (List__Profissao__Nome__Selecionados.getModel().getSize()>0)
+                Radio__Candidato__DisponibilidadeViajar__Nao.isSelected() || Checkbox__Candidato__Gerencia.isSelected() || Checkbox__Candidato__PrimeiroEmprego.isSelected() || 
+                !Field__Candidato__PretensaoSalarialMin.getText().isEmpty() || !Field__Candidato__PretensaoSalarialMax.getText().isEmpty()
             ){
                 Candidato canTemp = new Candidato();
-                canTemp.setCodProfissao(0);
+
                 canTemp.setPrenome(Field__Candidato__PreNome.getText());
                 canTemp.setSobrenome(Field__Candidato__SobreNome.getText());
                 canTemp.setCpf(Field__Candidato__CPF.getText());
                 canTemp.setRg(Field__Candidato__RG.getText());
-                canTemp.setSexo((String) Combo__Candidato__Sexo.getSelectedItem());
+                if(!Combo__Candidato__Sexo.getSelectedItem().equals("Escolha o Sexo"))
+                    canTemp.setSexo((String) Combo__Candidato__Sexo.getSelectedItem());
                 String dataNascimento = Field__Candidato__dataNascimento.getText();
                 if(!dataNascimento.isEmpty()){
                     Util dnTemp = new Util();
@@ -933,21 +933,46 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                         Logger.getLogger(FiltrarCandidato.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+                if(!Field__Candidato__quantidadeFilhos.getText().isEmpty())
+                    canTemp.setQuantidadeFilhos((short)Integer.parseInt(Field__Candidato__quantidadeFilhos.getText()));               
+                if(!Combo__Candidato__estadoCivil.getSelectedItem().equals("Estado Civil"))
+                    canTemp.setEstadoCivil((String) Combo__Candidato__estadoCivil.getSelectedItem());
+                if(!Combo__Candidato__CNHCategoria.getSelectedItem().equals("CNH"))
+                    canTemp.setCnhCategoria((String)Combo__Candidato__CNHCategoria.getSelectedItem());
+                if(!Combo__Candidato__Veiculo.getSelectedItem().equals("Veículo"))
+                    canTemp.setVeiculo((String)Combo__Candidato__Veiculo.getSelectedItem());
+                if(Radio__Candidato__PortadorNecessidadesEspeciais__Sim.isSelected())
+                    canTemp.setPortadorNecessidadesEspeciais("Sim");
+                if(Radio__Candidato__DisponibilidadeViajar__Sim.isSelected())
+                    canTemp.setDisponibilidadeViajar("Sim");
+                if(Checkbox__Candidato__Gerencia.isSelected())
+                    canTemp.setGerencia("Sim");
+                if(Checkbox__Candidato__PrimeiroEmprego.isSelected())
+                    canTemp.setPrimeiroEmprego("Sim");
+                if(!Field__Candidato__PretensaoSalarialMin.getText().isEmpty())
+                    canTemp.setPretensaoSalarialMin(Double.parseDouble(Field__Candidato__PretensaoSalarialMin.getText()));
+                if(!Field__Candidato__PretensaoSalarialMax.getText().isEmpty())
+                    canTemp.setPretensaoSalarialMax(Double.parseDouble(Field__Candidato__PretensaoSalarialMax.getText()));
+                
                 candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
-                
-                //Pega tamanho da lista de profissões selecionadas pelo usuário
-                int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
-                //Efetua busca por cada código de profissão selecionado pelo usuário.
-                for (int i=0; i < tamanhoLista; i++){
-                    Profissao p = new Profissao();
-                    p = (Profissao)List__Profissao__Nome__Selecionados.getModel().getElementAt(i);
-                    canTemp.setCodProfissao(p.getCodigoProfissao());
-                    candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
-                }
-                
-            
         }
-              
+        
+        if(List__Profissao__Nome__Selecionados.getModel().getSize()>0){
+            //Pega tamanho da lista de profissões selecionadas pelo usuário
+            int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
+            //Efetua busca por cada código de profissão selecionado pelo usuário.
+            for (int i=0; i < tamanhoLista; i++){
+                Candidato canTemp = new Candidato();
+                Profissao p = new Profissao();
+                p = (Profissao)List__Profissao__Nome__Selecionados.getModel().getElementAt(i);
+                canTemp.setPrenome("");
+                canTemp.setSobrenome("");
+                canTemp.setCpf("");
+                canTemp.setRg("");
+                canTemp.setCodProfissao(p.getCodigoProfissao());
+                candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
+            }   
+        }
         
         //ExperienciasProfissionais
         //Pega tamanho da lista de Experiências profissionais selecionadas pelo usuário
@@ -1172,6 +1197,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Noite;
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Semana__Tarde;
     private javax.swing.JCheckBox Checkbox__Candidato__Gerencia;
+    private javax.swing.JCheckBox Checkbox__Candidato__PrimeiroEmprego;
     private javax.swing.JCheckBox Checkbox__ExperienciaProfissional__Gerente;
     private javax.swing.JComboBox ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa;
     private javax.swing.JComboBox ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes;
@@ -1183,7 +1209,6 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JTextField Field__Candidato__PreNome;
     private javax.swing.JTextField Field__Candidato__PretensaoSalarialMax;
     private javax.swing.JTextField Field__Candidato__PretensaoSalarialMin;
-    private javax.swing.JCheckBox Field__Candidato__PrimeiroEmprego;
     private javax.swing.JTextField Field__Candidato__RG;
     private javax.swing.JTextField Field__Candidato__SobreNome;
     private javax.swing.JTextField Field__Candidato__dataNascimento;

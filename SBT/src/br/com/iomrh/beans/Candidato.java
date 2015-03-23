@@ -29,7 +29,8 @@ public class Candidato implements Comparable<Candidato>{
     private String disponibilidadeViajar;
     private String tipoNecessidadeEspecial;
     private String portadorNecessidadesEspeciais;
-    private double pretensaoSalarial;
+    private double pretensaoSalarialMin;
+    private double pretensaoSalarialMax;
     private String veiculo;
     private String primeiroEmprego;
     private String gerencia;
@@ -163,14 +164,22 @@ public class Candidato implements Comparable<Candidato>{
         this.portadorNecessidadesEspeciais = portadorNecessidadesEspeciais;
     }
 
-    public double getPretensaoSalarial() {
-        return pretensaoSalarial;
+    public double getPretensaoSalarialMin() {
+        return pretensaoSalarialMin;
     }
 
-    public void setPretensaoSalarial(double pretensaoSalarial) {
-        this.pretensaoSalarial = pretensaoSalarial;
+    public void setPretensaoSalarialMin(double pretensaoSalarialMin) {
+        this.pretensaoSalarialMin = pretensaoSalarialMin;
     }
 
+    public double getPretensaoSalarialMax() {
+        return pretensaoSalarialMax;
+    }
+
+    public void setPretensaoSalarialMax(double pretensaoSalarialMax) {
+        this.pretensaoSalarialMax = pretensaoSalarialMax;
+    }
+    
     public String getVeiculo() {
         return veiculo;
     }

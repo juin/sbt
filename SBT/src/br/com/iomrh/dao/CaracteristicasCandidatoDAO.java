@@ -9,7 +9,12 @@ import br.com.iomrh.beans.*;
 import br.com.iomrh.jdbc.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -42,6 +47,35 @@ public class CaracteristicasCandidatoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<CaracteristicasCandidato> listarCaracteristicas() {
+        
+        List<CaracteristicasCandidato> caracteristicas = new ArrayList<>();
+        int cont = 0;
+        String sql = "SELECT DISTINCT(caracteristicasCandidato) FROM CaracteristicasCandidato ORDER BY caracteristicasCandidato";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            //executa
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()) {
+                
+                CaracteristicasCandidato carac = new CaracteristicasCandidato();
+                
+                carac.setCaracteristicasCandidato(resultado.getString("caracteristicasCandidato"));
+                caracteristicas.add(carac);
+            }
+            
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }      
+        return caracteristicas;
     }
     
     

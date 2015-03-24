@@ -74,7 +74,7 @@ public class CandidatoDAO {
     public Candidato buscaCandidatoPorCodigo(int codigoCandidato){
         
         Candidato candidato = new Candidato();
-        String sql = "SELECT * FROM Candidato WHERE codigoCandidato = ?";
+        String sql = "SELECT * FROM Candidato WHERE codigoCandidato = ? ORDER BY prenome ASC";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class CandidatoDAO {
                 + "FROM Candidato c JOIN ExperienciaProfissional exp ON c.codigoCandidato = exp.codigoCandidato "
                 + "WHERE c.codigoCandidato LIKE ? "
                 + "AND exp.codigoProfissao LIKE ? AND exp.gerencia LIKE ? "
-                + "GROUP BY (c.codigoCandidato) HAVING (SUM(exp.duracao) > ?)";
+                + "GROUP BY (c.codigoCandidato) HAVING (SUM(exp.duracao) > ?) ORDER BY c.prenome ASC";
         
         try {
             // prepared statement para inserção
@@ -153,6 +153,57 @@ public class CandidatoDAO {
         return candidatos;
     }
     
+    public List<Candidato> buscaCandidatoPorFormacao(Candidato candidato){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato "
+                + "FROM Candidato c JOIN Formacao f ON c.codigoCandidato = f.codigoCandidato "
+                + "WHERE f.nivel LIKE ? "
+                + "AND f.codigoCurso LIKE ? AND f.status LIKE ? "
+                + "GROUP BY (c.codigoCandidato) ORDER BY c.prenome ASC";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            // seta os valores
+            if(!candidato.getFormacaoList().isEmpty())
+                stmt.setString(1, candidato.getFormacaoList().get(0).getNivel());
+            else
+                stmt.setString(1, "%");
+
+            if(!candidato.getFormacaoList().isEmpty())
+                    stmt.setInt(2, candidato.getFormacaoList().get(0).getCodigoCurso());
+            else
+                stmt.setString(2, "%");
+                        
+            if(!candidato.getFormacaoList().isEmpty())
+                    stmt.setString(3, candidato.getFormacaoList().get(0).getStatus());
+            else
+                stmt.setString(3, "%");
+            
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
+    
     public List<Candidato> buscaCandidatoPorDadosPessoais(Candidato candidato){
         
         List<Candidato> candidatos = new ArrayList<Candidato>();
@@ -160,7 +211,7 @@ public class CandidatoDAO {
                 + "AND rg LIKE ? AND dataNascimento LIKE ? AND quantidadeFilhos LIKE ? AND sexo LIKE ? AND estadoCivil LIKE ? "
                 + "AND cnhCategoria LIKE ? AND veiculo LIKE ? AND portadorNecessidadeEspecial LIKE ? AND disponibilidadeViajar LIKE ? "
                 + "AND primeiroEmprego LIKE ? AND gerencia LIKE ? AND codigoProfissao LIKE ? "
-                + "AND pretensaoSalarial BETWEEN ? AND ?;";    
+                + "AND pretensaoSalarial BETWEEN ? AND ? ORDER BY prenome ASC;";    
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -287,7 +338,7 @@ public class CandidatoDAO {
                 + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato"
                 + " FROM Candidato c JOIN IndisponibilidadeCandidato ind ON c.codigoCandidato = ind.codigoCandidato "
                 + "WHERE ind.dia LIKE ? AND ind.turno LIKE ?"
-                + " GROUP BY (c.codigoCandidato)";
+                + " GROUP BY (c.codigoCandidato) ORDER BY c.prenome ASC";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -324,5 +375,152 @@ public class CandidatoDAO {
         return candidatos;
     }
     
+    public List<Candidato> buscaCandidatoPorCaracteristicas(Candidato candidato){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato,cc.caracteristicasCandidato "
+                + "FROM Candidato c JOIN CaracteristicasCandidato cc ON c.codigoCandidato = cc.codigoCandidato "
+                + "WHERE cc.caracteristicasCandidato LIKE ? "
+                + "ORDER BY c.prenome ASC";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            if(!candidato.getCaracteristicasCandidatoList().isEmpty())
+                    stmt.setString(1, candidato.getCaracteristicasCandidatoList().get(0).getCaracteristicasCandidato());
+            else
+                stmt.setString(1, "%");
+            
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
+    
+    public List<Candidato> buscaCandidatoPorCurriculoInformatica(Candidato candidato){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato "
+                + "FROM Candidato c JOIN Candidato_CurriculoInformatica cinf ON c.codigoCandidato = cinf.codigoCandidato "
+                + "WHERE cinf.codigoCurriculoInformatica LIKE ? "
+                + "GROUP BY (c.codigoCandidato) ORDER BY c.prenome ASC";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            if(!candidato.getCurriculoInformaticaList().isEmpty())
+                    stmt.setInt(1, candidato.getCurriculoInformaticaList().get(0).getCodigoCurriculoInformatica());
+            else
+                stmt.setString(1, "%");
+            
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
+    
+    public List<Candidato> buscaCandidatoPorCurriculoIdioma(Candidato candidato){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato "
+                + "FROM Candidato c JOIN Candidato_CurriculoIdioma cid ON c.codigoCandidato = cid.codigoCandidato "
+                + "WHERE cid.codigoCurriculoIdioma LIKE ? "
+                + "GROUP BY (c.codigoCandidato) ORDER BY c.prenome ASC";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            if(!candidato.getCurriculoIdiomaList().isEmpty())
+                    stmt.setInt(1, candidato.getCurriculoIdiomaList().get(0).getCodigoCurriculoIdioma());
+            else
+                stmt.setString(1, "%");
+            
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
+    
+    public List<Candidato> listarCandidatos(){
+        
+        List<Candidato> candidatos = new ArrayList<Candidato>();
+        String sql = "SELECT c.codigoCandidato as codCandidato,c.cpf as cpfCandidato, c.prenome as prenomeCandidato,"
+                + "c.sobrenome as sobrenomeCandidato,c.email as emailCandidato"
+                + " FROM Candidato c ORDER BY c.prenome ASC";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            // executa
+            System.out.println(stmt);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Candidato can = new Candidato();
+                can.setCodigoCandidato(resultado.getInt("codCandidato"));
+                can.setCpf(resultado.getString("cpfCandidato"));
+                can.setPrenome(resultado.getString("prenomeCandidato"));
+                can.setSobrenome(resultado.getString("sobrenomeCandidato"));
+                can.setEmail(resultado.getString("emailCandidato"));
+                candidatos.add(can);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return candidatos;
+    }
     
 }

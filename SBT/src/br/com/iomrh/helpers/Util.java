@@ -5,9 +5,11 @@
  */
 package br.com.iomrh.helpers;
 
+import br.com.iomrh.beans.Candidato;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -23,5 +25,13 @@ public class Util {
     public Date criaData(String data_string) throws ParseException{
         Date data = new SimpleDateFormat("dd/MM/yyyy").parse(data_string);
         return data;
+    }
+    
+    public boolean buscaCodigoCandidato(List<Candidato> candidatos,Integer codigoCandidato){
+        for(Candidato c: candidatos){
+            if(c.getCodigoCandidato()==codigoCandidato)
+                return true;
+        }
+        return false;
     }
 }

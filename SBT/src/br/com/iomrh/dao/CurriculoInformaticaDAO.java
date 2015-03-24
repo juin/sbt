@@ -9,7 +9,10 @@ import br.com.iomrh.beans.*;
 import br.com.iomrh.jdbc.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -42,6 +45,32 @@ public class CurriculoInformaticaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    public List<CurriculoInformatica> listar(){
+        
+        List<CurriculoInformatica> cursos = new ArrayList<>();
+        String sql = "SELECT * FROM CurriculoInformatica ORDER BY habilidade";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            // executa
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                CurriculoInformatica ci = new CurriculoInformatica();
+                ci.setCodigoCurriculoInformatica(resultado.getInt("codigoCurriculoInformatica"));
+                ci.setHabilidade(resultado.getString("habilidade"));
+                ci.setNivelHabilidade(resultado.getString("nivelHabilidade"));
+                cursos.add(ci);
+            }
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return cursos;
     }
     
     

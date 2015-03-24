@@ -7,11 +7,20 @@
 package br.com.iomrh.gui;
 
 import br.com.iomrh.beans.Candidato;
+import br.com.iomrh.beans.CaracteristicasCandidato;
+import br.com.iomrh.beans.CurriculoIdioma;
+import br.com.iomrh.beans.CurriculoInformatica;
+import br.com.iomrh.beans.Curso;
 import br.com.iomrh.beans.ExperienciaProfissional;
+import br.com.iomrh.beans.Formacao;
 import br.com.iomrh.beans.IndisponibilidadeCandidato;
 import br.com.iomrh.beans.Profissao;
+import br.com.iomrh.beans.Telefone;
 import br.com.iomrh.dao.CandidatoDAO;
+import br.com.iomrh.dao.CaracteristicasCandidatoDAO;
+import br.com.iomrh.dao.CursoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
+import br.com.iomrh.dao.TelefoneDAO;
 import br.com.iomrh.helpers.Util;
 import br.com.iomrh.listeners.FiltrarCandidatoListener;
 import com.sun.javafx.PlatformUtil;
@@ -19,7 +28,10 @@ import java.awt.Color;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -37,13 +49,23 @@ public class FiltrarCandidato extends javax.swing.JFrame {
      */
     
     //Cria novo Model para adicionar/remover elementos do 2º jList
-    DefaultListModel dlm2 = new DefaultListModel();
+    DefaultListModel dlmProfissoesFiltradas = new DefaultListModel();
+    DefaultListModel dlmCaracteristicas = new DefaultListModel();
+    DefaultListModel dlmCaracteristicasFiltradas = new DefaultListModel();
+    DefaultListModel dlmFormacaoFiltradas = new DefaultListModel();
     FiltrarCandidatoListener listener = new FiltrarCandidatoListener();
-    ProfissaoDAO pd = new ProfissaoDAO();
-    List<Profissao> profissoes = pd.listarProfissoes();
-
-
+    ProfissaoDAO profissaoDAO = new ProfissaoDAO();
+    List<Profissao> profissoes;
+    CursoDAO cursoDAO = new CursoDAO();
+    List<Curso> cursos;
+    CaracteristicasCandidatoDAO caracteristicasCandidatoDAO = new CaracteristicasCandidatoDAO();
+    List<CaracteristicasCandidato> caracteristicas;
+    Util util = new Util();
+    
     public FiltrarCandidato() {
+        this.profissoes = profissaoDAO.listarProfissoes();
+        this.caracteristicas = caracteristicasCandidatoDAO.listarCaracteristicas();
+        this.cursos = cursoDAO.listarCursos();
         initComponents();
         //buttonGroup1 está relacionado ao PNE
         buttonGroup1.add(Radio__Candidato__PortadorNecessidadesEspeciais__Sim);
@@ -51,6 +73,9 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         //buttonGroup2 está relacionado ao DisponibilidadeViajar
         buttonGroup2.add(Radio__Candidato__DisponibilidadeViajar__Sim);
         buttonGroup2.add(Radio__Candidato__DisponibilidadeViajar__Nao);
+        
+        listener.popularTabelaInformatica(Table__CurriculoInformatica);
+        listener.popularTabelaIdioma(Table__CurriculoIdioma);
     }
 
     /**
@@ -96,7 +121,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         Field__Candidato__PretensaoSalarialMax = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes = new javax.swing.JComboBox();
+        ComboBox__Candidato__Lista_Profissoes = new javax.swing.JComboBox();
         addProfissao = new javax.swing.JButton();
         delProfissao = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -104,14 +129,11 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPCaracteristicas = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados = new javax.swing.JList();
+        List__CaracteristicasCandidato__Nome__Lista__Selecionados = new javax.swing.JList();
         addCaracteristica = new javax.swing.JButton();
         delCaracteristica = new javax.swing.JButton();
-        Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         List__CaracteristicasCandidato__Nome__Lista = new javax.swing.JList();
-        Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa = new javax.swing.JButton();
         jPDisponibilidade = new javax.swing.JPanel();
         Button__IndisponibilidadeCandidato__Comercial__SegSex = new javax.swing.JButton();
         Button__IndisponibilidadeCandidato__MarcarTudo = new javax.swing.JButton();
@@ -134,6 +156,17 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         Field__ExperienciaProfissional__Duracao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         Checkbox__ExperienciaProfissional__Gerente = new javax.swing.JCheckBox();
+        jPAcademica = new javax.swing.JPanel();
+        Combo__Formacao__Cursos = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        Combo__Formacao__Nivel = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        Combo__Formacao__Status = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table__Formacao = new javax.swing.JTable();
+        addFormacao = new javax.swing.JButton();
+        jBtnLimparFormacao = new javax.swing.JButton();
         jPInformaticaIdiomas = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -144,8 +177,8 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         Table__ResultadoFiltragem = new javax.swing.JTable();
         Filtrar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jBTNListarTodosCandidatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,11 +222,22 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jLabel49.setText("CPF");
 
+        Field__Candidato__CPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Field__Candidato__CPFKeyPressed(evt);
+            }
+        });
+
         jLabel50.setText("Data de nascimento");
 
         Field__Candidato__dataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Field__Candidato__dataNascimentoActionPerformed(evt);
+            }
+        });
+        Field__Candidato__dataNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Field__Candidato__dataNascimentoKeyPressed(evt);
             }
         });
 
@@ -206,7 +250,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         jLabel10.setText("Máximo");
 
         for(Profissao p : profissoes){
-            ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes.addItem(p);
+            ComboBox__Candidato__Lista_Profissoes.addItem(p);
         }
 
         addProfissao.setText("+");
@@ -297,7 +341,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(Field__Candidato__PretensaoSalarialMax, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPDadosPessoaisLayout.createSequentialGroup()
-                        .addComponent(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboBox__Candidato__Lista_Profissoes, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addProfissao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -343,7 +387,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                             .addComponent(Field__Candidato__quantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Combo__Candidato__Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Combo__Candidato__estadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(Combo__Candidato__CNHCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,7 +419,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBox__Candidato__Lista_Profissoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addProfissao)
                             .addComponent(delProfissao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -384,33 +428,27 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
         jTPResultado.addTab("Dados pessoais", jPDadosPessoais);
 
-        Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados);
+        jScrollPane5.setViewportView(List__CaracteristicasCandidato__Nome__Lista__Selecionados);
 
         addCaracteristica.setText("->");
-
-        delCaracteristica.setText("<-");
-
-        Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+        addCaracteristica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed(evt);
+                addCaracteristicaActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Pesquisar");
-
-        List__CaracteristicasCandidato__Nome__Lista.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        delCaracteristica.setText("<-");
+        delCaracteristica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delCaracteristicaActionPerformed(evt);
+            }
         });
-        jScrollPane4.setViewportView(List__CaracteristicasCandidato__Nome__Lista);
 
-        Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa.setText("Pesquisar");
+        for(CaracteristicasCandidato c:caracteristicas){
+            dlmCaracteristicas.addElement(c);
+        }
+        List__CaracteristicasCandidato__Nome__Lista.setModel(dlmCaracteristicas);
+        jScrollPane4.setViewportView(List__CaracteristicasCandidato__Nome__Lista);
 
         javax.swing.GroupLayout jPCaracteristicasLayout = new javax.swing.GroupLayout(jPCaracteristicas);
         jPCaracteristicas.setLayout(jPCaracteristicasLayout);
@@ -418,43 +456,27 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCaracteristicasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPCaracteristicasLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addCaracteristica)
-                            .addComponent(delCaracteristica))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(260, Short.MAX_VALUE))
+                    .addComponent(addCaracteristica, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(delCaracteristica))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(374, Short.MAX_VALUE))
         );
         jPCaracteristicasLayout.setVerticalGroup(
             jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCaracteristicasLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(13, 13, 13)
-                .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPCaracteristicasLayout.createSequentialGroup()
                         .addComponent(addCaracteristica)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delCaracteristica)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPCaracteristicasLayout.createSequentialGroup()
-                        .addGroup(jPCaracteristicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane5)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa)
-                        .addContainerGap(91, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(delCaracteristica))
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
 
         jTPResultado.addTab("Características", jPCaracteristicas);
@@ -581,7 +603,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                     .addComponent(Button__IndisponibilidadeCandidato__Comercial__Sabado))
                 .addGap(26, 26, 26)
                 .addComponent(Button__IndisponibilidadeCandidato__Comercial__SegSex)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTPResultado.addTab("Disponiblidade do candidato", jPDisponibilidade);
@@ -690,10 +712,111 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                     .addComponent(jBtnLimparTabelaExperienciasProfissionais))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jTPResultado.addTab("Experiência profissional", jPExperienciaProfissional);
+
+        for(Curso c:cursos){
+            Combo__Formacao__Cursos.addItem(c);
+        }
+
+        jLabel2.setText("Curso");
+
+        Combo__Formacao__Nivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fundamental", "Médio", "Técnico", "Tecnólogo", "Graduação", "Pós-Graduação", "Mestrado", "Doutorado" }));
+        Combo__Formacao__Nivel.setSelectedIndex(-1);
+
+        jLabel3.setText("Nível");
+
+        Combo__Formacao__Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Em Andamento", "Completo", "Incompleto" }));
+        Combo__Formacao__Status.setSelectedIndex(-1);
+        Combo__Formacao__Status.setToolTipText("");
+
+        jLabel12.setText("Status");
+
+        Table__Formacao.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Nível", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Table__Formacao);
+
+        addFormacao.setText("Adicionar");
+        addFormacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFormacaoActionPerformed(evt);
+            }
+        });
+
+        jBtnLimparFormacao.setText("Limpar Tabela");
+        jBtnLimparFormacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnLimparFormacaoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPAcademicaLayout = new javax.swing.GroupLayout(jPAcademica);
+        jPAcademica.setLayout(jPAcademicaLayout);
+        jPAcademicaLayout.setHorizontalGroup(
+            jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAcademicaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAcademicaLayout.createSequentialGroup()
+                        .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Combo__Formacao__Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Combo__Formacao__Status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Combo__Formacao__Nivel, 0, 200, Short.MAX_VALUE))))
+                    .addComponent(addFormacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnLimparFormacao, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPAcademicaLayout.setVerticalGroup(
+            jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAcademicaLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Combo__Formacao__Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jBtnLimparFormacao))
+                .addGap(18, 18, 18)
+                .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAcademicaLayout.createSequentialGroup()
+                        .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Combo__Formacao__Nivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPAcademicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Combo__Formacao__Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(27, 27, 27)
+                        .addComponent(addFormacao)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTPResultado.addTab("Formação Acadêmica", jPAcademica);
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel41.setText("Informática");
@@ -703,15 +826,22 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Habilidade", "Nível", "Marcar"
+                "ID", "Habilidade", "Nível", "Marcar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane9.setViewportView(Table__CurriculoInformatica);
@@ -728,11 +858,11 @@ public class FiltrarCandidato extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Nível fala", "Nível Escrita", "Nível Leitura", "Marcar"
+                "ID", "Nome", "Nível fala", "Nível Escrita", "Nível Leitura", "Marcar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -753,26 +883,23 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel41)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel42))
-                .addGap(22, 22, 22))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPInformaticaIdiomasLayout.setVerticalGroup(
             jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPInformaticaIdiomasLayout.createSequentialGroup()
-                .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPInformaticaIdiomasLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPInformaticaIdiomasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel42)))
+                .addGap(21, 21, 21)
+                .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(jLabel42))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPInformaticaIdiomasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -828,15 +955,15 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Desfazer todos os filtros");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Filtrar candidatos por:");
+
+        jBTNListarTodosCandidatos.setText("Listar Todos os Candidatos");
+        jBTNListarTodosCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTNListarTodosCandidatosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -848,16 +975,15 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jTPResultado))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jButton4)
-                                .addGap(30, 30, 30)
-                                .addComponent(Filtrar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBTNListarTodosCandidatos)))
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -868,10 +994,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTPResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(Filtrar))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(Filtrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBTNListarTodosCandidatos)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -895,15 +1021,16 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarActionPerformed
+        
+        //Tratar os arrays com os resultados das buscas
+        List<Candidato> candidatosFiltrados = new ArrayList<>();
+        List<Candidato> candidatosResultadoFiltragem = new ArrayList<>();
         
         //Dados Pessoais
         //Busca todos os candidatos que possuem um dos campos acima
         List<Candidato> candidatosPorDadosPessoais = new ArrayList<Candidato>();
+        List<Candidato> candidatosPorDadosPessoaisProfissoes = new ArrayList<Candidato>();
         CandidatoDAO candidadoProfissoesDao = new CandidatoDAO();
         if(!Field__Candidato__PreNome.getText().isEmpty() || !Field__Candidato__SobreNome.getText().isEmpty() || 
                 !Field__Candidato__CPF.getText().isEmpty() || !Field__Candidato__RG.getText().isEmpty() || 
@@ -954,9 +1081,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 if(!Field__Candidato__PretensaoSalarialMax.getText().isEmpty())
                     canTemp.setPretensaoSalarialMax(Double.parseDouble(Field__Candidato__PretensaoSalarialMax.getText()));
                 
-                candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
+                
+        candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));                    
         }
-        
+        //Dados Pessoais (Profissoes)
         if(List__Profissao__Nome__Selecionados.getModel().getSize()>0){
             //Pega tamanho da lista de profissões selecionadas pelo usuário
             int tamanhoLista = List__Profissao__Nome__Selecionados.getModel().getSize();
@@ -970,36 +1098,37 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 canTemp.setCpf("");
                 canTemp.setRg("");
                 canTemp.setCodProfissao(p.getCodigoProfissao());
-                candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
+                candidatosPorDadosPessoaisProfissoes.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));
             }   
         }
         
-        //ExperienciasProfissionais
-        //Pega tamanho da lista de Experiências profissionais selecionadas pelo usuário
-        int tamanhoListaExperienciaProfissional = Table__ExperienciaProfissional.getRowCount();
-        //Cria arrayList de Experiências profissionais selecionadas pelo usuário
-        List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
+        //Caracteristicas Candidato
+        //Pega tamanho da lista de Caracteristicas selecionadas pelo usuário
+        int tamanhoListaCaracteristicas = List__CaracteristicasCandidato__Nome__Lista__Selecionados.getModel().getSize();
+        //Cria arrayList de carateristicas selecionadas pelo usuário
+        List<CaracteristicasCandidato> caracteristicasCandidato = new ArrayList<>();
         //Adiciona as Experiências profissionais selecionadas pelo usuário
-        for (int i=0; i < tamanhoListaExperienciaProfissional; i++){
-            ExperienciaProfissional expProTemp = new ExperienciaProfissional();
-            Profissao temp = (Profissao) Table__ExperienciaProfissional.getValueAt(i, 0);
-            expProTemp.setCodigoProfissao(temp.getCodigoProfissao());
-            expProTemp.setDuracao((Integer) Table__ExperienciaProfissional.getValueAt(i, 1));
-            expProTemp.setGerencia((String) Table__ExperienciaProfissional.getValueAt(i, 2));
-            experienciasProfissionais.add(expProTemp);
+        for (int i=0; i < tamanhoListaCaracteristicas; i++){
+            CaracteristicasCandidato caracTemp = new CaracteristicasCandidato();
+            //String temp = (String) List__CaracteristicasCandidato__Nome__Lista__Selecionados.getModel().getElementAt(i);
+            CaracteristicasCandidato temp = (CaracteristicasCandidato) List__CaracteristicasCandidato__Nome__Lista__Selecionados.getModel().getElementAt(i);
+            //caracTemp.setCaracteristicasCandidato(temp);
+            caracteristicasCandidato.add(temp);
         }
         //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatosPorExperienciaProfissional = new ArrayList<>();     
-        CandidatoDAO candidadoDaoExpPro = new CandidatoDAO();
-        if(!experienciasProfissionais.isEmpty()){
-            for(ExperienciaProfissional expPro : experienciasProfissionais){
+        List<Candidato> candidatosPorCaracteristicas = new ArrayList<>();     
+        CandidatoDAO candidadoDaoCaracteristicas = new CandidatoDAO();
+        if(!caracteristicasCandidato.isEmpty()){
+            for(CaracteristicasCandidato cc : caracteristicasCandidato){
                 Candidato canTemp = new Candidato();
-                canTemp.addExperienciaProfissionalList(expPro);
-                canTemp.setGerencia(expPro.getGerencia());
-                candidatosPorExperienciaProfissional.addAll(candidadoDaoExpPro.buscaCandidatoPorExperienciasProfissionais(canTemp));
+                canTemp.setPrenome("");
+                canTemp.setSobrenome("");
+                canTemp.setCpf("");
+                canTemp.setRg("");
+                canTemp.addCaracteristicasCandidatoList(cc);
+                candidatosPorCaracteristicas.addAll(candidadoDaoCaracteristicas.buscaCandidatoPorCaracteristicas(canTemp));
             }
         }
-        
         
         //Indisponibilidade Candidato        
         //Cria arrayList de Experiências profissionais selecionadas pelo usuário
@@ -1064,37 +1193,237 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             }
         }
         
-        //Tratar os arrays com os resultados das buscas
-        List<Candidato> candidatosFiltrados = new ArrayList<>();
-        List<Candidato> candidatosResultadoFiltragem = new ArrayList<>();
-        if(!candidatosPorDadosPessoais.isEmpty()){
-            
-            candidatosFiltrados.addAll(candidatosPorDadosPessoais);
+        //ExperienciasProfissionais
+        //Pega tamanho da lista de Experiências profissionais selecionadas pelo usuário
+        int tamanhoListaExperienciaProfissional = Table__ExperienciaProfissional.getRowCount();
+        //Cria arrayList de Experiências profissionais selecionadas pelo usuário
+        List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
+        //Adiciona as Experiências profissionais selecionadas pelo usuário
+        for (int i=0; i < tamanhoListaExperienciaProfissional; i++){
+            ExperienciaProfissional expProTemp = new ExperienciaProfissional();
+            Profissao temp = (Profissao) Table__ExperienciaProfissional.getValueAt(i, 0);
+            expProTemp.setCodigoProfissao(temp.getCodigoProfissao());
+            expProTemp.setDuracao((Integer) Table__ExperienciaProfissional.getValueAt(i, 1));
+            expProTemp.setGerencia((String) Table__ExperienciaProfissional.getValueAt(i, 2));
+            experienciasProfissionais.add(expProTemp);
         }
-        if(!candidatosPorExperienciaProfissional.isEmpty()){
-            candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
+        //Busca todos os candidatos que possuem uma das profissões acima
+        List<Candidato> candidatosPorExperienciaProfissional = new ArrayList<>();     
+        CandidatoDAO candidadoDaoExpPro = new CandidatoDAO();
+        if(!experienciasProfissionais.isEmpty()){
+            for(ExperienciaProfissional expPro : experienciasProfissionais){
+                Candidato canTemp = new Candidato();
+                canTemp.setPrenome("");
+                canTemp.setSobrenome("");
+                canTemp.setCpf("");
+                canTemp.setRg("");
+                canTemp.addExperienciaProfissionalList(expPro);
+                canTemp.setGerencia(expPro.getGerencia());
+                candidatosPorExperienciaProfissional.addAll(candidadoDaoExpPro.buscaCandidatoPorExperienciasProfissionais(canTemp));
+            }
         }
-        if(!candidatosPorIndisponibilidade.isEmpty()){
-            candidatosFiltrados.addAll(candidatosPorIndisponibilidade);
-            candidatosResultadoFiltragem.addAll(candidatosFiltrados);
-                for(Candidato c : candidatosFiltrados){
-                    for(Candidato ca : candidatosPorIndisponibilidade){
-                        if(c.compareTo(ca) == 1){
-                            candidatosResultadoFiltragem.remove(ca);
-                        }
-                    }
+        
+        //Formação Acadêmica
+        //Pega tamanho da lista de Formação Acadêmica selecionadas pelo usuário
+        int tamanhoListaFormacao = Table__Formacao.getRowCount();
+        //Cria arrayList de formações acadêmicas selecionadas pelo usuário
+        List<Formacao> formacoes = new ArrayList<>();
+        //Adiciona as Experiências profissionais selecionadas pelo usuário
+        for (int i=0; i < tamanhoListaFormacao; i++){
+            ExperienciaProfissional expProTemp = new ExperienciaProfissional();
+            Formacao formacaoTemp = new Formacao();
+            Curso cursoTemp = new Curso();
+            cursoTemp = (Curso) Table__Formacao.getValueAt(i,0);
+            formacaoTemp.setCodigoCurso(cursoTemp.getCodigoCurso());
+            formacaoTemp.setNivel((String)Table__Formacao.getValueAt(i, 1));
+            formacaoTemp.setStatus((String)Table__Formacao.getValueAt(i, 2));
+            formacoes.add(formacaoTemp);
+        }
+        //Busca todos os candidatos que possuem uma das formações acima
+        List<Candidato> candidatosPorFormacao = new ArrayList<>();     
+        CandidatoDAO candidadoDaoFormacao = new CandidatoDAO();
+        if(!formacoes.isEmpty()){
+            for(Formacao formacao : formacoes){
+                Candidato canTemp = new Candidato();
+                canTemp.setPrenome("");
+                canTemp.setSobrenome("");
+                canTemp.setCpf("");
+                canTemp.setRg("");
+                canTemp.addFormacaoList(formacao);
+                candidatosPorFormacao.addAll(candidadoDaoFormacao.buscaCandidatoPorFormacao(canTemp));
+            }
+        }
+        
+        
+        //Curriculo Informática
+        //Pega tamanho da lista de Cursos de Informática selecionadas pelo usuário
+        int tamanhoListaCurriculoInformatica = Table__CurriculoInformatica.getRowCount();
+        //Cria arrayList de Experiências profissionais selecionadas pelo usuário
+        List<CurriculoInformatica> curriculoInformatica = new ArrayList<>();
+        //Adiciona as Experiências profissionais selecionadas pelo usuário
+        for (int i=0; i < tamanhoListaCurriculoInformatica; i++){
+            CurriculoInformatica cinf = new CurriculoInformatica();
+            Object obj = Table__CurriculoInformatica.getValueAt(i, 3);
+            if(obj!=null){
+                if((Boolean)Table__CurriculoInformatica.getValueAt(i, 3)){
+                    cinf.setCodigoCurriculoInformatica((Integer)Table__CurriculoInformatica.getValueAt(i, 0));
+                    cinf.setHabilidade((String)Table__CurriculoInformatica.getValueAt(i, 1));
+                    cinf.setNivelHabilidade((String)Table__CurriculoInformatica.getValueAt(i, 2));
+                    curriculoInformatica.add(cinf);
                 }
+            }
+        }
+        //Busca todos os candidatos que possuem uma das habilidade em informática acima
+        List<Candidato> candidatosPorCurriculoInformatica = new ArrayList<>();     
+        CandidatoDAO candidadoDaoCInf = new CandidatoDAO();
+        if(!curriculoInformatica.isEmpty()){
+            for(CurriculoInformatica cinf : curriculoInformatica){
+                Candidato canTemp = new Candidato();
+                canTemp.setPrenome("");
+                canTemp.setSobrenome("");
+                canTemp.setCpf("");
+                canTemp.setRg("");
+                canTemp.addCurriculoInformaticaList(cinf);
+                candidatosPorCurriculoInformatica.addAll(candidadoDaoCInf.buscaCandidatoPorCurriculoInformatica(canTemp));
+            }
+        }
+        
+        //Curriculo Idioma
+        //Pega tamanho da lista de Cursos de Idiomas selecionadas pelo usuário
+        int tamanhoListaCurriculoIdioma = Table__CurriculoIdioma.getRowCount();
+        //Cria arrayList de Idiomas selecionadas pelo usuário
+        List<CurriculoIdioma> curriculoIdioma = new ArrayList<>();
+        //Adiciona os Idiomas selecionadas pelo usuário
+        for (int i=0; i < tamanhoListaCurriculoIdioma; i++){
+            CurriculoIdioma cid = new CurriculoIdioma();
+            Object obj = Table__CurriculoIdioma.getValueAt(i, 5);
+            if(obj!=null){
+                if((Boolean)Table__CurriculoIdioma.getValueAt(i, 5)){
+                    cid.setCodigoCurriculoIdioma((Integer)Table__CurriculoIdioma.getValueAt(i, 0));
+                    cid.setNome((String)Table__CurriculoIdioma.getValueAt(i, 1));
+                    cid.setNivelFala((String)Table__CurriculoIdioma.getValueAt(i, 2));
+                    cid.setNivelEscrita((String)Table__CurriculoIdioma.getValueAt(i, 3));
+                    cid.setNivelLeitura((String)Table__CurriculoIdioma.getValueAt(i, 4));
+                    curriculoIdioma.add(cid);
+                }
+            }
+        }
+        //Busca todos os candidatos que possuem uma das habilidade em informática acima
+        List<Candidato> candidatosPorCurriculoIdioma = new ArrayList<>();     
+        CandidatoDAO candidadoDaoCId = new CandidatoDAO();
+        if(!curriculoIdioma.isEmpty()){
+            for(CurriculoIdioma cid : curriculoIdioma){
+                Candidato canTemp = new Candidato();
+                canTemp.setPrenome("");
+                canTemp.setSobrenome("");
+                canTemp.setCpf("");
+                canTemp.setRg("");
+                canTemp.addCurriculoIdiomaList(cid);
+                candidatosPorCurriculoIdioma.addAll(candidadoDaoCId.buscaCandidatoPorCurriculoIdioma(canTemp));
+            }
+        }
+        
+        
+        System.out.println("------------DADOS PESSOAIS-------------");
+        for(Candidato c: candidatosPorDadosPessoais){
+            System.out.println(c);
+        }
+        System.out.println("------------Caracteristicas Candidato-------------");
+        for(Candidato c: candidatosPorCaracteristicas){
+            System.out.println(c);
+        }
+        System.out.println("------------DADOS PESSOAIS PROFISSOES-------------");
+        for(Candidato c: candidatosPorDadosPessoaisProfissoes){
+            System.out.println(c);
+        }
+        System.out.println("------------ExperienciaProfissional-------------");
+        for(Candidato c: candidatosPorExperienciaProfissional){
+            System.out.println(c);
+        }
+        System.out.println("------------FormacaoAcademica-------------");
+        for(Candidato c: candidatosPorFormacao){
+            System.out.println(c);
+        }
+        System.out.println("------------Indisponibilidade-------------");
+        for(Candidato c: candidatosPorIndisponibilidade){
+            System.out.println(c);
+        }
+        System.out.println("------------Currículo Informática-------------");
+        for(Candidato c: candidatosPorCurriculoInformatica){
+            System.out.println(c);
+        }
+         System.out.println("------------Currículo Idioma-------------");
+        for(Candidato c: candidatosPorCurriculoIdioma){
+            System.out.println(c);
+        }
+        
+        
+        
+//        if(!candidatosPorDadosPessoais.isEmpty()){
+//            if(candidatosFiltrados.isEmpty()){
+//               candidatosFiltrados.addAll(candidatosPorDadosPessoais);
+//               candidatosResultadoFiltragem.addAll(candidatosFiltrados);
+//            }else{
+//               for(Candidato c: candidatosPorDadosPessoais){
+//                    for(Candidato cf:candidatosFiltrados){
+//                        if(c.getCodigoCandidato()!=cf.getCodigoCandidato()){
+//                            candidatosResultadoFiltragem.add(c);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        if(!candidatosPorExperienciaProfissional.isEmpty()){
+//            if(candidatosFiltrados.isEmpty()){
+//               candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
+//               candidatosResultadoFiltragem.addAll(candidatosFiltrados);
+//            }else{
+//                for(Candidato c: candidatosPorExperienciaProfissional){
+//                    for(Candidato cf:candidatosFiltrados){
+//                        if(c.getCodigoCandidato()!=cf.getCodigoCandidato()){
+//                            candidatosResultadoFiltragem.add(c);
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            //candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
+//            //candidatosResultadoFiltragem.addAll(candidatosPorExperienciaProfissional);
+//        }
+//        if(!candidatosPorIndisponibilidade.isEmpty()){
+//            if(candidatosFiltrados.isEmpty()){
+//               candidatosFiltrados.addAll(candidatosPorIndisponibilidade);
+//               //candidatosResultadoFiltragem.addAll(candidatosFiltrados);
+//            }else{
+//                for(Candidato c: candidatosPorIndisponibilidade){
+//                    for(Candidato cf:candidatosFiltrados){
+//                        if(c.getCodigoCandidato()==cf.getCodigoCandidato()){
+//                            candidatosResultadoFiltragem.remove(c);
+//                        }
+//                    }
+//                }
+//            }
+            
+
+//            candidatosFiltrados.addAll(candidatosPorIndisponibilidade);
+//            candidatosResultadoFiltragem.addAll(candidatosFiltrados);
+//                for(Candidato c : candidatosFiltrados){
+//                    for(Candidato ca : candidatosPorIndisponibilidade){
+//                        if(c.compareTo(ca) == 1){
+//                            System.out.println("removeu: "+c);
+//                            candidatosResultadoFiltragem.remove(ca);
+//                        }
+//                    }
+//                }
                        
-        }
+//        }
         
-        //Cria objeto do tipo DefaultTableModel e exibe resultado do filtro
-        javax.swing.table.DefaultTableModel dtm = (javax.swing.table.DefaultTableModel) Table__ResultadoFiltragem.getModel();
-        dtm.getDataVector().removeAllElements();
-        for(Candidato c : candidatosResultadoFiltragem){
-                dtm.addRow(new Object[]{c.getCodigoCandidato(), c.getCpf(), c.getPrenome()+" "+c.getSobrenome(), c.getEmail(), "7788398284",false});
-        }
+       
+    //Preenche tabela com resultado da filtragem dos candidatos   
+    listener.listarCandidatos(Table__ResultadoFiltragem,candidatosResultadoFiltragem);
         
-       jTPResultado.setSelectedIndex(5);
+        
+    jTPResultado.setSelectedIndex(6);
       
     }//GEN-LAST:event_FiltrarActionPerformed
 
@@ -1120,7 +1449,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         }
 
         boolean gerente = Checkbox__ExperienciaProfissional__Gerente.isSelected();
-        System.out.println("gerente: "+gerente);
+        
         if( gerente == true){
             expTemp.setGerencia("Sim");
         } else {
@@ -1145,25 +1474,21 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private void delProfissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delProfissaoActionPerformed
         List<Profissao> lista = List__Profissao__Nome__Selecionados.getSelectedValuesList();
         for(Profissao l : lista){
-            dlm2.removeElement(l);
+            dlmProfissoesFiltradas.removeElement(l);
         }
-        List__Profissao__Nome__Selecionados.setModel(dlm2);
+        List__Profissao__Nome__Selecionados.setModel(dlmProfissoesFiltradas);
     }//GEN-LAST:event_delProfissaoActionPerformed
 
     private void addProfissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProfissaoActionPerformed
-        if(!dlm2.contains(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes.getSelectedItem())){
-            dlm2.addElement(ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes.getSelectedItem());
+        if(!dlmProfissoesFiltradas.contains(ComboBox__Candidato__Lista_Profissoes.getSelectedItem())){
+            dlmProfissoesFiltradas.addElement(ComboBox__Candidato__Lista_Profissoes.getSelectedItem());
         }
-        List__Profissao__Nome__Selecionados.setModel(dlm2);
+        List__Profissao__Nome__Selecionados.setModel(dlmProfissoesFiltradas);
     }//GEN-LAST:event_addProfissaoActionPerformed
 
     private void Field__Candidato__dataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__Candidato__dataNascimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Field__Candidato__dataNascimentoActionPerformed
-
-    private void Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Field__CaracteristicasCandidato__CaracteristicasCandidato__PesquisaActionPerformed
 
     private void Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button__IndisponibilidadeCandidato__Semana__NoiteActionPerformed
         listener.preencherTabelaDisponibilidade(true, 2, 2, 2, 6, Table__IndisponibilidadeCandidato);
@@ -1186,8 +1511,67 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Field__Candidato__PreNomeActionPerformed
 
+    private void addCaracteristicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCaracteristicaActionPerformed
+        List<CaracteristicasCandidato> lista = List__CaracteristicasCandidato__Nome__Lista.getSelectedValuesList();
+        for(CaracteristicasCandidato l : lista){
+            if(!dlmCaracteristicasFiltradas.contains(l))
+                dlmCaracteristicasFiltradas.addElement(l);
+        }
+        List__CaracteristicasCandidato__Nome__Lista__Selecionados.setModel(dlmCaracteristicasFiltradas);
+    }//GEN-LAST:event_addCaracteristicaActionPerformed
+
+    private void delCaracteristicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delCaracteristicaActionPerformed
+        List<CaracteristicasCandidato> lista = List__CaracteristicasCandidato__Nome__Lista__Selecionados.getSelectedValuesList();
+        for(CaracteristicasCandidato l : lista){
+            dlmCaracteristicasFiltradas.removeElement(l);
+        }
+        List__CaracteristicasCandidato__Nome__Lista__Selecionados.setModel(dlmCaracteristicasFiltradas);
+    }//GEN-LAST:event_delCaracteristicaActionPerformed
+
+    private void jBTNListarTodosCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNListarTodosCandidatosActionPerformed
+       List<Candidato> candidatos = new ArrayList<>();
+       CandidatoDAO candidatoDAO = new CandidatoDAO();
+       candidatos.addAll(candidatoDAO.listarCandidatos());
+       listener.listarCandidatos(Table__ResultadoFiltragem, candidatos);
+       jTPResultado.setSelectedIndex(6);
+    }//GEN-LAST:event_jBTNListarTodosCandidatosActionPerformed
+
+    private void Field__Candidato__dataNascimentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Field__Candidato__dataNascimentoKeyPressed
+        if(Field__Candidato__dataNascimento.getText().length() == 2 || Field__Candidato__dataNascimento.getText().length() == 5){
+           Field__Candidato__dataNascimento.setText( Field__Candidato__dataNascimento.getText()+ "/");
+       } 
+    }//GEN-LAST:event_Field__Candidato__dataNascimentoKeyPressed
+
+    private void Field__Candidato__CPFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Field__Candidato__CPFKeyPressed
+       if(Field__Candidato__CPF.getText().length() == 3 || 
+               Field__Candidato__CPF.getText().length() == 7){
+           Field__Candidato__CPF.setText( Field__Candidato__CPF.getText()+ ".");
+       } 
+       if(Field__Candidato__CPF.getText().length() == 11){
+           Field__Candidato__CPF.setText( Field__Candidato__CPF.getText()+ "-");
+       } 
+    }//GEN-LAST:event_Field__Candidato__CPFKeyPressed
+
+    private void addFormacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFormacaoActionPerformed
+        Formacao formacao = new Formacao();
+        Curso curso = new Curso();
+        curso = (Curso) Combo__Formacao__Cursos.getSelectedItem();
+        formacao.setCodigoCurso(curso.getCodigoCurso());
+        formacao.setNivel((String)Combo__Formacao__Nivel.getSelectedItem());
+        formacao.setStatus((String)Combo__Formacao__Status.getSelectedItem());
+        listener.inserirTabelaFormacao(formacao, curso, Table__Formacao);
+    }//GEN-LAST:event_addFormacaoActionPerformed
+
+    private void jBtnLimparFormacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparFormacaoActionPerformed
+        DefaultTableModel dtm = (DefaultTableModel) Table__Formacao.getModel();
+        int linhas = dtm.getRowCount();
+        //Remove todas aslinhas
+        for(int i = linhas-1; i >= 0; i--) {
+            dtm.removeRow(i);
+        }
+    }//GEN-LAST:event_jBtnLimparFormacaoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;
     private javax.swing.JButton Button__ExperienciaProfissional__InserirExperiencia;
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Comercial__Sabado;
     private javax.swing.JButton Button__IndisponibilidadeCandidato__Comercial__SegSex;
@@ -1199,12 +1583,15 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JCheckBox Checkbox__Candidato__Gerencia;
     private javax.swing.JCheckBox Checkbox__Candidato__PrimeiroEmprego;
     private javax.swing.JCheckBox Checkbox__ExperienciaProfissional__Gerente;
+    private javax.swing.JComboBox ComboBox__Candidato__Lista_Profissoes;
     private javax.swing.JComboBox ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa;
-    private javax.swing.JComboBox ComboBox__ExperienciaProfissional__CargoExercido__Pesquisa_Profissoes;
     private javax.swing.JComboBox Combo__Candidato__CNHCategoria;
     private javax.swing.JComboBox Combo__Candidato__Sexo;
     private javax.swing.JComboBox Combo__Candidato__Veiculo;
     private javax.swing.JComboBox Combo__Candidato__estadoCivil;
+    private javax.swing.JComboBox Combo__Formacao__Cursos;
+    private javax.swing.JComboBox Combo__Formacao__Nivel;
+    private javax.swing.JComboBox Combo__Formacao__Status;
     private javax.swing.JTextField Field__Candidato__CPF;
     private javax.swing.JTextField Field__Candidato__PreNome;
     private javax.swing.JTextField Field__Candidato__PretensaoSalarialMax;
@@ -1213,11 +1600,10 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JTextField Field__Candidato__SobreNome;
     private javax.swing.JTextField Field__Candidato__dataNascimento;
     private javax.swing.JTextField Field__Candidato__quantidadeFilhos;
-    private javax.swing.JTextField Field__CaracteristicasCandidato__CaracteristicasCandidato__Pesquisa;
-    private javax.swing.JList Field__CaracteristicasCandidato__CaracteristicasCandidato__Selecionados;
     private javax.swing.JTextField Field__ExperienciaProfissional__Duracao;
     private javax.swing.JButton Filtrar;
     private javax.swing.JList List__CaracteristicasCandidato__Nome__Lista;
+    private javax.swing.JList List__CaracteristicasCandidato__Nome__Lista__Selecionados;
     private javax.swing.JList List__Profissao__Nome__Selecionados;
     private javax.swing.JRadioButton Radio__Candidato__DisponibilidadeViajar__Nao;
     private javax.swing.JRadioButton Radio__Candidato__DisponibilidadeViajar__Sim;
@@ -1226,20 +1612,25 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JTable Table__CurriculoIdioma;
     private javax.swing.JTable Table__CurriculoInformatica;
     private javax.swing.JTable Table__ExperienciaProfissional;
+    private javax.swing.JTable Table__Formacao;
     private javax.swing.JTable Table__IndisponibilidadeCandidato;
     private javax.swing.JTable Table__ResultadoFiltragem;
     private javax.swing.JButton addCaracteristica;
+    private javax.swing.JButton addFormacao;
     private javax.swing.JButton addProfissao;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton delCaracteristica;
     private javax.swing.JButton delProfissao;
+    private javax.swing.JButton jBTNListarTodosCandidatos;
+    private javax.swing.JButton jBtnLimparFormacao;
     private javax.swing.JButton jBtnLimparTabelaExperienciasProfissionais;
-    private javax.swing.JButton jButton4;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
@@ -1257,11 +1648,13 @@ public class FiltrarCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPAcademica;
     private javax.swing.JPanel jPCaracteristicas;
     private javax.swing.JPanel jPDadosPessoais;
     private javax.swing.JPanel jPDisponibilidade;
     private javax.swing.JPanel jPExperienciaProfissional;
     private javax.swing.JPanel jPInformaticaIdiomas;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

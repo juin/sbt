@@ -1675,7 +1675,7 @@ public class CadastrarCandidato extends javax.swing.JInternalFrame {
         candidato.setDisponibilidadeViajar(disponibilidadeViajar);
         candidato.setTipoNecessidadeEspecial(tipoNecessidadeEspecial);
         //candidato.setPortadorNecessidadeEspecial(portadorNecessidadeEspecial);
-        candidato.setPretensaoSalarial(pretensaoSalarial);
+        candidato.setPretensaoSalarialMin(pretensaoSalarial);
         candidato.setVeiculo(veiculo);
         candidato.setPrimeiroEmprego(primeiroEmprego);
         candidato.setGerencia(gerencia);

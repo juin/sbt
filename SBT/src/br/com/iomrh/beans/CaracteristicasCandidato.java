@@ -9,7 +9,7 @@ package br.com.iomrh.beans;
  *
  * @author Cremildo Lima
  */
-public class CaracteristicasCandidato {
+public class CaracteristicasCandidato implements Comparable<CaracteristicasCandidato>{
     
     private Integer codigoCandidato;
     private String caracteristicasCandidato;
@@ -31,6 +31,20 @@ public class CaracteristicasCandidato {
 
     public void setCaracteristicasCandidato(String caracteristicasCandidato) {
         this.caracteristicasCandidato = caracteristicasCandidato;
+    }
+
+    @Override
+    public int compareTo(CaracteristicasCandidato cc) {
+        CaracteristicasCandidato carac = (CaracteristicasCandidato) cc;
+        if(getCaracteristicasCandidato().equals(cc.getCaracteristicasCandidato()))
+            return 1;
+        else
+            return 0;
+    }
+
+    @Override
+    public String toString() {
+        return caracteristicasCandidato;
     }
 
     

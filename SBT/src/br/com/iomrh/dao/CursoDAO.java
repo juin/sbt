@@ -18,29 +18,27 @@ import java.util.List;
  *
  * @author Cremildo Lima
  */
-public class CurriculoIdiomaDAO {
+public class CursoDAO {
     private Connection conexao;
 
-    public CurriculoIdiomaDAO() {
+    public CursoDAO() {
         this.conexao = new Conexao().getConexao();
     }
     
-    public void inserir(CurriculoIdioma curriculoIdioma){
+    public void inserir(Curso curso){
 
-        String sql = "INSERT INTO CurriculoIdioma "
-                + "(codigoCurriculoIdioma, nome, nivelFala, nivelEscrita, nivelLeitura) "
-                + "VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO Curso "
+                + "(codigoCurso, nomeCurso) "
+                + "VALUES(?, ?)";
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
             // seta os valores
-             stmt.setInt(1, curriculoIdioma.getCodigoCurriculoIdioma());
-             stmt.setString(2, curriculoIdioma.getNome());
-             stmt.setString(3, curriculoIdioma.getNivelFala());
-             stmt.setString(4, curriculoIdioma.getNivelEscrita());
-             stmt.setString(5, curriculoIdioma.getNivelLeitura());
-             
+            stmt.setInt(1, curso.getCodigoCurso());
+            stmt.setString(2, curso.getNomeCurso());
+   
+            
             // executa
             stmt.execute();
             stmt.close();
@@ -49,25 +47,28 @@ public class CurriculoIdiomaDAO {
         }
     }
     
-    public List<CurriculoIdioma> listar(){
+    public List<Curso> listarCursos(){
         
-        List<CurriculoIdioma> cursos = new ArrayList<>();
-        String sql = "SELECT * FROM CurriculoIdioma ORDER BY nome";
+        List<Curso> cursos = new ArrayList<Curso>();
+        String sql = "SELECT * FROM Curso";
+        
         try {
             // prepared statement para inserção
             PreparedStatement stmt = conexao.prepareStatement(sql);
             
-            // executa
+            //executa
             ResultSet resultado = stmt.executeQuery();
+            
             while (resultado.next()) {
-                CurriculoIdioma ci = new CurriculoIdioma();
-                ci.setCodigoCurriculoIdioma(resultado.getInt("codigoCurriculoIdioma"));
-                ci.setNome(resultado.getString("nome"));
-                ci.setNivelEscrita(resultado.getString("nivelEscrita"));
-                ci.setNivelFala(resultado.getString("nivelFala"));
-                ci.setNivelLeitura(resultado.getString("nivelLeitura"));
-                cursos.add(ci);
+                
+                Curso curso = new Curso();
+                
+                curso.setCodigoCurso(resultado.getInt("codigoCurso"));
+                curso.setNomeCurso(resultado.getString("nomeCurso"));
+                 
+                cursos.add(curso);
             }
+            
             stmt.close();
             resultado.close();
         } catch (SQLException e) {
@@ -76,4 +77,6 @@ public class CurriculoIdiomaDAO {
         
         return cursos;
     }
+    
+    
 }

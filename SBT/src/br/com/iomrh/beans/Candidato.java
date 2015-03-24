@@ -50,6 +50,11 @@ public class Candidato implements Comparable<Candidato>{
     public Candidato() {
         experienciaProfissionalList = new ArrayList<>();
         indisponibilidadeCandidatoList = new ArrayList<>();
+        caracteristicasCandidatoList = new ArrayList<>();
+        curriculoIdiomaList = new ArrayList<>();
+        curriculoInformaticaList = new ArrayList<>();
+        formacaoList = new ArrayList<>();
+        
     }
 
     public Integer getCodigoCandidato() {
@@ -219,6 +224,10 @@ public class Candidato implements Comparable<Candidato>{
     public void setCurriculoInformaticaList(List<CurriculoInformatica> curriculoInformaticaList) {
         this.curriculoInformaticaList = curriculoInformaticaList;
     }
+    
+    public void addCurriculoInformaticaList(CurriculoInformatica cinf){
+        this.curriculoInformaticaList.add(cinf);
+    }
 
     public List<CurriculoIdioma> getCurriculoIdiomaList() {
         return curriculoIdiomaList;
@@ -226,6 +235,10 @@ public class Candidato implements Comparable<Candidato>{
 
     public void setCurriculoIdiomaList(List<CurriculoIdioma> curriculoIdiomaList) {
         this.curriculoIdiomaList = curriculoIdiomaList;
+    }
+    
+    public void addCurriculoIdiomaList(CurriculoIdioma cid){
+        this.curriculoIdiomaList.add(cid);
     }
     
     public List<HistoricoCandidato> getHistoricoCandidatoList() {
@@ -252,6 +265,10 @@ public class Candidato implements Comparable<Candidato>{
         this.caracteristicasCandidatoList = caracteristicasCandidatoList;
     }
 
+    public void addCaracteristicasCandidatoList(CaracteristicasCandidato cc){
+        this.caracteristicasCandidatoList.add(cc);
+    }
+    
     public List<Telefone> getTelefoneList() {
         return telefoneList;
     }
@@ -276,6 +293,10 @@ public class Candidato implements Comparable<Candidato>{
         this.formacaoList = formacaoList;
     }
 
+    public void addFormacaoList(Formacao formacao){
+        this.formacaoList.add(formacao);
+    }
+    
     public List<IndisponibilidadeCandidato> getIndisponibilidadeCandidatoList() {
         return indisponibilidadeCandidatoList;
     }

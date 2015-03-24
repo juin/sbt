@@ -9,6 +9,7 @@ import br.com.iomrh.beans.*;
 import br.com.iomrh.jdbc.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -44,6 +45,32 @@ public class TelefoneDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    public Telefone buscaTelefonePorCodigoCandidato(int codigoCandidato){
+        
+        Telefone tel = new Telefone();
+        String sql = "SELECT * FROM Telefone WHERE codigoCandidato = ? LIMIT 1";
+        
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            stmt.setInt(1, codigoCandidato);
+            
+            //executa
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()) {
+                tel.setTelefone(resultado.getString("telefone"));
+            }            
+            stmt.close();
+            resultado.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return tel;
+        
     }
     
     

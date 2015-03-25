@@ -21,12 +21,15 @@ import br.com.iomrh.dao.CaracteristicasCandidatoDAO;
 import br.com.iomrh.dao.CursoDAO;
 import br.com.iomrh.dao.ProfissaoDAO;
 import br.com.iomrh.dao.TelefoneDAO;
+import br.com.iomrh.helpers.Lista;
 import br.com.iomrh.helpers.Util;
 import br.com.iomrh.listeners.FiltrarCandidatoListener;
 import com.sun.javafx.PlatformUtil;
 import java.awt.Color;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -1025,12 +1028,13 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         
         //Tratar os arrays com os resultados das buscas
         List<Candidato> candidatosFiltrados = new ArrayList<>();
-        List<Candidato> candidatosResultadoFiltragem = new ArrayList<>();
+        //List<Candidato> candidatosResultadoFiltragem = new ArrayList<>();
+        Lista candidatosResultadoFiltragem = new Lista();
         
         //Dados Pessoais
         //Busca todos os candidatos que possuem um dos campos acima
-        List<Candidato> candidatosPorDadosPessoais = new ArrayList<Candidato>();
-        List<Candidato> candidatosPorDadosPessoaisProfissoes = new ArrayList<Candidato>();
+        Lista candidatosPorDadosPessoais = new Lista();
+        Lista candidatosPorDadosPessoaisProfissoes = new Lista();
         CandidatoDAO candidadoProfissoesDao = new CandidatoDAO();
         if(!Field__Candidato__PreNome.getText().isEmpty() || !Field__Candidato__SobreNome.getText().isEmpty() || 
                 !Field__Candidato__CPF.getText().isEmpty() || !Field__Candidato__RG.getText().isEmpty() || 
@@ -1084,6 +1088,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
                 
         candidatosPorDadosPessoais.addAll(candidadoProfissoesDao.buscaCandidatoPorDadosPessoais(canTemp));                    
         }
+        
         //Dados Pessoais (Profissoes)
         if(List__Profissao__Nome__Selecionados.getModel().getSize()>0){
             //Pega tamanho da lista de profissões selecionadas pelo usuário
@@ -1116,7 +1121,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             caracteristicasCandidato.add(temp);
         }
         //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatosPorCaracteristicas = new ArrayList<>();     
+        Lista candidatosPorCaracteristicas = new Lista();     
         CandidatoDAO candidadoDaoCaracteristicas = new CandidatoDAO();
         if(!caracteristicasCandidato.isEmpty()){
             for(CaracteristicasCandidato cc : caracteristicasCandidato){
@@ -1183,7 +1188,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         }
           
         //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatosPorIndisponibilidade = new ArrayList<>();     
+        Lista candidatosPorIndisponibilidade = new Lista();     
         CandidatoDAO candidadoDaoIndisponibilidade = new CandidatoDAO();
         if(!indisponibilidades.isEmpty()){
             for(IndisponibilidadeCandidato ind : indisponibilidades){
@@ -1208,7 +1213,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             experienciasProfissionais.add(expProTemp);
         }
         //Busca todos os candidatos que possuem uma das profissões acima
-        List<Candidato> candidatosPorExperienciaProfissional = new ArrayList<>();     
+        Lista candidatosPorExperienciaProfissional = new Lista();     
         CandidatoDAO candidadoDaoExpPro = new CandidatoDAO();
         if(!experienciasProfissionais.isEmpty()){
             for(ExperienciaProfissional expPro : experienciasProfissionais){
@@ -1240,7 +1245,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             formacoes.add(formacaoTemp);
         }
         //Busca todos os candidatos que possuem uma das formações acima
-        List<Candidato> candidatosPorFormacao = new ArrayList<>();     
+        Lista candidatosPorFormacao = new Lista();     
         CandidatoDAO candidadoDaoFormacao = new CandidatoDAO();
         if(!formacoes.isEmpty()){
             for(Formacao formacao : formacoes){
@@ -1274,7 +1279,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             }
         }
         //Busca todos os candidatos que possuem uma das habilidade em informática acima
-        List<Candidato> candidatosPorCurriculoInformatica = new ArrayList<>();     
+        Lista candidatosPorCurriculoInformatica = new Lista();     
         CandidatoDAO candidadoDaoCInf = new CandidatoDAO();
         if(!curriculoInformatica.isEmpty()){
             for(CurriculoInformatica cinf : curriculoInformatica){
@@ -1309,7 +1314,7 @@ public class FiltrarCandidato extends javax.swing.JFrame {
             }
         }
         //Busca todos os candidatos que possuem uma das habilidade em informática acima
-        List<Candidato> candidatosPorCurriculoIdioma = new ArrayList<>();     
+        Lista candidatosPorCurriculoIdioma = new Lista();     
         CandidatoDAO candidadoDaoCId = new CandidatoDAO();
         if(!curriculoIdioma.isEmpty()){
             for(CurriculoIdioma cid : curriculoIdioma){
@@ -1325,104 +1330,154 @@ public class FiltrarCandidato extends javax.swing.JFrame {
         
         
         System.out.println("------------DADOS PESSOAIS-------------");
-        for(Candidato c: candidatosPorDadosPessoais){
-            System.out.println(c);
+        if(!candidatosPorDadosPessoais.isEmpty()){
+            for(int i=0;i<candidatosPorDadosPessoais.size();i++){
+                Candidato c = (Candidato)candidatosPorDadosPessoais.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorCaracteristicas.isEmpty() || candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty() || candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty() || candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || !candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) && 
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
         }
+        
+        
         System.out.println("------------Caracteristicas Candidato-------------");
-        for(Candidato c: candidatosPorCaracteristicas){
-            System.out.println(c);
-        }
-        System.out.println("------------DADOS PESSOAIS PROFISSOES-------------");
-        for(Candidato c: candidatosPorDadosPessoaisProfissoes){
-            System.out.println(c);
-        }
-        System.out.println("------------ExperienciaProfissional-------------");
-        for(Candidato c: candidatosPorExperienciaProfissional){
-            System.out.println(c);
-        }
-        System.out.println("------------FormacaoAcademica-------------");
-        for(Candidato c: candidatosPorFormacao){
-            System.out.println(c);
-        }
-        System.out.println("------------Indisponibilidade-------------");
-        for(Candidato c: candidatosPorIndisponibilidade){
-            System.out.println(c);
-        }
-        System.out.println("------------Currículo Informática-------------");
-        for(Candidato c: candidatosPorCurriculoInformatica){
-            System.out.println(c);
-        }
-         System.out.println("------------Currículo Idioma-------------");
-        for(Candidato c: candidatosPorCurriculoIdioma){
-            System.out.println(c);
+        if(!candidatosPorCaracteristicas.isEmpty()){
+            for(int i=0;i<candidatosPorCaracteristicas.size();i++){
+                Candidato c = (Candidato)candidatosPorCaracteristicas.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty()|| candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty()|| candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || !candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
         }
         
         
+//        System.out.println("------------DADOS PESSOAIS PROFISSOES-------------");
+        if(!candidatosPorDadosPessoaisProfissoes.isEmpty()){
+            for(int i=0;i<candidatosPorDadosPessoaisProfissoes.size();i++){
+                Candidato c = (Candidato)candidatosPorDadosPessoaisProfissoes.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorCaracteristicas.isEmpty()|| candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty()|| candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || !candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
+        }
+//        
+//        System.out.println("------------ExperienciaProfissional-------------");
+        if(!candidatosPorExperienciaProfissional.isEmpty()){
+            for(int i=0;i<candidatosPorExperienciaProfissional.size();i++){
+                Candidato c = (Candidato)candidatosPorExperienciaProfissional.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorCaracteristicas.isEmpty()|| candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty()|| candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || !candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
+        }
+//        
+//      System.out.println("------------FormacaoAcademica-------------");
+        if(!candidatosPorFormacao.isEmpty()){
+            for(int i=0;i<candidatosPorFormacao.size();i++){
+                Candidato c = (Candidato)candidatosPorFormacao.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorCaracteristicas.isEmpty()|| candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty()|| candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty() || candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || !candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
+        }
         
-//        if(!candidatosPorDadosPessoais.isEmpty()){
-//            if(candidatosFiltrados.isEmpty()){
-//               candidatosFiltrados.addAll(candidatosPorDadosPessoais);
-//               candidatosResultadoFiltragem.addAll(candidatosFiltrados);
-//            }else{
-//               for(Candidato c: candidatosPorDadosPessoais){
-//                    for(Candidato cf:candidatosFiltrados){
-//                        if(c.getCodigoCandidato()!=cf.getCodigoCandidato()){
-//                            candidatosResultadoFiltragem.add(c);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if(!candidatosPorExperienciaProfissional.isEmpty()){
-//            if(candidatosFiltrados.isEmpty()){
-//               candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
-//               candidatosResultadoFiltragem.addAll(candidatosFiltrados);
-//            }else{
-//                for(Candidato c: candidatosPorExperienciaProfissional){
-//                    for(Candidato cf:candidatosFiltrados){
-//                        if(c.getCodigoCandidato()!=cf.getCodigoCandidato()){
-//                            candidatosResultadoFiltragem.add(c);
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            //candidatosFiltrados.addAll(candidatosPorExperienciaProfissional);
-//            //candidatosResultadoFiltragem.addAll(candidatosPorExperienciaProfissional);
-//        }
-//        if(!candidatosPorIndisponibilidade.isEmpty()){
-//            if(candidatosFiltrados.isEmpty()){
-//               candidatosFiltrados.addAll(candidatosPorIndisponibilidade);
-//               //candidatosResultadoFiltragem.addAll(candidatosFiltrados);
-//            }else{
-//                for(Candidato c: candidatosPorIndisponibilidade){
-//                    for(Candidato cf:candidatosFiltrados){
-//                        if(c.getCodigoCandidato()==cf.getCodigoCandidato()){
-//                            candidatosResultadoFiltragem.remove(c);
-//                        }
-//                    }
-//                }
-//            }
-            
-
-//            candidatosFiltrados.addAll(candidatosPorIndisponibilidade);
-//            candidatosResultadoFiltragem.addAll(candidatosFiltrados);
-//                for(Candidato c : candidatosFiltrados){
-//                    for(Candidato ca : candidatosPorIndisponibilidade){
-//                        if(c.compareTo(ca) == 1){
-//                            System.out.println("removeu: "+c);
-//                            candidatosResultadoFiltragem.remove(ca);
-//                        }
-//                    }
-//                }
-                       
-//        }
+//     System.out.println("------------Indisponibilidade-------------");
+       if(!candidatosPorIndisponibilidade.isEmpty()){
+            for(int i=0;i<candidatosPorIndisponibilidade.size();i++){
+                Candidato c = (Candidato)candidatosPorIndisponibilidade.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorCaracteristicas.isEmpty()|| candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty()|| candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty() || candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || !candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
+        }
+//        System.out.println("------------Currículo Idioma-------------");
+       if(!candidatosPorCurriculoIdioma.isEmpty()){
+            for(int i=0;i<candidatosPorCurriculoIdioma.size();i++){
+                Candidato c = (Candidato)candidatosPorCurriculoIdioma.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorCaracteristicas.isEmpty()|| candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty()|| candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty() || candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || !candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoInformatica.isEmpty() || candidatosPorCurriculoInformatica.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
+        }
+//       
+//        System.out.println("------------Currículo Informatica-------------");
+        if(!candidatosPorCurriculoInformatica.isEmpty()){
+            for(int i=0;i<candidatosPorCurriculoInformatica.size();i++){
+                Candidato c = (Candidato)candidatosPorCurriculoInformatica.get(i);
+                //Só adiciona, se o mesmo candidato estiver presente nas outras 7 listas
+                if((candidatosPorDadosPessoais.isEmpty() || candidatosPorDadosPessoais.contains(c.getCodigoCandidato())) && 
+                   (candidatosPorCaracteristicas.isEmpty()|| candidatosPorCaracteristicas.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorDadosPessoaisProfissoes.isEmpty()|| candidatosPorDadosPessoaisProfissoes.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorExperienciaProfissional.isEmpty() || candidatosPorExperienciaProfissional.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorFormacao.isEmpty() || !candidatosPorFormacao.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorIndisponibilidade.isEmpty() || candidatosPorIndisponibilidade.contains(c.getCodigoCandidato())) &&
+                   (candidatosPorCurriculoIdioma.isEmpty() || candidatosPorCurriculoIdioma.contains(c.getCodigoCandidato())) &&
+                   (candidatosResultadoFiltragem.isEmpty() || !candidatosResultadoFiltragem.contains(c.getCodigoCandidato()))){
+                        candidatosResultadoFiltragem.add(c);
+                }
+            }
+        }
         
        
     //Preenche tabela com resultado da filtragem dos candidatos   
     listener.listarCandidatos(Table__ResultadoFiltragem,candidatosResultadoFiltragem);
-        
-        
+
     jTPResultado.setSelectedIndex(6);
       
     }//GEN-LAST:event_FiltrarActionPerformed
